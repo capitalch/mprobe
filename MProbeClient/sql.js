@@ -228,6 +228,7 @@ let sql = {
         and brand = :brand
         and counter_code = :counter
 		and show='Y'
-        order by counter_code,item,brand,model`
+        order by counter_code,item,brand,model`,
+    'tunnel:get:final:accounts':`exec sp_acc_final_accounts 'L'`
 };
 module.exports = sql;
