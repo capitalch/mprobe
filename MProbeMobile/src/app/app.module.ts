@@ -4,7 +4,8 @@ import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
 import {IonicStorageModule} from '@ionic/storage';
-import {HttpModule} from '@angular/http';
+// import {HttpModule} from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
 import {CommonHeaderComponent} from '../components/common-header/common-header';
 import {AppServiceProvider} from '../providers/app-service/app-service';
 import {MyApp} from './app.component';
@@ -63,7 +64,9 @@ import {PlaceOrdersPage} from '../pages/place-orders/place-orders';
   ],
   imports: [
     BrowserModule, IonicModule.forRoot(MyApp, {backButtonText: ''}),
-    IonicStorageModule.forRoot(),HttpModule
+    IonicStorageModule.forRoot()
+    //,HttpModule
+    ,HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -77,7 +80,6 @@ import {PlaceOrdersPage} from '../pages/place-orders/place-orders';
     SaleHeaderPage,
     HealthPage,
     BalanceSheetPage,
-    // ,AssetsPage,LiabilitiesPage,ExpencesPage,IncomePage
     FinalAccountsPage,
     ChequePaymentsPage,
     CashPaymentsPage,

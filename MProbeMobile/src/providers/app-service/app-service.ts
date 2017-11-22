@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+// import {Http} from '@angular/http';
+import {HttpClient} from '@angular/common/http';
 import {AlertController, ModalController, Platform} from 'ionic-angular';
 // import * as Mustache from 'mustache'; import * as io from 'socket.io-client';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import {Storage} from '@ionic/storage';
-import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/map';
 import {Subject} from 'rxjs/Subject';
 import {Subscription} from 'rxjs/Subscription';
 import {Observable} from 'rxjs/observable';
@@ -22,7 +23,7 @@ export class AppServiceProvider {
   subject : Subject < any >;
   subscriptions : Subscription;
 
-  constructor(public modalCtrl : ModalController, public platform : Platform, private storage : Storage, public alertCtrl : AlertController, public http : Http) {
+  constructor(public modalCtrl : ModalController, public platform : Platform, private storage : Storage, public alertCtrl : AlertController, public httpClient : HttpClient) {
     this.subject = new Subject();
     this.init();
   };
@@ -192,9 +193,9 @@ export class AppServiceProvider {
     });
     // body.args||(body.args={});
     this
-      .http
+      .httpClient
       .post(url, body)
-      .map(response => response.json())
+      // .map(response => response.json())
       .subscribe(d => {
         this
           .subject
@@ -231,101 +232,35 @@ export class AppServiceProvider {
 }
 
 /* deprecated
-disconnectSocket() {
-    let soc = this.get('socket');
-    if (soc) {
-      if (!_.isEmpty(soc)) {
-        soc.disconnect();
-      }
-    }
-    //soc && (!_.isEmpty(soc)) && (soc.disconnect());
-    this.set('socket', {});
-  }
-
-  connectSocket(uid) {
-    if (uid) {
-      this.set('uid', uid);
-    } else {
-      this.showAlert('Error', errorMessages['loginRequired']);
-      return;
-    }
-
-    let soc = this.get('socket');
-
-    if (soc && (!soc.connected)) {
-      if(!_.isEmpty(soc)){
-        soc.disconnect();
-        soc={};
-      }
-      // let client = {
-      //   uid: uid,
-      //   clientInfo: encodeURIComponent(JSON.stringify(config.clientInfo)),
-      //   terminalId: this.get('terminalId')
-      // };
-      // var socket = io({transports: ['websocket']});
-      // soc = io(config.socketHost, {
-      //   query: Mustache.render('uid={{uid}}&clientInfo={{clientInfo}}&terminalId={{terminalId}}', client)
-      //   // ,transports: ['websocket']
-      // });
-
-      soc.on('allUsers', (d) => {
-        this.set('allUsers', d.count);
+httpPost(id : string, body?: any, otherInfo?: any) {
+    let toUid = this.getToUid();
+    let dbName = this.getSelectedDatabaseName();
+    let mapping = urlMappings[id] || urlMappings['generic'];
+    let url = config
+      .host
+      .concat(mapping);
+    body || (body = {});
+    this.get('token') && (body.token = this.get('token'));
+    Object.assign(body, {
+      type: 'sql',
+      sqlKey: id,
+      dbName: dbName,
+      toUid: toUid,
+      args: body.args || {}
+    });
+    // body.args||(body.args={});
+    this
+      .http
+      .post(url, body)
+      .map(response => response.json())
+      .subscribe(d => {
+        this
+          .subject
+          .next({id: id, data: d, body: body, otherInfo: otherInfo});
+      }, err => {
+        this
+          .subject
+          .next({id: id, error: err});
       });
-
-      soc.on('connect', () => {
-        this.set('socket', soc);
-        //to show connected users in home page
-        this.socketEmit('cs-msg', 'get:connected:users');
-      });
-    }
-  };
-
-  //innerData.action works as id
-  socketEmit(msg : string, id, innerData
-    ?) {
-    let soc = this.get('socket');
-    if ((!soc) || _.isEmpty(soc)) {
-      this.showAlert('Error', errorMessages['connectionFailure']);
-      return;
-    }
-    innerData
-      ? innerData.action = id
-      : innerData = {
-        action: id
-      };
-
-    let selectedDatabase = this.get('selectedDatabase');
-    if (innerData.isSql && ((!selectedDatabase) || selectedDatabase == 'Database')) {
-      this.showAlert('Notice', messages.selectDatabase);
-      return;
-    }
-
-    innerData.database = selectedDatabase.split('.')[1];
-    let toUid = this
-      .get('tenant')
-      .concat(':')
-      .concat(selectedDatabase.split('.')[0]);
-    // this
-    //   .get('socket')
-    //   .emit(msg, {
-    //     uid: config.uid,
-    //     innerData: innerData,
-    //     toUid: toUid
-    //   }, data => {
-    //     if (data.error) {
-    //       // console.log(data.error);
-    //       this
-    //         .subject
-    //         .next({id: innerData.action, error: data.error});
-    //     } else {
-    //       this
-    //         .subject
-    //         .next({id: innerData.action, data});
-    //     }
-    //   })
-  };
-
-  socketFilterOn(id : string) : Observable < any > {
-    return(this.subject.filter(d => d.id === id));
   };
 */
