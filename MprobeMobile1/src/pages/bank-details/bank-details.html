@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{navParams.get('accName')}}</ion-title>    
+  </ion-navbar>
+  <!--<ion-toolbar padding></ion-toolbar>-->
+</ion-header>
+<ion-content class='mp-padding'>
+<ion-scroll scrollX="true" scrollY='true' style="width:100vw; height:90vh;overflow: scroll;white-space: nowrap;">
+    <ion-list style='width:250vw;white-space:normal;font-size:1.3rem'>
+    <ion-row class="mp-header">
+      <ion-col col-1 text-left>Tran</ion-col>
+      <ion-col col-1 text-left>Clear</ion-col>
+      <ion-col col-1 text-left>Cheq</ion-col>
+      <ion-col col-1 text-right style="color:red">Debit</ion-col>
+      <ion-col col-1 text-right style="color:blue">Credit</ion-col>
+      <ion-col col-1 text-right style="color:brown">Bal</ion-col>
+      <ion-col col-3 text-left>Name</ion-col>
+      <!--<ion-col col-4 text-left>Remarks</ion-col>-->
+    </ion-row>
+    <ion-row class='mp-row' *ngFor="let item of items; let i=index;" [ngClass]="(i % 2 == 0) ? 'alternate' : 'normal'">
+      <ion-col col-1 text-left>{{item.tran_date | date:'dd/MM/yy'}}{{item.remarks}}</ion-col>
+      <ion-col col-1 text-left>{{item.clear_date | date:'dd/MM/yy'}}</ion-col>
+      <ion-col col-1 text-left>{{item.cheq_no}}</ion-col>
+      <ion-col col-1 text-right style="color:red">{{item.debit_amt | number:'1.0-0'}}</ion-col>
+      <ion-col col-1 text-right style="color:blue">{{item.credit_amt | number:'1.0-0'}}</ion-col>
+      <ion-col col-1 text-right style="color:brown">{{item.balance | number:'1.0-0'}}</ion-col>
+      <ion-col col-3 text-left>{{item.acc_name}}</ion-col>
+      <!--<ion-col col-4 text-left>{{item.remarks}}</ion-col>-->
+    </ion-row>
+    </ion-list>
+  </ion-scroll>
+
+</ion-content>

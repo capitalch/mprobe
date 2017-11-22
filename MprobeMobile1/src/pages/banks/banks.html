@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <common-header [title]="'Banks'"></common-header>
+  </ion-navbar>
+</ion-header>
+<ion-content no-padding>
+<ion-list>
+  <ion-item  class='menu-button' *ngFor="let bank of banks; let i=index;"  tappable (click)="bankDetails(bank)" detail-push>
+    <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp;
+   {{bank.acc_name}} <span style='float:right'>{{bank.balance | number:'1.0-0'}}</span>  
+  </ion-item>
+</ion-list>
+</ion-content>

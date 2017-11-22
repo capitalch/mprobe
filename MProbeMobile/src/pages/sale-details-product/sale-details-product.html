@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <common-header [title]="'Sale Details'"></common-header>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class='mp-padding'>
+  <ion-scroll scrollX="true" scrollY='true' style="width:100vw; height:90vh;overflow: scroll;white-space: nowrap;">
+    <ion-list no-padding no-line style='width:130vw;white-space:normal;font-size:1.4rem'>
+      <ion-row class='mp-header'>
+        <ion-col col-3 text-left>Product</ion-col>
+        <ion-col col-1 text-right>Qty</ion-col>
+        <ion-col col-2 text-right>Price</ion-col>
+        <ion-col col-2 text-right style="color:blue">Amount</ion-col>
+        <ion-col col-1 text-right>D</ion-col>
+        <ion-col col-1 text-right>Stk</ion-col>
+        <ion-col col-1 text-right>GP</ion-col>
+        <ion-col col-1 text-left>CGP</ion-col>
+      </ion-row>
+      <ion-row class='mp-row' tappable *ngFor="let item of saleDetails;let i=index;" [ngClass]="(i % 2 == 0) ? 'alternate' : 'normal'">
+        <ion-col col-3 text-left>{{item.item + ' ' + item.brand + ' ' + item.model}}</ion-col>
+        <ion-col col-1 text-right>{{item.qty | number:'1.0-0'}}</ion-col>
+        <ion-col col-2 text-right>{{item.price | number:'1.0-0'}}</ion-col>
+        <ion-col col-2 text-right style="color:blue">{{item.value | number:'1.0-0'}}</ion-col>
+        <ion-col col-1 text-right>{{item.days | number:'1.0-0'}}</ion-col>
+        <ion-col col-1 text-right>{{item.stock | number:'1.0-0'}}</ion-col>
+        <ion-col col-1 text-right>{{item.gp | number:'1.0-0'}}</ion-col>
+        <ion-col col-1 text-left>{{item.cgp | number:'1.0-0'}}</ion-col>
+      </ion-row>
+      <ion-row class='mp-footer'>
+        <ion-col col-3 text-left>Totals:</ion-col>
+        <ion-col col-1 text-right>{{totals.qty | number:'1.0-0'}}</ion-col>
+        <ion-col col-2 text-right></ion-col>
+        <ion-col col-2 text-right>{{totals.value | number:'1.0-0'}}</ion-col>
+        <ion-col col-1 text-right></ion-col>
+        <ion-col col-1 text-right></ion-col>
+        <ion-col col-1 text-right>{{totals.gp | number:'1.0-0'}}</ion-col>
+        <ion-col col-1 text-left>{{totals.cgp | number:'1.0-0'}}</ion-col>
+      </ion-row>
+    </ion-list>
+</ion-scroll>  
+</ion-content>

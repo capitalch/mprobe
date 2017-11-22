@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Details: {{navParams.get('pos_name') + ' on ' + navParams.get('dateString')}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class='mp-padding'>
+  <ion-list no-line>
+    <ion-row class='mp-header'>
+      <ion-col col-4 text-left>Ref No</ion-col>
+      <ion-col col-3 text-right>Amount</ion-col>
+      <ion-col col-3 text-right>GP</ion-col>
+      <ion-col col-2 text-right>CGP</ion-col>
+    </ion-row>
+    <ion-row class='mp-row' tappable *ngFor="let item of saleDetails1;let i=index;" [ngClass]="(i % 2 == 0) ? 'alternate' : 'normal'" (click)="saleDetails2(item)">
+      <ion-col col-4 text-left>{{item.ref_no}}</ion-col>
+      <ion-col col-3 text-right>{{item.total_amt | number:'1.0-0'}}</ion-col>
+      <ion-col col-3 text-right>{{item.gp | number:'1.0-0'}}</ion-col>
+      <ion-col col-2 text-right>{{item.cgp | number:'1.0-0'}}</ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-row class='mp-footer'>
+    <ion-col col-4 text-left>Total:</ion-col>
+    <ion-col col-3 text-right>{{totals.total_amt | number:'1.0-0'}}</ion-col>
+    <ion-col col-3 text-right>{{totals.gp | number:'1.0-0'}}</ion-col>
+    <ion-col col-2 text-right>{{totals.cgp | number:'1.0-0'}}</ion-col>
+  </ion-row>
+</ion-footer>

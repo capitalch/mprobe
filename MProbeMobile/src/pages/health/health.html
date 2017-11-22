@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <common-header [title]="'Health'"></common-header>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row>
+    <ion-col text-left>Op Stock:</ion-col>
+    <ion-col text-right>{{health.opstockvalue | number:'1.0-0'}}</ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col text-left>Clos Stock:</ion-col>
+    <ion-col text-right>{{health.closstockvalue | number:'1.0-0'}}</ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col text-left>Stock 90 Days:</ion-col>
+    <ion-col text-right>{{health.stockover90days | number:'1.0-0'}}</ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col text-left>Stock 180 Days:</ion-col>
+    <ion-col text-right>{{health.stockover180days | number:'1.0-0'}}</ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col text-left>Stock 270 Days:</ion-col>
+    <ion-col text-right>{{health.stockover270days | number:'1.0-0'}}</ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col text-left>Stock 360 days:</ion-col>
+    <ion-col text-right>{{health.stockover360days | number:'1.0-0'}}</ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col text-left>Profit:</ion-col>
+    <ion-col text-right>{{health.profit | number:'1.0-0'}}</ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col text-left>Gross Profit:</ion-col>
+    <ion-col text-right>{{health.grossprofit | number:'1.0-0'}}</ion-col>
+  </ion-row>
+</ion-content>

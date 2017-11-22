@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <common-header [title]="'Accounts'"></common-header>
+  </ion-navbar>
+</ion-header>
+<ion-content no-padding>
+  <ion-item (click)="balanceSheet()" detail-push class='menu-button' tappable>
+    <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp; Balance Sheet
+  </ion-item>
+  <ion-item (click)="chequePayments()" detail-push class='menu-button' tappable>
+    <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp; Cheque Payments
+  </ion-item>
+  <ion-item (click)="cashPayments()" detail-push class='menu-button' tappable>
+    <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp;Cash Payments
+  </ion-item>
+  <ion-item (click)="debitNotes()" detail-push class='menu-button' tappable>
+    <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp; Debit Notes
+  </ion-item>
+  <ion-item (click)="creditNotes()" detail-push class='menu-button' tappable>
+    <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp; Credit Notes
+  </ion-item>
+  <ion-item (click)="banks()" detail-push class='menu-button' tappable>
+    <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp; Banks
+  </ion-item>
+</ion-content>

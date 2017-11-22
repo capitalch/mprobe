@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar no-padding>
+    <common-header [title]="'Jakar'"></common-header>
+  </ion-navbar>
+  <ion-toolbar no-padding>
+    <ion-row>
+      <ion-col col-6 text-right style='margin-top:1.2rem'>Stock ageing days:</ion-col>
+      <ion-col col-6><button ion-button (click)='selectJakarDays()'>{{jakarDays}}</button></ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-grid>
+    <ion-row class='mp-header'>
+      <ion-col col-4 text-left>
+        <u>Counter</u>
+      </ion-col>
+      <ion-col col-3 text-right>
+        <u>Total</u>
+      </ion-col>
+      <ion-col col-3 text-right>
+        <u>Jakar</u>
+      </ion-col>
+      <ion-col col-2 text-right>
+        <u>%</u>
+      </ion-col>
+    </ion-row>
+    <ion-row class='mp-row' tappable *ngFor='let item of items; let i=index;' [ngClass]="(i % 2 == 0) ? 'alternate' : 'normal'" style="height:2.8rem"
+      (click)='jakarDetails(item)'>
+      <ion-col col-4 text-left>{{item.counter_code}}</ion-col>
+      <ion-col col-3 text-right>{{item.total_value | number:'1.0-0'}}</ion-col>
+      <ion-col col-3 text-right style='color:blue'>{{item.jakar_value | number:'1.0-0'}}</ion-col>
+      <ion-col col-2 text-right style='color:red'>{{item.percent | number:'1.2-2'}}</ion-col>
+    </ion-row>
+  </ion-grid>  
+</ion-content>
+<ion-footer no-padding class='mp-footer'>
+    <ion-row>
+      <ion-col text-left>Total:</ion-col>
+      <ion-col col-3 text-right>{{totals.total_value | number:'1.0-0'}}</ion-col>
+      <ion-col col-3 text-right>{{totals.jakar_value | number:'1.0-0'}}</ion-col>
+      <ion-col col-2 text-right>{{totals.percent | number:'1.2-2'}}</ion-col>
+    </ion-row>
+  </ion-footer>
+<!--item,brand,model,qty,value,days-->

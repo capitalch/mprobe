@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <common-header [title]="'Business'"></common-header>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-item class='menu-button' tappable (click)="getSaleHeader()" detail-push>
+    <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp;
+    Today's sale    
+  </ion-item>
+  <ion-item class='menu-button' tappable (click)="getHealth()" detail-push>
+    <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp;
+    Health  
+  </ion-item>
+  <ion-item class='menu-button' tappable (click)="placeOrders()" detail-push>
+    <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp;
+    Orders 
+  </ion-item>
+  <ion-item class='menu-button' tappable (click)="getJakar()" detail-push>
+    <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp;
+    Jakar 
+  </ion-item>
+</ion-content>

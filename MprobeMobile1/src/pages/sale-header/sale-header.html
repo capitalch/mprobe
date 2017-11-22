@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <common-header [title]="'Sales'"></common-header>
+    <ion-icon  color="danger" class='mp-icon' tappable ios="ios-aperture" md="md-aperture" (click)='saleDetailsProduct()'></ion-icon>    
+  </ion-navbar>
+  <ion-navbar no-line>
+    <ion-fab middle right>
+      <button ion-fab mini color='danger' (click)="nextDate()"><ion-icon ios="ios-arrow-dropright" md="md-arrow-dropright"></ion-icon></button>
+    </ion-fab>    
+    <button color='light' ion-item style="text-align: center;color:blue" (click)='saleOnDate()'>{{currentDateString}}</button>
+    <ion-fab middle left>
+      <button ion-fab mini color='danger' (click)="prevDate()"><ion-icon ios="ios-arrow-dropleft" md="md-arrow-dropleft"></ion-icon></button>
+    </ion-fab>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class='mp-padding'>
+  <ion-list no-line>
+    <ion-row class='mp-header'>
+      <ion-col text-left>Pos</ion-col>
+      <ion-col text-right>Sale</ion-col>
+      <ion-col text-right>GP</ion-col>
+      <ion-col text-right>CGP</ion-col>
+    </ion-row>
+    <ion-row class='mp-row' tappable *ngFor='let header of saleHeaders; let i=index;' [ngClass]="(i % 2 == 0) ? 'alternate' : 'normal'" (click)='saleDetails(header)'>
+      <ion-col text-left>
+        {{header.pos_name}}
+      </ion-col>
+      <ion-col text-right>
+        {{header.sale | number:'1.0-0'}}
+      </ion-col>
+      <ion-col text-right>
+        {{header.gp | number:'1.0-0'}}
+      </ion-col>
+      <ion-col text-right>
+        {{header.cgp | number:'1.0-0'}}
+      </ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>
+<ion-footer class='mp-padding'>
+  <ion-row class='mp-footer'>
+    <ion-col text-left>Total:</ion-col>
+    <ion-col text-right>{{saleTotals.sale | number:'1.0-0'}}</ion-col>
+    <ion-col text-right>{{saleTotals.gp | number:'1.0-0'}}</ion-col>
+    <ion-col text-right>{{saleTotals.cgp | number:'1.0-0'}}</ion-col>
+  </ion-row>
+</ion-footer>

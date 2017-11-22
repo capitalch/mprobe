@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <label style="display:inline!important">Select database</label>
+    <ion-buttons right>
+      <button ion-button color='primary' outline (click)='cancel()'>Cancel</button>
+    </ion-buttons>
+  </ion-navbar>
+  <!-- <ion-item>
+    <ion-row class='mp-header'>
+      <ion-col text-left>Server</ion-col>
+      <ion-col text-left style='margin-left:-2rem'>Database</ion-col>
+    </ion-row>
+  </ion-item> -->
+</ion-header>
+<ion-content>
+  <ion-item style='color:brown' class='mp-row' *ngFor='let database of databases' tappable (click)='selectDatabase(database)'>
+    <ion-row>
+      <ion-col color='primary'>{{database.split(':')[1]}}</ion-col>
+      <ion-col>{{database.split(':')[2]}}</ion-col>
+    </ion-row>
+  </ion-item>
+</ion-content>

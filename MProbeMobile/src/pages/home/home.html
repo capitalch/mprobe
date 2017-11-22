@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <common-header [title]="'Home'"></common-header>
+  </ion-navbar>
+</ion-header>
+<ion-content no-padding>
+  <ion-list>
+    <ion-item class='menu-button' tappable (click)="doAccounts()" detail-push>
+      <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp; Accounts </ion-item>
+    <ion-item class='menu-button' tappable (click)="doBusiness()" *ngIf="appService.showControl(3)" detail-push>
+      <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp; Business
+    </ion-item>
+    <!-- <ion-item class='menu-button' tappable (click)="showConnectedUsers()" *ngIf="appService.showControl(5)" detail-push>
+      <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>&nbsp; Connected users
+      <ion-badge item-right>{{appService.global.allUsers}}</ion-badge>
+    </ion-item> -->
+  </ion-list>
+</ion-content>
