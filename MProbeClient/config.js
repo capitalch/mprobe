@@ -5,7 +5,7 @@ xUrl.local = 'http://localhost:3004';
 xUrl.selected = xUrl.cloud;
 let config = {
     databaseServerName:'server',
-    uid: 'capital.netwoven.netwovenServer',
+    uid: 'capital.chow.chowServer',
     // uid:'capital.mobile.sushant',
     pwd: '12345',
     uid1: 'capital:capital1',
@@ -25,7 +25,13 @@ let config = {
                 uid: 'capital.mobile.sushant',
                 databases: ['*'],
                 usercode: 0
-            }, {
+            }, 
+            {
+                uid: 'capital.mobile.kamal',
+                databases: ['*'],
+                usercode: 0
+            },
+            {
                 uid: 'capital.mobile.client1',
                 databases: ['*'],
                 usercode: 1

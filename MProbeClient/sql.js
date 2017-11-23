@@ -45,37 +45,7 @@ let sql = {
 	    +@custom from #stock, #Profit
         `,
     'tunnel:get:final:accounts': `exec sp_acc_final_accounts :type 
-        select profitloss = func_getprofitloss(), 
-        total = 
-        if profitloss > 0 then
-            if :type = 'L' then
-                (-func_gettotal(:type) + profitloss)
-            else 
-                if :type = 'A' then
-                    func_gettotal(:type)
-                else 
-                    if :type = 'E' then
-                        func_gettotal(:type) + profitloss
-                    else
-                        -func_gettotal(:type)
-                    endif
-                endif
-            endif
-        else
-            if :type = 'L' then
-                (-func_gettotal(:type) )
-            else 
-                if :type = 'A' then
-                    func_gettotal(:type) - profitloss
-                else 
-                    if :type = 'E' then
-                        func_gettotal(:type) 
-                    else
-                        -func_gettotal(:type) - profitloss
-                    endif
-                endif
-            endif
-        endif from dummy`,
+        `,
     'tunnel:get:cheque:payments': `SELECT "cheque_payment"."ref_no",   
          "cheque_payment"."cheq_no", 
          "cheque_payment"."cheq_date",  
@@ -232,3 +202,36 @@ let sql = {
     'tunnel:get:final:accounts':`exec sp_acc_final_accounts 'L'`
 };
 module.exports = sql;
+/*
+select profitloss = func_getprofitloss(), 
+        total = 
+        if profitloss > 0 then
+            if :type = 'L' then
+                (-func_gettotal(:type) + profitloss)
+            else 
+                if :type = 'A' then
+                    func_gettotal(:type)
+                else 
+                    if :type = 'E' then
+                        func_gettotal(:type) + profitloss
+                    else
+                        -func_gettotal(:type)
+                    endif
+                endif
+            endif
+        else
+            if :type = 'L' then
+                (-func_gettotal(:type) )
+            else 
+                if :type = 'A' then
+                    func_gettotal(:type) - profitloss
+                else 
+                    if :type = 'E' then
+                        func_gettotal(:type) 
+                    else
+                        -func_gettotal(:type) - profitloss
+                    endif
+                endif
+            endif
+        endif from dummy
+*/
