@@ -1,16 +1,16 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {AppServiceProvider} from '../../providers/app-service/app-service';
-import {LedgerPage} from '../../pages/ledger/ledger';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AppServiceProvider } from '../../providers/app-service/app-service';
+import { LedgerPage } from '../../pages/ledger/ledger';
 
 @IonicPage()
-@Component({selector: 'page-final-accounts', templateUrl: 'final-accounts.html'})
+@Component({ selector: 'page-final-accounts', templateUrl: 'final-accounts.html' })
 export class FinalAccountsPage {
-  subscriptions : any;
-  finalAccounts : [any];
-  type : string;
-  total : number = 0;
-  constructor(public appService : AppServiceProvider, public navCtrl : NavController, public navParams : NavParams) {
+  subscriptions: any;
+  finalAccounts: [any];
+  type: string;
+  total: number = 0;
+  constructor(public appService: AppServiceProvider, public navCtrl: NavController, public navParams: NavParams) {
     // console.log('Parameters:', navParams.get('type'));
   }
 
@@ -24,11 +24,13 @@ export class FinalAccountsPage {
           ? console.log(d.error)
           : (() => {
             console.log(d.data);
-            this.finalAccounts = d.data[0].Table;
-            let profitloss = d.data[1].Table[0].profitloss;
-            this.total = d.data[1].Table[0].total;
+            this.finalAccounts = d.data;
+            // this.finalAccounts = d.data[0].Table;
+            // let profitloss = d.data[1].Table[0].profitloss;
+            let profitloss = d.data[1].bs_balance;
+            // this.total = d.data[1].Table[0].total;
             (profitloss > 0)
-              ? ((this.type == 'L') || (this.type == 'E')) && (this.finalAccounts.push({bs_name: 'Profit', bs_balance: profitloss}))
+              ? ((this.type == 'L') || (this.type == 'E')) && (this.finalAccounts.push({ bs_name: 'Profit', bs_balance: profitloss }))
               : ((this.type == 'A') || (this.type == 'I')) && (this.finalAccounts.push({
                 bs_name: 'Loss',
                 bs_balance: -profitloss
@@ -42,11 +44,14 @@ export class FinalAccountsPage {
       .filterOn('local:refresh:screen')
       .subscribe(d => {
         this.getFinalAccounts(this.navParams.get('type'));
-      });    
+      });
 
+    let subTest = this.appService.filterOn('tunnel:test').subscribe(
+      d => { console.log(d) }
+    );
     this
       .subscriptions
-      .add(subA);
+      .add(subA).add(subTest);
   }
   ionViewDidEnter() {
     this.getFinalAccounts(this.navParams.get('type'));
@@ -56,15 +61,16 @@ export class FinalAccountsPage {
     this.type = t;
     this
       .appService
-      .httpPost('tunnel:get:final:accounts', {        
+      .httpPost('tunnel:get:final:accounts', {
         args: {
           type: t
         }
-      })
+      });
+    this.appService.httpPost('tunnel:test');
   }
 
-  ledger(item) {   
-    this.navCtrl.push(LedgerPage,{accid:item.bs_acc_id});
+  ledger(item) {
+    this.navCtrl.push(LedgerPage, { accid: item.bs_acc_id });
   }
 
   ionViewWillUnload() {

@@ -1,8 +1,7 @@
 let sql = {
     'tunnel:test':`
-        select 1 from dummy
-        select 2 from dummy;
-        `,
+        select a=11  from dummy union 
+        select z=22 from dummy;`,
     'tunnel:get:todays:sale': `SELECT "pos_name",   
          id="master_id" ,
 			sale = (select sum(if type = 'S' then total_amt else -total_amt endif) from bill_memo
@@ -198,8 +197,7 @@ let sql = {
         and brand = :brand
         and counter_code = :counter
 		and show='Y'
-        order by counter_code,item,brand,model`,
-    'tunnel:get:final:accounts':`exec sp_acc_final_accounts 'L'`
+        order by counter_code,item,brand,model`
 };
 module.exports = sql;
 /*
