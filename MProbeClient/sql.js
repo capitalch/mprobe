@@ -43,8 +43,28 @@ let sql = {
 	    select #Stock.opStockValue, #Stock.closStockValue, #Stock.stockValueDiff,#Stock.stockOver90Days,#Stock.stockOver180Days,#Stock.stockOver270Days,#Stock.stockOver360Days, #Profit.profit, grossProfit = #Stock.stockValueDiff + #Profit.profit  
 	    +@custom from #stock, #Profit
         `,
-    'tunnel:get:final:accounts': `exec sp_acc_final_accounts :type 
-        `,
+    'tunnel:get:final:accounts': `
+        truncate table DBA.bs_temp;
+        create variable @i int;
+        if :type in( 'L','I' ) then set @i = -1
+        else set @i = 1
+        end if;
+        insert into bs_temp( bs_code,bs_name,bs_balance,
+            bs_parent,bs_level,bs_acc_id,bs_sign ) 
+            select acc_code,acc_name,(acc_opbal+acc_db-acc_cr),
+                acc_parent,null,acc_id,@i from acc_main_temp
+                where acc_type = :type and(acc_opbal+acc_db-acc_cr) <> 0 and acc_parent = 0;
+        delete from bs_temp where bs_parent
+            = any(select acc_id from acc_main_temp where acc_sibling = 1);
+        update bs_temp set bs_level = 0 where bs_parent = 0;
+        update bs_temp set bs_name = repeat('  ',bs_level)+trim(bs_name);
+        select bs_id, bs_code,bs_name,bs_balance*bs_sign as bs_balance,bs_acc_id,bs_parent from bs_temp
+            union
+        select 9998,'ProfitLoss', 'Profit or loss', func_getProfitLoss(), 0, 0 from dummy
+            union
+        select 9999, 'Total', 'Total', abs(func_getTotal(:type)) + func_getProfitLoss(),0,0 from dummy
+        order by bs_id asc
+    `,
     'tunnel:get:cheque:payments': `SELECT "cheque_payment"."ref_no",   
          "cheque_payment"."cheq_no", 
          "cheque_payment"."cheq_date",  

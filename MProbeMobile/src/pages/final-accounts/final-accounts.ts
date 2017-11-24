@@ -27,14 +27,19 @@ export class FinalAccountsPage {
             this.finalAccounts = d.data;
             // this.finalAccounts = d.data[0].Table;
             // let profitloss = d.data[1].Table[0].profitloss;
-            let profitloss = d.data[1].bs_balance;
+            let pl = d.data.find(x => x.bs_id == 9998);
+            let profitloss = pl.bs_balance;
+            this.total = d.data.find(x=>x.bs_id==9999).bs_balance;
             // this.total = d.data[1].Table[0].total;
             (profitloss > 0)
-              ? ((this.type == 'L') || (this.type == 'E')) && (this.finalAccounts.push({ bs_name: 'Profit', bs_balance: profitloss }))
-              : ((this.type == 'A') || (this.type == 'I')) && (this.finalAccounts.push({
-                bs_name: 'Loss',
-                bs_balance: -profitloss
-              }));
+            ? ((this.type == 'L') || (this.type == 'E')) && (pl.bs_name='Profit')
+            : ((this.type == 'A') || (this.type == 'I')) && (pl.bs_name='Loss');
+            // (profitloss > 0)
+            //   ? ((this.type == 'L') || (this.type == 'E')) && (this.finalAccounts.push({ bs_name: 'Profit', bs_balance: profitloss }))
+            //   : ((this.type == 'A') || (this.type == 'I')) && (this.finalAccounts.push({
+            //     bs_name: 'Loss',
+            //     bs_balance: -profitloss
+            //   }));
 
           })();
       });
@@ -46,12 +51,12 @@ export class FinalAccountsPage {
         this.getFinalAccounts(this.navParams.get('type'));
       });
 
-    let subTest = this.appService.filterOn('tunnel:test').subscribe(
-      d => { console.log(d) }
-    );
+    // let subTest = this.appService.filterOn('tunnel:test').subscribe(
+    //   d => { console.log(d) }
+    // );
     this
       .subscriptions
-      .add(subA).add(subTest);
+      .add(subA);//.add(subTest);
   }
   ionViewDidEnter() {
     this.getFinalAccounts(this.navParams.get('type'));
@@ -66,7 +71,7 @@ export class FinalAccountsPage {
           type: t
         }
       });
-    this.appService.httpPost('tunnel:test');
+    // this.appService.httpPost('tunnel:test');
   }
 
   ledger(item) {
