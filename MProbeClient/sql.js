@@ -62,7 +62,7 @@ let sql = {
             union
         select 9998,'ProfitLoss', 'Profit or loss', func_getProfitLoss(), 0, 0 from dummy
             union
-        select 9999, 'Total', 'Total', abs(func_getTotal(:type)) + func_getProfitLoss(),0,0 from dummy
+        select 9999, 'Total', 'Total', func_getTotal(:type) ,0,0 from dummy
         order by bs_id asc
     `,
     'tunnel:get:cheque:payments': `SELECT "cheque_payment"."ref_no",   

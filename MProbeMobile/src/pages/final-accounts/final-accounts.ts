@@ -27,13 +27,42 @@ export class FinalAccountsPage {
             this.finalAccounts = d.data;
             // this.finalAccounts = d.data[0].Table;
             // let profitloss = d.data[1].Table[0].profitloss;
-            let pl = d.data.find(x => x.bs_id == 9998);
-            let profitloss = pl.bs_balance;
-            this.total = d.data.find(x=>x.bs_id==9999).bs_balance;
-            // this.total = d.data[1].Table[0].total;
-            (profitloss > 0)
-            ? ((this.type == 'L') || (this.type == 'E')) && (pl.bs_name='Profit')
-            : ((this.type == 'A') || (this.type == 'I')) && (pl.bs_name='Loss');
+            let plIndex = d.data.findIndex(x => x.bs_id == 9998);
+            let pl = d.data[plIndex];
+            let profitLoss = +pl.bs_balance;
+            d.data.splice(plIndex, 1);
+
+            let totalIndex = d.data.findIndex(x => x.bs_id == 9999);
+            let oTotal = d.data[totalIndex];
+            let total = +oTotal.bs_balance;
+            d.data.splice(totalIndex, 1);
+            // let pl = d.data.find((x,i) => x.bs_id == 9998);
+            // let profitloss = +pl.bs_balance;
+            // let total = +d.data.find(x => x.bs_id == 9999).bs_balance;
+            if (profitLoss > 0) {
+              if ((this.type == 'L') || (this.type == 'E')) {
+                pl.bs_name = 'Profit';
+                d.data.push(pl);
+                this.total = Math.abs(total) + profitLoss;
+              } else {
+                this.total = Math.abs(total);
+              }
+            } else {
+              if ((this.type == 'A') || (this.type == 'I')) {
+                pl.bs_name = 'Loss';
+                d.data.push(pl);
+                this.total = Math.abs(Math.abs(total) + profitLoss);
+              } else {
+                this.total = Math.abs(total);
+              }
+            }
+
+
+            // (profitLoss > 0)
+            //   ? ((this.type == 'L') || (this.type == 'E')) && (pl.bs_name = 'Profit'
+            //     , this.total = Math.abs(total) + profitLoss)
+            //   : ((this.type == 'A') || (this.type == 'I')) && (pl.bs_name = 'Loss'
+            //     , this.total = Math.abs(total) - profitLoss);
             // (profitloss > 0)
             //   ? ((this.type == 'L') || (this.type == 'E')) && (this.finalAccounts.push({ bs_name: 'Profit', bs_balance: profitloss }))
             //   : ((this.type == 'A') || (this.type == 'I')) && (this.finalAccounts.push({
