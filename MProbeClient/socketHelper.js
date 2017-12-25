@@ -17,10 +17,14 @@ let socketHelper = {};
 
 socketHelper.init = () => {
     socket = require('socket.io-client')(config.host, {
-        query: util.format("token=%s&clientInfo=%s", socketHelper.token, JSON.stringify(config.clientInfo)),
+        query: util.format("token=%s&clientInfo=%s", 
+        socketHelper.token, 
+        JSON.stringify(config.clientInfo)),
         reconnection: true,
         reconnectionDelay: 5000,
-        reconnectionDelayMax: 10000
+        reconnectionDelayMax: 10000,
+        transports: ['websocket'],
+        rejectUnauthorized: false
         // ,reconnectionAttemptsMax:2 //not working
     });
     socket.on('connect', function () {
