@@ -1,5 +1,5 @@
 var config = {
-    host: 'http://61.16.131.163:3004',
+    host: 'http://14.143.150.10:3004',
     tenant: 'capital',
     office: 'mobile'
 }
