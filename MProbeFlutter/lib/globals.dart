@@ -1,10 +1,11 @@
+library globalsLib;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
 import "dart:convert";
 
-Future<dynamic> httpPost(id) async {
+Future<dynamic> httpPost(String id, {dynamic args}) async {
   var settings = await rootBundle.loadString('assets/settings.json');
   var settingsObj = json.decode(settings);
   var client = http.Client();
@@ -14,12 +15,10 @@ Future<dynamic> httpPost(id) async {
     "sqlKey": id,
     "dbName": settingsObj["dbName"],
     "toUid": "capital.chow.chowServer",
-    "token": settingsObj["token"]
+    "token": settingsObj["token"],
+    "args": args
   };
-  Future<dynamic> result = client.post(url, headers: null, body: body);
+  Future<dynamic> result = client.post(url, headers: {"Content-Type": "application/json"}, body: json.encode(body));
+
   return (result);
-//  var health = await client.post(url, headers: null, body: body);
-//  dynamic _dartObject = json.decode(health.body).cast<Map<String, dynamic>>();
-//  return(_dartObject);
-//  print(_dartObject);
 }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart' show rootBundle;
 import 'package:intl/intl.dart'; // for number formatting
 import 'dart:convert';
-import '../globals.dart';
+import 'globals.dart' as globals;
 
 class Health extends StatefulWidget {
   @override
@@ -27,7 +27,7 @@ class HealthState extends State<Health> {
 
   @override
   Widget build(BuildContext context) {
-    httpPost('tunnel:get:business:health').then((d) {
+     globals.httpPost('tunnel:get:business:health').then((d) {
       if (mounted) {
         setState(() {
           dynamic healthList =

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './screens/health.dart';
-import './screens/sale.dart';
+import 'health.dart';
+import 'generic1.dart';
 //import 'config.dart';
 
 void main() => runApp(new MyApp());
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           return (Health());
         },
         '/sale': (BuildContext context) {
-          return (Sale());
+          return (Generic1("tunnel:get:sale:details1",{"mdate":"2018-10-27"}));
         }
       },
     );
