@@ -1,0 +1,7 @@
+{
+  "host": "http://14.143.150.10:3004",
+  "dbName":"capi2018",
+  "tenant": "capital",
+  "office": "mobile",
+  "token":"eyJhbGciOiJIUzI1NiJ9.Y2FwaXRhbC5tb2JpbGUuc3VzaGFudA.wjNs5qjd2B4T4vxOzosH4jMRaD1VUXKvLxw9JXsCdXI"
+}

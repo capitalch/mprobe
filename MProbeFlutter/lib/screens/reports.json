@@ -1,0 +1,14 @@
+{
+  "sale-details":{
+
+    "body": [
+      {"title": "Name1", "name": "name", "width": 140.0},
+      {"title": "Color", "name": "eyeColor", "width": 60.0},
+      {"title": "Gender", "name": "gender", "width": 50.0},
+      {"title": "Company", "name": "company", "width": 80.0},
+      {"title": "Email", "name": "email", "width": 100.0},
+      {"title": "Address", "name": "address", "width": 140.0},
+      {"title": "Age", "name": "age", "width": 40.0, "isSum": true}
+    ]
+  }
+}
