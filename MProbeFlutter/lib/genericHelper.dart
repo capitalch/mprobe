@@ -11,12 +11,12 @@ dynamic getReportBody(resultSet) {
       itemCount: resultSet.length + 2,
       itemBuilder: (BuildContext context, int i) {
         if (i == 0) {
-          return Row(children: getHeaderWidgets("sale"));
+          return Row(children: getHeaderWidgets("sales"));
         }
         ;
 
         if ((i == (resultSet.length + 1)) && (i != 0)) {
-          return Row(children: getFooterWidgets("sale", resultSet));
+          return Row(children: getFooterWidgets("sales", resultSet));
 //          return (Row(children: [Text('Test')]));
         }
 
@@ -25,7 +25,7 @@ dynamic getReportBody(resultSet) {
         return Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: getBodyWidgets("sale", resultSet[i]));
+            children: getBodyWidgets("sales", resultSet[i]));
       });
   return (widgets);
 }
@@ -43,7 +43,7 @@ dynamic getBodyWidgets(String id, dynamic result) {
   body.forEach((d) {
     bodyWidget.add(
       SizedBox(
-          width: d["width"],
+          width: d["width"], height: 30.0,
           child: Text(
             result[d["name"]].toString(),
             textAlign: _getAlignment(d),
@@ -71,7 +71,7 @@ dynamic getHeaderWidgets(String id) {
   List<Widget> headerWidget = List<Widget>();
   header.forEach((d) {
     headerWidget.add(SizedBox(
-        width: d["width"],
+        width: d["width"],height: 20.0,
         child: Text(d["title"],
             textAlign: _getAlignment(d),
             style:

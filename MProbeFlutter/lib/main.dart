@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'health.dart';
 import 'generic1.dart';
-//import 'config.dart';
 
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -19,11 +17,19 @@ class MyApp extends StatelessWidget {
         '/health': (BuildContext context) {
           return (Health());
         },
-        '/saleHeadersToday': (BuildContext context) {
-          return (Generic1("tunnel:get:todays:sale",{"mdate":"2018-10-27"}, "Sale"));
+        '/sales': (BuildContext context) {
+          DateTime today = DateTime.now();
+          String mdate = today.year.toString() +
+              '-' +
+              today.month.toString() +
+              '-' +
+              today.day.toString();
+          print(mdate);
+          return (Generic1("tunnel:get:todays:sale", {"mdate": mdate}, "Sales"));
         },
-        '/saleDetailsToday':(BuildContext context) {
-          return (Generic1("tunnel:get:sale:details:product",{"mdate":"2018-10-27"},"Sale details"));
+        '/detailedSales': (BuildContext context) {
+          return (Generic1("tunnel:get:sale:details:product",
+              {"mdate": "2018-10-27"}, "Detailed sales"));
         }
       },
     );
@@ -90,8 +96,8 @@ final List<Entry> data = <Entry>[
   ]),
   Entry('Business', null, <Entry>[
     Entry('Health', 'health'),
-    Entry('Sale today', 'saleHeadersToday'),
-    Entry('Sale details today', 'saleDetailsToday'),
+    Entry('Sales', 'sales'),
+    Entry('Detailed sales', 'detailedSales'),
     Entry('Order', 'order')
   ])
 ];
