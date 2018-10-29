@@ -1,6 +1,5 @@
 {
   "sale-details":{
-
     "body": [
       {"title": "Name1", "name": "name", "width": 140.0},
       {"title": "Color", "name": "eyeColor", "width": 60.0},

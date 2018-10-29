@@ -19,8 +19,11 @@ class MyApp extends StatelessWidget {
         '/health': (BuildContext context) {
           return (Health());
         },
-        '/sale': (BuildContext context) {
-          return (Generic1("tunnel:get:sale:details1",{"mdate":"2018-10-27"}));
+        '/saleHeadersToday': (BuildContext context) {
+          return (Generic1("tunnel:get:todays:sale",{"mdate":"2018-10-27"}, "Sale"));
+        },
+        '/saleDetailsToday':(BuildContext context) {
+          return (Generic1("tunnel:get:sale:details:product",{"mdate":"2018-10-27"},"Sale details"));
         }
       },
     );
@@ -87,7 +90,8 @@ final List<Entry> data = <Entry>[
   ]),
   Entry('Business', null, <Entry>[
     Entry('Health', 'health'),
-    Entry('Sale', 'sale'),
+    Entry('Sale today', 'saleHeadersToday'),
+    Entry('Sale details today', 'saleDetailsToday'),
     Entry('Order', 'order')
   ])
 ];
