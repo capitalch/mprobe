@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'health.dart';
 import 'generic1.dart';
+import 'globals.dart' as globals;
 
 void main() => runApp(new MyApp());
 
@@ -18,18 +19,11 @@ class MyApp extends StatelessWidget {
           return (Health());
         },
         '/sales': (BuildContext context) {
-          DateTime today = DateTime.now();
-          String mdate = today.year.toString() +
-              '-' +
-              today.month.toString() +
-              '-' +
-              today.day.toString();
-          print(mdate);
-          return (Generic1("tunnel:get:todays:sale", {"mdate": "2018-10-29"}, "Sales"));
+          return (Generic1("tunnel:get:todays:sale", {"mdate": globals.Util.getDate()}, "Sales"));
         },
         '/detailedSales': (BuildContext context) {
           return (Generic1("tunnel:get:sale:details:product",
-              {"mdate": "2018-10-29"}, "Detailed sales"));
+              {"mdate": globals.Util.getDate()}, "Detailed sales"));
         }
       },
     );

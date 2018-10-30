@@ -37,9 +37,20 @@ Future<dynamic> httpPost(String id, {dynamic args}) async {
 class Util {
   static final _formatter1 = new NumberFormat("##,###");
   static final _formatter2 = new NumberFormat("##,###.##");
+
   static String getFormatted1(dynamic val) {
     var parsed = num.tryParse(val.toString());
     String ret = (parsed == null) ? val : _formatter1.format(parsed);
     return (ret);
+  }
+
+  static String getDate() {
+    DateTime today = DateTime.now();
+    String mdate = today.year.toString() +
+        '-' +
+        today.month.toString() +
+        '-' +
+        today.day.toString();
+    return (mdate);
   }
 }
