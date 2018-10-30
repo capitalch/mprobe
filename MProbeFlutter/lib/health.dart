@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // for number formatting
 import 'dart:convert';
 import 'globals.dart' as globals;
 
@@ -43,7 +42,7 @@ class HealthState extends State<Health> {
 }
 
 dynamic getColumn(_healthSnapShot) {
-  final formatter = new NumberFormat("##,###");
+  // final formatter = new NumberFormat("##,###");
   dynamic col =
       Column(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
     Row(
@@ -54,7 +53,8 @@ dynamic getColumn(_healthSnapShot) {
           textAlign: TextAlign.left,
         ),
         Text(
-          formatter.format(double.tryParse(_healthSnapShot['opstockvalue']) ?? 0),
+          // globals.formatter1.format(double.tryParse(_healthSnapShot['opstockvalue']) ?? 0),
+          globals.Util.getFormatted1(_healthSnapShot['opstockvalue']) ?? 0,
           textAlign: TextAlign.right,
         )
       ],
@@ -70,7 +70,8 @@ dynamic getColumn(_healthSnapShot) {
           textAlign: TextAlign.left,
         ),
         Text(
-          formatter.format(double.tryParse(_healthSnapShot['closstockvalue']) ?? 0),
+          globals.Util.getFormatted1(_healthSnapShot['closstockvalue']) ?? 0,
+          // globals.formatter1.format(double.tryParse(_healthSnapShot['closstockvalue']) ?? 0),
           textAlign: TextAlign.right,
         )
       ],
@@ -86,7 +87,8 @@ dynamic getColumn(_healthSnapShot) {
           textAlign: TextAlign.left,
         ),
         Text(
-          formatter.format(double.tryParse(_healthSnapShot['stockover90days']) ?? 0),
+          globals.Util.getFormatted1(_healthSnapShot['stockover90days']) ?? 0,
+          // globals.formatter1.format(double.tryParse(_healthSnapShot['stockover90days']) ?? 0),
           textAlign: TextAlign.right,
         )
       ],
@@ -102,7 +104,8 @@ dynamic getColumn(_healthSnapShot) {
           textAlign: TextAlign.left,
         ),
         Text(
-          formatter.format(double.tryParse(_healthSnapShot['stockover180days']) ?? 0),
+          globals.Util.getFormatted1(_healthSnapShot['stockover180days']) ?? 0,
+          // globals.formatter1.format(double.tryParse(_healthSnapShot['stockover180days']) ?? 0),
           textAlign: TextAlign.right,
         )
       ],
@@ -118,7 +121,8 @@ dynamic getColumn(_healthSnapShot) {
           textAlign: TextAlign.left,
         ),
         Text(
-          formatter.format(double.tryParse(_healthSnapShot['stockover270days']) ?? 0),
+          globals.Util.getFormatted1(_healthSnapShot['stockover270days']) ?? 0,
+          // globals.formatter1.format(double.tryParse(_healthSnapShot['stockover270days']) ?? 0),
           textAlign: TextAlign.right,
         )
       ],
@@ -134,7 +138,8 @@ dynamic getColumn(_healthSnapShot) {
           textAlign: TextAlign.left,
         ),
         Text(
-          formatter.format(double.tryParse(_healthSnapShot['stockover360days']) ?? 0),
+          globals.Util.getFormatted1(_healthSnapShot['stockover360days']) ?? 0,
+          // globals.formatter1.format(double.tryParse(_healthSnapShot['stockover360days']) ?? 0),
           textAlign: TextAlign.right,
         )
       ],
@@ -150,7 +155,8 @@ dynamic getColumn(_healthSnapShot) {
           textAlign: TextAlign.left,
         ),
         Text(
-          formatter.format(double.tryParse(_healthSnapShot['profit']) ?? 0),
+           globals.Util.getFormatted1(_healthSnapShot['profit']) ?? 0,
+          // globals.formatter1.format(double.tryParse(_healthSnapShot['profit']) ?? 0),
           textAlign: TextAlign.right,
         )
       ],
@@ -166,7 +172,8 @@ dynamic getColumn(_healthSnapShot) {
           textAlign: TextAlign.left,
         ),
         Text(
-          formatter.format(double.tryParse(_healthSnapShot['grossprofit']) ?? 0),
+          globals.Util.getFormatted1(_healthSnapShot['grossprofit']) ?? 0,
+          // globals.formatter1.format(double.tryParse(_healthSnapShot['grossprofit']) ?? 0),
           textAlign: TextAlign.right,
         )
       ],

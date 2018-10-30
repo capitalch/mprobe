@@ -1,7 +1,6 @@
-// library genericHelperLib;
-
 import 'package:flutter/material.dart';
 import 'reports.dart' as report;
+import 'globals.dart' as globals;
 
 dynamic getReportBody(resultSet) {
   dynamic widgets = ListView.builder(
@@ -10,15 +9,10 @@ dynamic getReportBody(resultSet) {
         if (i == 0) {
           return Row(children: getHeaderWidgets("sales"));
         }
-        ;
-
         if ((i == (resultSet.length + 1)) && (i != 0)) {
           return Row(children: getFooterWidgets("sales", resultSet));
-//          return (Row(children: [Text('Test')]));
         }
-
         i = i - 1;
-
         return Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,9 +23,12 @@ dynamic getReportBody(resultSet) {
 
 dynamic summation(List<dynamic> myList, String name) {
   var out = myList.fold({name: 0.00}, (p, c) {
-    return ({name: ( double.parse(p[name].toString()) + double.parse(c[name].toString()) )});
+    return ({name: ( num.tryParse(p[name].toString() ?? 0) + num.tryParse(c[name].toString() ?? 0) )}); //if null
   });
-  return (out[name].toString());
+  num res = num.tryParse(out[name].toString()) ?? 0;
+  String fmt = globals.Util.getFormatted1(res);
+  // String fmt = globals.formatter1.format(res);
+  return (fmt);
 }
 
 dynamic getBodyWidgets(String id, dynamic result) {
@@ -42,7 +39,8 @@ dynamic getBodyWidgets(String id, dynamic result) {
       SizedBox(
           width: d["width"], height: 30.0,
           child: Text(
-            result[d["name"]].toString(),
+            // result[d["name"]].toString(),
+            globals.Util.getFormatted1(result[d["name"]]),
             textAlign: _getAlignment(d),
           )),
     );
@@ -85,7 +83,6 @@ dynamic getFooterWidgets(String id, dynamic resultSet) {
     footerWidget.add(SizedBox(
       width: d["width"],
       child: d.containsKey("isSum")
-//          ? Text('abc')
           ? Text(summation(resultSet, d["name"]).toString(), textAlign: TextAlign.right,
               style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold))
           : Text(''),
