@@ -25,11 +25,11 @@ class MyApp extends StatelessWidget {
               '-' +
               today.day.toString();
           print(mdate);
-          return (Generic1("tunnel:get:todays:sale", {"mdate": mdate}, "Sales"));
+          return (Generic1("tunnel:get:todays:sale", {"mdate": "2018-10-29"}, "Sales"));
         },
         '/detailedSales': (BuildContext context) {
           return (Generic1("tunnel:get:sale:details:product",
-              {"mdate": "2018-10-27"}, "Detailed sales"));
+              {"mdate": "2018-10-29"}, "Detailed sales"));
         }
       },
     );
