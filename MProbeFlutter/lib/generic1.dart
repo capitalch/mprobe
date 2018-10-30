@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
-import 'dart:async';
 import 'dart:convert';
 import 'genericHelper.dart' as helper;
-//import 'reports.dart' as xReports;
-import "ibuki.dart" as ibuki;
 
 class Generic1 extends StatefulWidget {
   final String id;

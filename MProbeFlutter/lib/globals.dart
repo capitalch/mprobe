@@ -1,5 +1,4 @@
 library globalsLib;
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;

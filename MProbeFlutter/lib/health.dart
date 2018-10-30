@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:http/http.dart' as http;
-//import 'dart:async' show Future;
-//import 'package:flutter/services.dart' show rootBundle;
 import 'package:intl/intl.dart'; // for number formatting
 import 'dart:convert';
 import 'globals.dart' as globals;
