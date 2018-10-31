@@ -13,7 +13,7 @@ const reports = {
       {"title":"Product", "name":"item,brand,model", "width": 90.0},
       {"title":"Qty", "name":"qty", "width":30.0 , "alignment":'right'},
       {"title":"Price", "name":"price", "width":70.0 , "alignment":'right'},
-      {"title":"Amount", "name":"value", "width": 90.0 , "alignment":'right'},
+      {"title":"Amount", "name":"value", "width": 90.0 , "alignment":'right',"isSum":true},
       {"title":"Gp", "name":"gp", "width": 60.0 , "alignment":'right',"isSum":true},
       {"title":"Cgp", "name":"cgp", "width": 60.0 , "alignment":'right'},
       // {"title":"Days", "name":"days", "width": 40.0 , "alignment":'right'},

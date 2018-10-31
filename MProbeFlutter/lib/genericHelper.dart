@@ -60,7 +60,7 @@ dynamic getBodyWidgets(String id, dynamic result) {
     bodyWidget.add(
       SizedBox(
           width: d["width"],
-          height: 30.0,
+          // height: 30.0,
           child: Text(
             globals.Util.getFormatted1(getMultiItems(item, result)),
             // globals.Util.getFormatted1(result[d["name"]]),
