@@ -2,28 +2,31 @@ import 'package:flutter/material.dart';
 import 'reports.dart' as report;
 import 'globals.dart' as globals;
 
-dynamic getReportBody(resultSet) {
+dynamic getReportBody(reportId, resultSet) {
   dynamic widgets = ListView.builder(
       itemCount: resultSet.length + 2,
       itemBuilder: (BuildContext context, int i) {
         if (i == 0) {
-          return Row(children: getHeaderWidgets("sales"));
+          return Row(children: getHeaderWidgets(reportId));
         }
         if ((i == (resultSet.length + 1)) && (i != 0)) {
-          return Row(children: getFooterWidgets("sales", resultSet));
+          return Row(children: getFooterWidgets(reportId, resultSet));
         }
         i = i - 1;
         return Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: getBodyWidgets("sales", resultSet[i]));
+            children: getBodyWidgets(reportId, resultSet[i]));
       });
   return (widgets);
 }
 
-dynamic summation(List<dynamic> myList, String name) {
+dynamic _summation(List<dynamic> myList, String name) {
   var out = myList.fold({name: 0.00}, (p, c) {
-    return ({name: ( num.tryParse(p[name].toString() ?? 0) + num.tryParse(c[name].toString() ?? 0) )}); //if null
+    return ({
+      name: (num.tryParse(p[name].toString() ?? 0) +
+          num.tryParse(c[name].toString() ?? 0))
+    }); //if null
   });
   num res = num.tryParse(out[name].toString()) ?? 0;
   String fmt = globals.Util.getFormatted1(res);
@@ -35,9 +38,11 @@ dynamic getBodyWidgets(String id, dynamic result) {
   List<dynamic> body = report.reports[id]['body'];
   List<Widget> bodyWidget = List<Widget>();
   body.forEach((d) {
+
     bodyWidget.add(
       SizedBox(
-          width: d["width"], height: 30.0,
+          width: d["width"],
+          height: 30.0,
           child: Text(
             // result[d["name"]].toString(),
             globals.Util.getFormatted1(result[d["name"]]),
@@ -66,7 +71,8 @@ dynamic getHeaderWidgets(String id) {
   List<Widget> headerWidget = List<Widget>();
   header.forEach((d) {
     headerWidget.add(SizedBox(
-        width: d["width"],height: 20.0,
+        width: d["width"],
+        height: 20.0,
         child: Text(d["title"],
             textAlign: _getAlignment(d),
             style:
@@ -83,10 +89,31 @@ dynamic getFooterWidgets(String id, dynamic resultSet) {
     footerWidget.add(SizedBox(
       width: d["width"],
       child: d.containsKey("isSum")
-          ? Text(summation(resultSet, d["name"]).toString(), textAlign: TextAlign.right,
+          ? Text(_summation(resultSet, d["name"]).toString(),
+              textAlign: TextAlign.right,
               style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold))
           : Text(''),
     ));
   });
   return (footerWidget);
 }
+
+double getreportWidth(String id) {
+  List<dynamic> body = report.reports[id]['body'];
+  double width = 0.0;
+  body.forEach((x) {
+    width = width + (double.tryParse(x["width"].toString()) ?? 0.0);
+  });
+  return (width + 2.0);
+}
+
+// dynamic getColumns(id){
+//     List<dynamic> body = reports[id]['body'];
+//     body.forEach((x){
+//       String item = x["name"];
+//       if(item.contains(',')){
+//         List<String> items = item.split(',');
+//         print(items);
+//       }
+//     });
+//   }

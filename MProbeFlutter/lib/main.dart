@@ -19,10 +19,10 @@ class MyApp extends StatelessWidget {
           return (Health());
         },
         '/sales': (BuildContext context) {
-          return (Generic1("tunnel:get:todays:sale", {"mdate": globals.Util.getDate()}, "Sales"));
+          return (Generic1("sales", "tunnel:get:todays:sale", {"mdate": globals.Util.getDate()}, "Sales"));
         },
         '/detailedSales': (BuildContext context) {
-          return (Generic1("tunnel:get:sale:details:product",
+          return (Generic1("detailedSales", "tunnel:get:sale:details:product",
               {"mdate": globals.Util.getDate()}, "Detailed sales"));
         }
       },

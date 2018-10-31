@@ -7,19 +7,21 @@ class Generic1 extends StatefulWidget {
   final String id;
   final Map<String, String> args;
   final String pageTitle;
-  Generic1(this.id, this.args, this.pageTitle) {}
+  final String reportId;
+  Generic1(this.reportId, this.id, this.args, this.pageTitle) ;
   @override
-  Generic1State createState() => Generic1State(id, args, pageTitle);
+  Generic1State createState() => Generic1State(reportId, id, args, pageTitle);
 }
 
 class Generic1State extends State<Generic1> {
   final String id;
   final Map<String, String> args;
   final String pageTitle;
+  final String reportId;
   double _ages = 0.9;
   double _indexes = 1.11;
   var resultSet = [];
-  Generic1State(this.id, this.args, this.pageTitle) {
+  Generic1State(this.reportId, this.id, this.args, this.pageTitle) {
     populate();
   }
 
@@ -48,7 +50,7 @@ class Generic1State extends State<Generic1> {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               padding: EdgeInsets.all(20.0),
-            child: SizedBox(width: 340.0, child:helper.getReportBody(resultSet)),
+            child: SizedBox(width: helper.getreportWidth(reportId), child:helper.getReportBody(reportId, resultSet)),
             ),
             Positioned(
                 left: 20.0,

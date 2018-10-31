@@ -51,6 +51,7 @@ class Util {
         today.month.toString() +
         '-' +
         today.day.toString();
+    mdate = "2018-10-30";
     return (mdate);
   }
 }
