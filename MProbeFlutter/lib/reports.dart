@@ -10,7 +10,7 @@ const reports = {
   },
   "detailedSales": {
     "body":[
-      {"title":"Product", "name":"item", "width": 90.0},
+      {"title":"Product", "name":"item,brand,model", "width": 90.0},
       {"title":"Qty", "name":"qty", "width":30.0 , "alignment":'right'},
       {"title":"Price", "name":"price", "width":70.0 , "alignment":'right'},
       {"title":"Amount", "name":"value", "width": 90.0 , "alignment":'right'},

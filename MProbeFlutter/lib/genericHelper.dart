@@ -34,18 +34,36 @@ dynamic _summation(List<dynamic> myList, String name) {
   return (fmt);
 }
 
+dynamic getMultiItems(String item, dynamic result){
+    // List<dynamic> body = report.reports[id]['body'];
+    // body.forEach((x){
+    //   String item = x["name"];
+    dynamic out = '';
+      if(item.contains(',')){
+        List<String> items = item.split(',');
+        items.forEach((x){
+          out = out +  result[x] + ' ';
+        });
+        // print(items);
+      } else {
+        out = result[item];
+      }
+      return(out);
+    // });
+  }
+
 dynamic getBodyWidgets(String id, dynamic result) {
   List<dynamic> body = report.reports[id]['body'];
   List<Widget> bodyWidget = List<Widget>();
   body.forEach((d) {
-
+    String item = d['name'];
     bodyWidget.add(
       SizedBox(
           width: d["width"],
           height: 30.0,
           child: Text(
-            // result[d["name"]].toString(),
-            globals.Util.getFormatted1(result[d["name"]]),
+            globals.Util.getFormatted1(getMultiItems(item, result)),
+            // globals.Util.getFormatted1(result[d["name"]]),
             textAlign: _getAlignment(d),
           )),
     );
@@ -84,7 +102,6 @@ dynamic getHeaderWidgets(String id) {
 dynamic getFooterWidgets(String id, dynamic resultSet) {
   List<dynamic> footer = report.reports[id]['body'];
   List<Widget> footerWidget = List<Widget>();
-
   footer.forEach((d) {
     footerWidget.add(SizedBox(
       width: d["width"],
@@ -107,13 +124,3 @@ double getreportWidth(String id) {
   return (width + 2.0);
 }
 
-// dynamic getColumns(id){
-//     List<dynamic> body = reports[id]['body'];
-//     body.forEach((x){
-//       String item = x["name"];
-//       if(item.contains(',')){
-//         List<String> items = item.split(',');
-//         print(items);
-//       }
-//     });
-//   }
