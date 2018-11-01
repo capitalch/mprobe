@@ -13,11 +13,20 @@ dynamic getReportBody(reportId, resultSet) {
           return Row(children: getFooterWidgets(reportId, resultSet));
         }
         i = i - 1;
-        return Row(
+        Row row = Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: getBodyWidgets(reportId, resultSet[i]));
+        InkWell ink = InkWell(
+          child: row,
+          onTap: () {
+            print('Test');
+            Navigator.pushNamed(context, '/health');
+          },
+        );
+        return (ink);
       });
+
   return (widgets);
 }
 
@@ -34,23 +43,19 @@ dynamic _summation(List<dynamic> myList, String name) {
   return (fmt);
 }
 
-dynamic getMultiItems(String item, dynamic result){
-    // List<dynamic> body = report.reports[id]['body'];
-    // body.forEach((x){
-    //   String item = x["name"];
-    dynamic out = '';
-      if(item.contains(',')){
-        List<String> items = item.split(',');
-        items.forEach((x){
-          out = out +  result[x] + ' ';
-        });
-        // print(items);
-      } else {
-        out = result[item];
-      }
-      return(out);
-    // });
+dynamic getMultiItems(String item, dynamic result) {
+  dynamic out = '';
+  if (item.contains(',')) {
+    List<String> items = item.split(',');
+    items.forEach((x) {
+      out = out + result[x] + ' ';
+    });
+  } else {
+    out = result[item];
   }
+  out = out ?? '';
+  return (out);
+}
 
 dynamic getBodyWidgets(String id, dynamic result) {
   List<dynamic> body = report.reports[id]['body'];
@@ -58,15 +63,23 @@ dynamic getBodyWidgets(String id, dynamic result) {
   body.forEach((d) {
     String item = d['name'];
     bodyWidget.add(
-      SizedBox(
+        // InkWell(
+        //   child:
+        Container(
+      constraints: BoxConstraints(minHeight: 30.0),
+      child: SizedBox(
           width: d["width"],
           // height: 30.0,
           child: Text(
             globals.Util.getFormatted1(getMultiItems(item, result)),
-            // globals.Util.getFormatted1(result[d["name"]]),
             textAlign: _getAlignment(d),
           )),
-    );
+      padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+      decoration: BoxDecoration(
+          border: Border(top: BorderSide(color: Colors.grey, width: 2.0))),
+    )
+        // )
+        );
   });
   return (bodyWidget);
 }
@@ -123,4 +136,3 @@ double getreportWidth(String id) {
   });
   return (width + 2.0);
 }
-
