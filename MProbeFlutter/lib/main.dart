@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       home: Home(),
       routes: {
         '/health': (BuildContext context) {
+          print(globals.Util.getValue("id") ?? 0);
           return (Health());
         },
         '/sales': (BuildContext context) {

@@ -24,15 +24,7 @@ Future<dynamic> httpPost(String id, {dynamic args}) async {
   return (result);
 }
 
-// final formatter1 = new NumberFormat("##,###");
-// final formatter2 = new NumberFormat("##,###.##");
-
-//formats a string / numeric in format1 ("###,###")
-// String getFormatted1(dynamic val) {
-//   var parsed = num.tryParse(val.toString());
-//   String ret = (parsed == null) ? val : formatter1.format(parsed);
-//   return (ret);
-// }
+Map<String,dynamic> packet = new Map();
 
 class Util {
   static final _formatter1 = new NumberFormat("##,###");
@@ -53,5 +45,13 @@ class Util {
         today.day.toString();
     // mdate = "2018-10-30";
     return (mdate);
+  }
+
+  static dynamic getValue(id){
+    return(packet[id]);
+  }
+
+  static dynamic setValue(id,value){
+    packet[id] = value;
   }
 }

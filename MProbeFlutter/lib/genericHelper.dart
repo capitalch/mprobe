@@ -21,6 +21,7 @@ dynamic getReportBody(reportId, resultSet) {
           child: row,
           onTap: () {
             print('Test');
+            globals.Util.setValue('id', 'Navigation value');
             Navigator.pushNamed(context, '/health');
           },
         );
