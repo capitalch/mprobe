@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         '/saleDetails2': (BuildContext context) {
           return (Generic1(
               "saleDetails2",
-              "tunnel:get:sale:details1",
+              "tunnel:get:sale:details2",
               {
                 // "mdate": globals.Util.getDate(),
                 "bill_memo_id": globals.Util.get('id')

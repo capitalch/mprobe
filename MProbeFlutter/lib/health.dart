@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
+import "dart:convert";
 import 'globals.dart' as globals;
 
 class Health extends StatefulWidget {
@@ -21,9 +21,8 @@ class HealthState extends State<Health> {
     "grossprofit": ""
   };
 
-  @override
-  Widget build(BuildContext context) {
-     globals.httpPost('tunnel:get:business:health').then((d) {
+  populate() {
+    globals.httpPost('tunnel:get:business:health').then((d) {
       if (mounted) {
         setState(() {
           dynamic healthList =
@@ -34,6 +33,14 @@ class HealthState extends State<Health> {
         });
       }
     });
+  }
+
+  HealthState() {
+    populate();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     dynamic col = getColumn(_healthSnapShot);
     return Scaffold(
         appBar: AppBar(title: Text('Health')),
@@ -155,7 +162,7 @@ dynamic getColumn(_healthSnapShot) {
           textAlign: TextAlign.left,
         ),
         Text(
-           globals.Util.getFormatted1(_healthSnapShot['profit']) ?? 0,
+          globals.Util.getFormatted1(_healthSnapShot['profit']) ?? 0,
           // globals.formatter1.format(double.tryParse(_healthSnapShot['profit']) ?? 0),
           textAlign: TextAlign.right,
         )

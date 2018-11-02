@@ -6,7 +6,7 @@ import 'genericHelper.dart' as helper;
 
 class Generic1 extends StatefulWidget {
   final String id;
-  final Map<String, String> args;
+  final Map<String, dynamic> args;
   final String pageTitle;
   final String reportId;
   Generic1(this.reportId, this.id, this.args, this.pageTitle);
@@ -16,7 +16,7 @@ class Generic1 extends StatefulWidget {
 
 class Generic1State extends State<Generic1> {
   final String id;
-  final Map<String, String> args;
+  final Map<String, dynamic> args;
   final String pageTitle;
   final String reportId;
   bool isDateChangeButtonsVisible = false;
@@ -69,7 +69,7 @@ class Generic1State extends State<Generic1> {
   @override // TODO: implement context
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+        appBar: AppBar(bottom: PreferredSize(preferredSize:Size.fromHeight(10.0),child: Text('Test'),),
           title: Text(pageTitle),
           actions: <Widget>[
             IconButton(

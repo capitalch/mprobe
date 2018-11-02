@@ -51,7 +51,7 @@ class Util {
     return(packet[id]);
   }
 
-  static dynamic set(id,value){
+  static void set(id,value){
     packet[id] = value;
   }
 }

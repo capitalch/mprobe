@@ -3,7 +3,7 @@ const reports = {
   "sales": {
     "isDateChangeButtonsVisible": true,
     "drillDownReport": "saleDetails1",
-    "idName":"master_id",
+    "idName":"id",
     "body": [
       {
         "title": "Pos",
@@ -44,7 +44,6 @@ const reports = {
     ]
   },
   "saleDetails2": {
-    "idName":"bill_memo_id",
     "body": [
       {"title": "Product", "name": "item,brand,model", "width": 90.0},
       {"title": "Qty", "name": "qty", "width": 90.0},

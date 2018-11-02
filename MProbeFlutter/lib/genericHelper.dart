@@ -27,8 +27,9 @@ dynamic getReportBody(reportId, resultSet) {
             // if (isDrillDown) {
               route = '/' + report.reports[reportId]['drillDownReport'];
               String id = report.reports[reportId]["idName"];
-              globals.Util.set('id', resultSet[i][id].toString());
+              globals.Util.set('id', resultSet[i][id]);
               Navigator.pushNamed(context, route);
+              
             // }
           },
         );
