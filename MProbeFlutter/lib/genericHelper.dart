@@ -21,8 +21,15 @@ dynamic getReportBody(reportId, resultSet) {
           child: row,
           onTap: () {
             print('Test');
-            globals.Util.setValue('id', 'Navigation value');
-            Navigator.pushNamed(context, '/health');
+            // bool isDrillDown =
+            //     report.reports[reportId]['drillDownReport'] ?? false;
+            String route = '';
+            // if (isDrillDown) {
+              route = '/' + report.reports[reportId]['drillDownReport'];
+              String id = report.reports[reportId]["idName"];
+              globals.Util.set('id', resultSet[i][id].toString());
+              Navigator.pushNamed(context, route);
+            // }
           },
         );
         return (ink);
@@ -75,9 +82,9 @@ dynamic getBodyWidgets(String id, dynamic result) {
             globals.Util.getFormatted1(getMultiItems(item, result)),
             textAlign: _getAlignment(d),
           )),
-      padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+      padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
       decoration: BoxDecoration(
-          border: Border(top: BorderSide(color: Colors.grey, width: 2.0))),
+          border: Border(top: BorderSide(color: Colors.black12, width: 1.0))),
     )
         // )
         );

@@ -16,11 +16,32 @@ class MyApp extends StatelessWidget {
       home: Home(),
       routes: {
         '/health': (BuildContext context) {
-          print(globals.Util.getValue("id") ?? 0);
+          // print(globals.Util.get("id") ?? 0);
           return (Health());
         },
         '/sales': (BuildContext context) {
-          return (Generic1("sales", "tunnel:get:todays:sale", {"mdate": globals.Util.getDate()}, "Sales"));
+          return (Generic1("sales", "tunnel:get:todays:sale",
+              {"mdate": globals.Util.getDate()}, "Sales"));
+        },
+        '/saleDetails1': (BuildContext context) {
+          return (Generic1(
+              "saleDetails1",
+              "tunnel:get:sale:details1",
+              {
+                "mdate": globals.Util.getDate(),
+                "master_id": globals.Util.get('id')
+              },
+              "Sale details"));
+        },
+        '/saleDetails2': (BuildContext context) {
+          return (Generic1(
+              "saleDetails2",
+              "tunnel:get:sale:details1",
+              {
+                // "mdate": globals.Util.getDate(),
+                "bill_memo_id": globals.Util.get('id')
+              },
+              "Sale details further"));
         },
         '/detailedSales': (BuildContext context) {
           return (Generic1("detailedSales", "tunnel:get:sale:details:product",

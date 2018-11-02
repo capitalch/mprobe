@@ -47,11 +47,11 @@ class Util {
     return (mdate);
   }
 
-  static dynamic getValue(id){
+  static dynamic get(id){
     return(packet[id]);
   }
 
-  static dynamic setValue(id,value){
+  static dynamic set(id,value){
     packet[id] = value;
   }
 }
