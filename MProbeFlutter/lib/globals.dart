@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
 import "dart:convert";
-import 'package:intl/intl.dart'; // for number formatting
+import 'package:intl/intl.dart'; // for date, number formatting
 
 Future<dynamic> httpPost(String id, {dynamic args}) async {
   var settings = await rootBundle.loadString('assets/settings.json');
@@ -43,7 +43,6 @@ class Util {
         today.month.toString() +
         '-' +
         today.day.toString();
-    // mdate = "2018-10-30";
     return (mdate);
   }
 

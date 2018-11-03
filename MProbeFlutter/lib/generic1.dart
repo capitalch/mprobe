@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
 import 'reports.dart' as report;
+import 'package:intl/intl.dart'; // for date, number formatting
 import 'dart:convert';
 import 'genericHelper.dart' as helper;
 
@@ -19,6 +20,7 @@ class Generic1State extends State<Generic1> {
   final Map<String, dynamic> args;
   final String pageTitle;
   final String reportId;
+  String displayDate = '';
   bool isDateChangeButtonsVisible = false;
   double _ages = 0.9;
   double _indexes = 1.11;
@@ -44,10 +46,16 @@ class Generic1State extends State<Generic1> {
     });
   }
 
-  void dateSubtract(d) {
+  DateTime _getParsedDate() {
     String dt = args["mdate"];
     DateTime dtPar = DateTime.tryParse(dt) ?? DateTime.now();
-    dtPar = dtPar.subtract(Duration(days: 1));
+    return (dtPar);
+  }
+
+  void dateSubtract(d) {
+//    String dt = args["mdate"];
+//    DateTime dtPar = DateTime.tryParse(dt) ?? DateTime.now();
+    DateTime dtPar = _getParsedDate().subtract(Duration(days: 1));
     args["mdate"] = (dtPar.year.toString() +
         '-' +
         dtPar.month.toString() +
@@ -56,9 +64,9 @@ class Generic1State extends State<Generic1> {
   }
 
   void dateAdd(d) {
-    String dt = args["mdate"];
-    DateTime dtPar = DateTime.tryParse(dt) ?? DateTime.now();
-    dtPar = dtPar.add(Duration(days: 1));
+//    String dt = args["mdate"];
+//    DateTime dtPar = DateTime.tryParse(dt) ?? DateTime.now();
+    DateTime dtPar = _getParsedDate().add(Duration(days: 1));
     args["mdate"] = (dtPar.year.toString() +
         '-' +
         dtPar.month.toString() +
@@ -66,10 +74,28 @@ class Generic1State extends State<Generic1> {
         dtPar.day.toString());
   }
 
+  Widget _displayDateWidget() {
+    DateTime dtPar = _getParsedDate();
+    print(new DateFormat.yMMMd().format(new DateTime.now()));
+    String fDate = DateFormat.yMMMd().format(dtPar);
+    Widget wd = Text(fDate, textAlign: TextAlign.left,style: TextStyle(color: Colors.yellow),);
+    return (wd);
+  }
+
   @override // TODO: implement context
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(bottom: PreferredSize(preferredSize:Size.fromHeight(10.0),child: Text('Test'),),
+        appBar: AppBar(
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(10.0),
+            child: Row(
+              children: <Widget>[
+                Padding(
+                    padding: EdgeInsets.only(left: 10.0, bottom: 5.0),
+                    child: _displayDateWidget())
+              ],
+            ),
+          ),
           title: Text(pageTitle),
           actions: <Widget>[
             IconButton(
