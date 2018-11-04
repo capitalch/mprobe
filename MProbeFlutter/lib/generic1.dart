@@ -22,12 +22,13 @@ class Generic1State extends State<Generic1> {
   final String reportId;
   String displayDate = '';
   bool isDateChangeButtonsVisible = false;
-  double _ages = 0.9;
-  double _indexes = 1.11;
+  String detailsReport;
   var resultSet = [];
   Generic1State(this.reportId, this.id, this.args, this.pageTitle) {
     isDateChangeButtonsVisible =
         report.reports[reportId]['isDateChangeButtonsVisible'] ?? false;
+    detailsReport = report.reports[reportId]['detailsReport'];
+    
     populate();
   }
 
@@ -48,37 +49,57 @@ class Generic1State extends State<Generic1> {
 
   DateTime _getParsedDate() {
     String dt = args["mdate"];
-    DateTime dtPar = DateTime.tryParse(dt) ?? DateTime.now();
+
+    var func = () {
+      List<String> dtArr = dt.split('-');
+      //padLeft is used to convert day and month string from 1->01, 4->04 and so on.
+      dt = dtArr[0] +
+          '-' +
+          dtArr[1].padLeft(2, '0') +
+          '-' +
+          dtArr[2].padLeft(2, '0');
+      return (DateTime.parse(dt));
+    };
+    DateTime dtPar = dt == null ? DateTime.now() : func();
     return (dtPar);
   }
 
   void dateSubtract(d) {
-//    String dt = args["mdate"];
-//    DateTime dtPar = DateTime.tryParse(dt) ?? DateTime.now();
     DateTime dtPar = _getParsedDate().subtract(Duration(days: 1));
-    args["mdate"] = (dtPar.year.toString() +
-        '-' +
-        dtPar.month.toString() +
-        '-' +
-        dtPar.day.toString());
+    setState(() {
+      args["mdate"] = (dtPar.year.toString() +
+          '-' +
+          dtPar.month.toString().padLeft(2, '0') +
+          '-' +
+          dtPar.day.toString().padLeft(2, '0'));
+    });
+    globals.Util.set('mdate', args["mdate"]);
+    populate();
   }
 
   void dateAdd(d) {
-//    String dt = args["mdate"];
-//    DateTime dtPar = DateTime.tryParse(dt) ?? DateTime.now();
     DateTime dtPar = _getParsedDate().add(Duration(days: 1));
-    args["mdate"] = (dtPar.year.toString() +
-        '-' +
-        dtPar.month.toString() +
-        '-' +
-        dtPar.day.toString());
+    setState(() {
+      args["mdate"] = (dtPar.year.toString() +
+              '-' +
+              dtPar.month.toString().padLeft(2, '0') +
+              '-' +
+              dtPar.day.toString())
+          .padLeft(2, '0');
+    });
+    globals.Util.set('mdate', args["mdate"]);
+    populate();
   }
 
   Widget _displayDateWidget() {
     DateTime dtPar = _getParsedDate();
     print(new DateFormat.yMMMd().format(new DateTime.now()));
     String fDate = DateFormat.yMMMd().format(dtPar);
-    Widget wd = Text(fDate, textAlign: TextAlign.left,style: TextStyle(color: Colors.yellow),);
+    Widget wd = Text(
+      fDate,
+      textAlign: TextAlign.left,
+      style: TextStyle(color: Colors.yellow),
+    );
     return (wd);
   }
 
@@ -98,32 +119,30 @@ class Generic1State extends State<Generic1> {
           ),
           title: Text(pageTitle),
           actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.ac_unit),
-              onPressed: () {
-                setState(() {
-                  resultSet = [];
-                });
-                populate();
-              },
-            ),
+            (detailsReport != null)
+                ? IconButton(
+                    icon: Icon(Icons.ac_unit),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/detailedSales');
+                    },
+                  )
+                : Container(),
             isDateChangeButtonsVisible
                 ? IconButton(
-                    icon: Icon(Icons.arrow_left),
-                    iconSize: 45.0,
+                    icon: Icon(Icons.arrow_back_ios),
+                    // iconSize: 45.0,
                     color: Colors.red,
                     onPressed: () {
                       dateSubtract(1);
                       setState(() {
                         resultSet = [];
                       });
-                      populate();
                     },
                   )
                 : Container(),
             isDateChangeButtonsVisible
                 ? IconButton(
-                    icon: Icon(Icons.arrow_right),
+                    icon: Icon(Icons.arrow_forward_ios),
                     color: Colors.red,
                     onPressed: () {
                       dateAdd(1);
@@ -132,7 +151,7 @@ class Generic1State extends State<Generic1> {
                       });
                       populate();
                     },
-                    iconSize: 45.0,
+                    // iconSize: 45.0,
                   )
                 : Container(),
           ],
@@ -149,24 +168,15 @@ class Generic1State extends State<Generic1> {
             ),
             Positioned(
                 left: 20.0,
-                bottom: 0.0,
-                width: 700.0,
-                child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: <Widget>[
-                        Text(
-                          'Ages: $_ages, Indexes: $_indexes',
-                          style: TextStyle(color: Colors.blue),
-                        ),
-                      ],
-                    )))
+                bottom: 5.0,
+                // width: 700.0,
+                child: helper.getFixedBottomWidget(reportId, resultSet))
           ],
         ));
   }
 }
-/*
 
+/*
 //  StreamSubscription subs;
 //  @override
 //  Generic1State initState() {

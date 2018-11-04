@@ -3,7 +3,13 @@ const reports = {
   "sales": {
     "isDateChangeButtonsVisible": true,
     "drillDownReport": "saleDetails1",
-    "idName":"id",
+    "idName": "id",
+    "detailsReport": "detailedSales",
+    "fixedBottom": [
+      {"title": "Total sale:", "name": "sale"},
+      {"title": "Gp:", "name": "gp"},
+      {"title": "Cgp:", "name": "cgp"}
+    ],
     "body": [
       {
         "title": "Pos",
@@ -35,12 +41,35 @@ const reports = {
   },
   "saleDetails1": {
     "drillDownReport": "saleDetails2",
-    "idName":"bill_memo_id",
+    "idName": "bill_memo_id",
+    "fixedBottom": [
+      {"title": "Total sale:", "name": "total_amt"},
+      {"title": "Gp:", "name": "gp"},
+      {"title": "Cgp:", "name": "cgp"}
+    ],
     "body": [
       {"title": "Ref", "name": "ref_no", "width": 90.0},
-      {"title": "Amount", "name": "total_amt", "width": 90.0, "alignment": 'right',  "isSum": true},
-      {"title": "Gp", "name": "gp", "width": 90.0,"alignment": 'right',  "isSum": true },
-      {"title": "Cgp", "name": "cgp", "width": 90.0, "alignment": 'right',  "isSum": true},
+      {
+        "title": "Amount",
+        "name": "total_amt",
+        "width": 90.0,
+        "alignment": 'right',
+        "isSum": true
+      },
+      {
+        "title": "Gp",
+        "name": "gp",
+        "width": 90.0,
+        "alignment": 'right',
+        "isSum": true
+      },
+      {
+        "title": "Cgp",
+        "name": "cgp",
+        "width": 90.0,
+        "alignment": 'right',
+        "isSum": true
+      },
     ]
   },
   "saleDetails2": {
@@ -53,8 +82,57 @@ const reports = {
       {"title": "Stk", "name": "stock", "width": 90.0},
     ]
   },
+  "orders": {
+    "drillDownReport": "orderDetails",
+    "idName": "counter",
+    "fixedBottom":[
+      {"title":"Order value:", "name":"value"}
+    ],
+    "body": [
+      {"title": "Counter", "name": "counter", "width": 120.0},
+      {"title": "Qty", "name": "orderqty", "width": 50.0, "alignment": 'right', "isSum": true},
+      {"title": "Value", "name": "value", "width": 90.0, "alignment": 'right', "isSum": true},
+      {"title": "Urgent", "name": "urgent", "width": 90.0, "alignment": 'right', "isSum": true}
+    ]
+  },
+  "orderDetails":{
+    "fixedBottom":[
+      {"title":"Order value:", "name":"value"}
+    ],
+    "body":[
+      {"title": "Product", "name": "item,brand", "width": 120.0},
+      {"title": "Order", "name": "orderqty", "width": 50.0, "alignment": 'right', "isSum": true},
+      {"title": "Value", "name": "value", "width": 90.0, "alignment": 'right', "isSum": true},
+      {"title": "Urgent", "name": "urgent", "width": 90.0, "alignment": 'right', "isSum": true}
+    ]
+  },
+  "chequePayments":{
+    "body":[
+      {"title": "Date", "name": "cheq_date", "width": 80.0},
+      {"title": "Party", "name": "pay_to", "width": 155.0},
+      {"title": "Amt", "name": "cheq_amt", "width": 80.0, "alignment": 'right'},
+      {"title": "Cheq", "name": "cheq_no", "width": 80.0, "alignment": 'center'},
+      {"title": "Ref", "name": "ref_no", "width": 60.0},
+      {"title": "From", "name": "pay_from", "width": 60.0},
+      {"title": "Rem", "name": "remarks", "width": 120.0}
+    ]
+  },
+  "cashPayments":{
+    "body":[
+      {"title": "Date", "name": "cp_date", "width": 80.0},
+      {"title": "Account", "name": "pay_to", "width": 155.0},
+      {"title": "Amt", "name": "cp_amt", "width": 80.0, "alignment": 'right'},
+      {"title": "Ref", "name": "ref_no", "width": 100.0, "alignment": 'center'},
+      {"title": "Remarks", "name": "remarks", "width": 140.0}
+    ]
+  },
   "detailedSales": {
     "isDateChangeButtonsVisible": true,
+    "fixedBottom": [
+      {"title": "Total sale:", "name": "value"},
+      {"title": "Gp:", "name": "gp"},
+      {"title": "Cgp:", "name": "cgp"}
+    ],
     "body": [
       {"title": "Product", "name": "item,brand,model", "width": 90.0},
       {"title": "Qty", "name": "qty", "width": 30.0, "alignment": 'right'},

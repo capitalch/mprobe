@@ -20,15 +20,18 @@ class MyApp extends StatelessWidget {
           return (Health());
         },
         '/sales': (BuildContext context) {
-          return (Generic1("sales", "tunnel:get:todays:sale",
-              {"mdate": globals.Util.getDate()}, "Sales"));
+          return (Generic1(
+              "sales",
+              "tunnel:get:todays:sale",
+              {"mdate": globals.Util.get('mdate') ?? globals.Util.getDate()},
+              "Sales"));
         },
         '/saleDetails1': (BuildContext context) {
           return (Generic1(
               "saleDetails1",
               "tunnel:get:sale:details1",
               {
-                "mdate": globals.Util.getDate(),
+                "mdate": globals.Util.get('mdate') ?? globals.Util.getDate(),
                 "master_id": globals.Util.get('id')
               },
               "Sale details"));
@@ -38,14 +41,46 @@ class MyApp extends StatelessWidget {
               "saleDetails2",
               "tunnel:get:sale:details2",
               {
-                // "mdate": globals.Util.getDate(),
+                "mdate": globals.Util.get('mdate') ?? globals.Util.getDate(),
                 "bill_memo_id": globals.Util.get('id')
               },
               "Sale details further"));
         },
         '/detailedSales': (BuildContext context) {
-          return (Generic1("detailedSales", "tunnel:get:sale:details:product",
-              {"mdate": globals.Util.getDate()}, "Detailed sales"));
+          return (Generic1(
+              "detailedSales",
+              "tunnel:get:sale:details:product",
+              {"mdate": globals.Util.get('mdate') ?? globals.Util.getDate()},
+              "Detailed sales"));
+        },
+        '/orders': (BuildContext context) {
+          return (Generic1(
+              "orders",
+              "tunnel:get:orders",
+              {},
+              "Orders"));
+        },
+        '/orderDetails':(BuildContext context) {
+          return (Generic1(
+              "orderDetails",
+              "tunnel:get:order:details",
+              {"counter": globals.Util.get('id')},
+              "Details"));
+        },
+        //tunnel:get:cheque:payments
+        '/chequePayments':(BuildContext context) {
+          return (Generic1(
+              "chequePayments",
+              "tunnel:get:cheque:payments",
+              {},
+              "Cheq payments"));
+        },
+        '/cashPayments':(BuildContext context) {
+          return (Generic1(
+              "cashPayments",
+              "tunnel:get:cash:payments",
+              {},
+              "Cash payments"));
         }
       },
     );
@@ -114,6 +149,6 @@ final List<Entry> data = <Entry>[
     Entry('Health', 'health'),
     Entry('Sales', 'sales'),
     Entry('Detailed sales', 'detailedSales'),
-    Entry('Order', 'order')
+    Entry('Orders', 'orders')
   ])
 ];

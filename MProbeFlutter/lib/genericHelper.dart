@@ -20,17 +20,11 @@ dynamic getReportBody(reportId, resultSet) {
         InkWell ink = InkWell(
           child: row,
           onTap: () {
-            print('Test');
-            // bool isDrillDown =
-            //     report.reports[reportId]['drillDownReport'] ?? false;
             String route = '';
-            // if (isDrillDown) {
-              route = '/' + report.reports[reportId]['drillDownReport'];
-              String id = report.reports[reportId]["idName"];
-              globals.Util.set('id', resultSet[i][id]);
-              Navigator.pushNamed(context, route);
-              
-            // }
+            route = '/' + report.reports[reportId]['drillDownReport'];
+            String id = report.reports[reportId]["idName"];
+            globals.Util.set('id', resultSet[i][id]);
+            Navigator.pushNamed(context, route);
           },
         );
         return (ink);
@@ -48,7 +42,6 @@ dynamic _summation(List<dynamic> myList, String name) {
   });
   num res = num.tryParse(out[name].toString()) ?? 0;
   String fmt = globals.Util.getFormatted1(res);
-  // String fmt = globals.formatter1.format(res);
   return (fmt);
 }
 
@@ -71,10 +64,7 @@ dynamic getBodyWidgets(String id, dynamic result) {
   List<Widget> bodyWidget = List<Widget>();
   body.forEach((d) {
     String item = d['name'];
-    bodyWidget.add(
-        // InkWell(
-        //   child:
-        Container(
+    bodyWidget.add(Container(
       constraints: BoxConstraints(minHeight: 30.0),
       child: SizedBox(
           width: d["width"],
@@ -86,9 +76,7 @@ dynamic getBodyWidgets(String id, dynamic result) {
       padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
       decoration: BoxDecoration(
           border: Border(top: BorderSide(color: Colors.black12, width: 1.0))),
-    )
-        // )
-        );
+    ));
   });
   return (bodyWidget);
 }
@@ -144,4 +132,21 @@ double getreportWidth(String id) {
     width = width + (double.tryParse(x["width"].toString()) ?? 0.0);
   });
   return (width + 2.0);
+}
+
+Widget getFixedBottomWidget(String reportId, dynamic resultSet) {
+  List<Map<String, String>> fixedBottom =
+      report.reports[reportId]['fixedBottom'];
+  String fixed = "";
+  dynamic getWidget = () {
+    fixedBottom.forEach((x) {
+      fixed = fixed + x['title'] + _summation(resultSet, x['name']) + ' ';
+    });
+    return (Text(
+      fixed,
+      style: TextStyle(color: Colors.red),
+    ));
+  };
+  Widget out = (fixedBottom == null) ? Container() : getWidget();
+  return (out);
 }
