@@ -54,34 +54,38 @@ class MyApp extends StatelessWidget {
               "Detailed sales"));
         },
         '/orders': (BuildContext context) {
-          return (Generic1(
-              "orders",
-              "tunnel:get:orders",
-              {},
-              "Orders"));
+          return (Generic1("orders", "tunnel:get:orders", {}, "Orders"));
         },
-        '/orderDetails':(BuildContext context) {
-          return (Generic1(
-              "orderDetails",
-              "tunnel:get:order:details",
-              {"counter": globals.Util.get('id')},
-              "Details"));
+        '/orderDetails': (BuildContext context) {
+          return (Generic1("orderDetails", "tunnel:get:order:details",
+              {"counter": globals.Util.get('id')}, "Details"));
         },
-        //tunnel:get:cheque:payments
-        '/chequePayments':(BuildContext context) {
-          return (Generic1(
-              "chequePayments",
-              "tunnel:get:cheque:payments",
-              {},
+        '/chequePayments': (BuildContext context) {
+          return (Generic1("chequePayments", "tunnel:get:cheque:payments", {},
               "Cheq payments"));
         },
-        '/cashPayments':(BuildContext context) {
+        '/cashPayments': (BuildContext context) {
           return (Generic1(
-              "cashPayments",
-              "tunnel:get:cash:payments",
-              {},
-              "Cash payments"));
-        }
+              "cashPayments", "tunnel:get:cash:payments", {}, "Cash payments"));
+        },
+        '/debitNotes': (BuildContext context) {
+          return (Generic1(
+              "debitNotes",
+              "tunnel:get:debit:credit:notes",
+              {"class_db": '%', "class_cr": "PURCHASE", "tempid": 0},
+              "Db notes"));
+        },
+        '/creditNotes': (BuildContext context) {
+          return (Generic1("creditNotes", "tunnel:get:debit:credit:notes",
+              {"class_db": 'SALE', "class_cr": "%", "tempid": 0}, "Db notes"));
+        },
+        '/banks': (BuildContext context) {
+          return (Generic1("banks", "tunnel:get:banks", {}, "Banks"));
+        },
+        '/bankDetails': (BuildContext context) {
+          return (Generic1("bankDetails", "tunnel:get:bank:recon:details",
+              {"accIdbank": globals.Util.get('id')}, "Banks"));
+        },
       },
     );
   }
@@ -138,7 +142,7 @@ class Entry {
 
 final List<Entry> data = <Entry>[
   Entry('Accounts', null, <Entry>[
-    Entry('Balance Sheet', 'balanceSheet'),
+    // Entry('Balance Sheet', 'balanceSheet'),
     Entry('Cheque Payments', 'chequePayments'),
     Entry('Cash payments', 'cashPayments'),
     Entry('Debit Notes', 'debitNotes'),
