@@ -213,7 +213,7 @@ const reports = {
     // "drillDownReport": "bankDetails",
     // "idName": "acc_id",
     "fixedBottom": [
-      {"title": "Jakar value:", "name": "total_value"}
+      {"title": "Jakar value:", "name": "jakar_value"}
     ],
     "body": [
       {"title": "Counter", "name": "counter_code", "width": 110.0},
