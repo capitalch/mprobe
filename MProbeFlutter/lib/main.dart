@@ -86,8 +86,13 @@ class MyApp extends StatelessWidget {
           return (Generic1("bankDetails", "tunnel:get:bank:recon:details",
               {"accIdbank": globals.Util.get('id')}, "Details"));
         },
-         '/jakar': (BuildContext context) {
-          return (Generic1("jakar", "tunnel:get:jakar:on:days", {"mdays":360}, "Jakar"));
+        '/jakar': (BuildContext context) {
+          return (Generic1(
+              "jakar", "tunnel:get:jakar:on:days", {"mdays": 360}, "Jakar"));
+        },
+        '/jakarDetails': (BuildContext context) {
+          return (Generic1("jakarDetails", "tunnel:get:jakar:details",
+              {"counter_code": globals.Util.get('id'), "mdays": 360}, "Jakar details"));
         },
       },
     );

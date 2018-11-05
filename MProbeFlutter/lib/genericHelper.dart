@@ -36,11 +36,11 @@ dynamic getReportBody(reportId, resultSet) {
 dynamic _summation(List<dynamic> myList, String name) {
   var out = myList.fold({name: 0.00}, (p, c) {
     return ({
-      name: (num.tryParse(p[name].toString() ?? 0) +
-          num.tryParse(c[name].toString() ?? 0))
+      name: (num.tryParse((p[name] ?? 0).toString() ?? 0) +
+          num.tryParse((c[name] ?? 0).toString() ?? 0))
     }); //if null
   });
-  num res = num.tryParse(out[name].toString()) ?? 0;
+  num res = num.tryParse((out[name] ?? 0).toString()) ?? 0;
   String fmt = globals.Util.getFormatted1(res);
   return (fmt);
 }

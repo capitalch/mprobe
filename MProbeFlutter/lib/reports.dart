@@ -210,8 +210,8 @@ const reports = {
     ]
   },
   "jakar": {
-    // "drillDownReport": "bankDetails",
-    // "idName": "acc_id",
+    "drillDownReport": "jakarDetails",
+    "idName": "counter_code",
     "fixedBottom": [
       {"title": "Jakar value:", "name": "jakar_value"}
     ],
@@ -234,9 +234,20 @@ const reports = {
       {
         "title": "%",
         "name": "percent",
-        "width": 40.0,
+        "width": 30.0,
         "alignment": 'right'
       },
+    ]
+  },
+  "jakarDetails": {
+    "fixedBottom": [
+      {"title": "Jakar value:", "name": "value"}
+    ],
+    "body": [
+      {"title": "Product", "name": "item,brand,model", "width": 130.0},
+      {"title": "Qty", "name": "qty", "width": 40.0,  "alignment": 'right'},
+      {"title": "Value", "name": "value", "width": 90.0, "isSum":true, "alignment": 'right' },
+      {"title": "Days", "name": "days", "width": 60.0, "alignment": 'right'},
     ]
   },
   "detailedSales": {
