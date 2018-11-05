@@ -77,14 +77,17 @@ class MyApp extends StatelessWidget {
         },
         '/creditNotes': (BuildContext context) {
           return (Generic1("creditNotes", "tunnel:get:debit:credit:notes",
-              {"class_db": 'SALE', "class_cr": "%", "tempid": 0}, "Db notes"));
+              {"class_db": 'SALE', "class_cr": "%", "tempid": 0}, "Cr notes"));
         },
         '/banks': (BuildContext context) {
           return (Generic1("banks", "tunnel:get:banks", {}, "Banks"));
         },
         '/bankDetails': (BuildContext context) {
           return (Generic1("bankDetails", "tunnel:get:bank:recon:details",
-              {"accIdbank": globals.Util.get('id')}, "Banks"));
+              {"accIdbank": globals.Util.get('id')}, "Details"));
+        },
+         '/jakar': (BuildContext context) {
+          return (Generic1("jakar", "tunnel:get:jakar:on:days", {"mdays":360}, "Jakar"));
         },
       },
     );
@@ -153,6 +156,7 @@ final List<Entry> data = <Entry>[
     Entry('Health', 'health'),
     Entry('Sales', 'sales'),
     Entry('Detailed sales', 'detailedSales'),
-    Entry('Orders', 'orders')
+    Entry('Orders', 'orders'),
+    Entry('Jakar', 'jakar')
   ])
 ];

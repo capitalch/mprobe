@@ -209,6 +209,36 @@ const reports = {
       {"title": "Remarks", "name": "remarks", "width": 120.0, "alignment": 'center'},
     ]
   },
+  "jakar": {
+    // "drillDownReport": "bankDetails",
+    // "idName": "acc_id",
+    "fixedBottom": [
+      {"title": "Jakar value:", "name": "total_value"}
+    ],
+    "body": [
+      {"title": "Counter", "name": "counter_code", "width": 110.0},
+      {
+        "title": "Total",
+        "name": "total_value",
+        "width": 100.0,
+        "alignment": 'right',
+        "isSum": true
+      },
+      {
+        "title": "Jakar",
+        "name": "jakar_value",
+        "width": 90.0,
+        "alignment": 'right',
+        "isSum": true
+      },
+      {
+        "title": "%",
+        "name": "percent",
+        "width": 40.0,
+        "alignment": 'right'
+      },
+    ]
+  },
   "detailedSales": {
     "isDateChangeButtonsVisible": true,
     "fixedBottom": [

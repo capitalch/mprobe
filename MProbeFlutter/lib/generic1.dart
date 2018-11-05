@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'globals.dart' as globals;
 import 'reports.dart' as report;
 import 'package:intl/intl.dart'; // for date, number formatting
@@ -22,20 +23,23 @@ class Generic1State extends State<Generic1> {
   final String reportId;
   String displayDate = '';
   bool isDateChangeButtonsVisible = false;
+  bool isBusy = false;
   String detailsReport;
   var resultSet = [];
   Generic1State(this.reportId, this.id, this.args, this.pageTitle) {
     isDateChangeButtonsVisible =
         report.reports[reportId]['isDateChangeButtonsVisible'] ?? false;
     detailsReport = report.reports[reportId]['detailsReport'];
-    
     populate();
   }
 
   void populate() {
+    // setState(() => isBusy = true);
+    isBusy = true;
     globals.httpPost(id, args: args).then((d) {
       setState(() {
         resultSet = json.decode(d.body).cast<Map<String, dynamic>>();
+        isBusy = false;
       });
       print(resultSet);
     }, onError: (ex) {
@@ -49,7 +53,6 @@ class Generic1State extends State<Generic1> {
 
   DateTime _getParsedDate() {
     String dt = args["mdate"];
-
     var func = () {
       List<String> dtArr = dt.split('-');
       //padLeft is used to convert day and month string from 1->01, 4->04 and so on.
@@ -113,7 +116,11 @@ class Generic1State extends State<Generic1> {
               children: <Widget>[
                 Padding(
                     padding: EdgeInsets.only(left: 10.0, bottom: 5.0),
-                    child: _displayDateWidget())
+                    child: _displayDateWidget()),
+                // CupertinoActivityIndicator(radius: 10.0,animating: true,)
+                // CircularProgressIndicator(strokeWidth: 2.0,
+                //   valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),),),
+                // IconButton(icon: Icon(Icons.alarm),onPressed: (){},),
               ],
             ),
           ),
@@ -152,6 +159,12 @@ class Generic1State extends State<Generic1> {
                       populate();
                     },
                     // iconSize: 45.0,
+                  )
+                : Container(),
+            isBusy
+                ? CupertinoActivityIndicator(
+                    radius: 10.0,
+                    animating: true,
                   )
                 : Container(),
           ],
