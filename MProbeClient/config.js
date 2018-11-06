@@ -2,7 +2,7 @@ let xUrl = {};
 xUrl.cloud = 'http://14.143.150.10:3004';
 xUrl.local = 'http://localhost:3004';
 //mpUrl.selected = mpUrl.cloud;
-xUrl.selected = xUrl.cloud;
+xUrl.selected = xUrl.local;
 let config = {
     databaseServerName:'server',
     uid: 'capital.chow.chowServer',
