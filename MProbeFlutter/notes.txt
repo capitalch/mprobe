@@ -1,0 +1,7 @@
+//To do
+1. Query for product
+2. Stock tally
+3. Party ledger
+4. Debit notes from a party
+5. Bank balance indicator
+6. Order placement
