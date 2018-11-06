@@ -5,3 +5,5 @@
 4. Debit notes from a party
 5. Bank balance indicator
 6. Order placement
+
+//Use 10.0.2.2 to access your actual machine.
