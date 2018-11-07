@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'health.dart';
 import 'generic1.dart';
+import 'query.dart';
 import 'globals.dart' as globals;
 
 void main() => runApp(new MyApp());
@@ -91,9 +92,15 @@ class MyApp extends StatelessWidget {
               "jakar", "tunnel:get:jakar:on:days", {"mdays": 360}, "Jakar"));
         },
         '/jakarDetails': (BuildContext context) {
-          return (Generic1("jakarDetails", "tunnel:get:jakar:details",
-              {"counter_code": globals.Util.get('id'), "mdays": 360}, "Jakar details"));
+          return (Generic1(
+              "jakarDetails",
+              "tunnel:get:jakar:details",
+              {"counter_code": globals.Util.get('id'), "mdays": 360},
+              "Jakar details"));
         },
+        '/query':(BuildContext context){
+          return(Query());
+        }
       },
     );
   }
@@ -130,6 +137,27 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                  child: Text('Main menu'),
+                  decoration: BoxDecoration(color: Colors.blue)),
+              ListTile(
+                title: Text('Login'),leading: Icon(Icons.account_circle),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),ListTile(
+                title: Text('Query builder'), leading:Icon(Icons.query_builder),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          ),
+        ),
         appBar: AppBar(
           title: Text('Home'),
         ),
@@ -159,8 +187,9 @@ final List<Entry> data = <Entry>[
   ]),
   Entry('Business', null, <Entry>[
     Entry('Health', 'health'),
-    Entry('Sales', 'sales'),
+    Entry('Sales', 'sales'),    
     Entry('Detailed sales', 'detailedSales'),
+    Entry('Query', 'query'),
     Entry('Orders', 'orders'),
     Entry('Jakar', 'jakar')
   ])
