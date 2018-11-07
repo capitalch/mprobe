@@ -13,13 +13,21 @@ class QueryState extends State<Query> {
   @override
   Widget build(BuildContext context) {
     Widget wd = Scaffold(
-      appBar: AppBar(title: Text('Query'),actions: <Widget>[
-        IconButton(icon: Icon(Icons.query_builder),
-        onPressed: (){
-          showDialog(context: context);
-        },
-        )
-      ],),
+      appBar: AppBar(
+        title: Text('Query'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.query_builder),
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    Container(width: 0.0,height: 0.0, child: Text(''),);
+                  });
+            },
+          )
+        ],
+      ),
     );
     return (wd);
   }
