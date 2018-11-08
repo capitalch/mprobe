@@ -217,7 +217,9 @@ let sql = {
         and brand = :brand
         and counter_code = :counter
 		and show='Y'
-        order by counter_code,item,brand,model`
+        order by counter_code,item,brand,model`,
+    'tunnel:get:brands':`
+        select distinct brand from product key join inv_main order by brand`
 };
 module.exports = sql;
 /*

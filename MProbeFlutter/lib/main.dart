@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'health.dart';
 import 'generic1.dart';
 import 'query.dart';
+import 'queryBrand.dart';
 import 'globals.dart' as globals;
 
 void main() => runApp(new MyApp());
@@ -100,6 +101,9 @@ class MyApp extends StatelessWidget {
         },
         '/query':(BuildContext context){
           return(Query());
+        },
+        '/queryBrands':(BuildContext context){
+          return(QueryBrand());
         }
       },
     );
