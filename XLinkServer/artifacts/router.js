@@ -182,4 +182,65 @@ router.get('/api/tunnel', (req, res, next) => {
         next(err);
     }
 });
+
+router.post('/api/tunnel/static', (req, res, next) => {
+    try
+    {    
+        let sqlKey = req.body.sqlKey;  
+        res.header("Content-Type",'application/json');
+        switch(sqlKey)
+        {
+            case "tunnel:get:business:health":
+                res.send(getData('data/health.json'));
+                break;
+            case "tunnel:get:todays:sale":
+                res.send(getData('data/sales.json'));
+                break;
+            case "tunnel:get:sale:details:product":
+                res.send(getData('data/detailed-sales.json'));
+                break;
+            case "tunnel:get:sale:details1":
+                res.send(getData('data/sale-details-1.json'));
+                break;
+            case "tunnel:get:sale:details2":
+                res.send(getData('data/sale-details-2.json'));
+                break;
+            case "tunnel:get:orders":
+                res.send(getData('data/orders.json'));
+                break;
+            case "tunnel:get:order:details":
+                res.send(getData('data/order-details.json'));
+                break;
+            case "tunnel:get:cheque:payments":
+                res.send(getData('data/cheque-payments.json'));
+                break;
+            case "tunnel:get:cash:payments":
+                res.send(getData('data/cash-payments.json'));
+                break;
+            case "tunnel:get:debit:credit:notes":
+                res.send(getData('data/debit-credit-notes.json'));
+                break;
+            case "tunnel:get:banks":
+                res.send(getData('data/banks.json'));
+                break;
+            case "tunnel:get:bank:recon:details":
+                res.send(getData('data/bank-details.json'));
+                break;
+            case "tunnel:get:jakar:on:days":
+                res.send(getData('data/jakar.json'));
+                break;
+        }          
+        res.end();
+    } catch (error) {
+        let err = new def.NError(500, messages.errInternalServerError, error.message);
+        next(err);
+    }
+});
+
+var getData = function (file){
+    let obj = JSON.parse(fs.readFileSync(file, 'utf8'));
+    let output = JSON.stringify(obj,null,4);
+    return output;
+}
+
 module.exports = router;
