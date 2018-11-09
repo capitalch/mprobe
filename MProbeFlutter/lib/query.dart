@@ -13,9 +13,10 @@ class Query extends StatefulWidget {
 }
 
 class QueryState extends State<Query> {
-//  List<String> brandList = [];
-  List<dynamic> brandList = [];
-  dynamic subs;
+  List<Map<String,dynamic>> brandList = [];
+  List<bool> selectedList = [];
+//  List<dynamic> brandList = [];
+//  dynamic subs;
 //  List<Map<String,dynamic>> resultSet = [];
   @override
   void initState() {
@@ -32,7 +33,7 @@ class QueryState extends State<Query> {
 
   @override
   void dispose() {
-    if(subs != null) subs.cancel();
+//    if(subs != null) subs.cancel();
     super.dispose();
   }
 
@@ -52,10 +53,12 @@ class QueryState extends State<Query> {
         json.decode(d.body).cast<Map<String, dynamic>>();
     setState(() {
       brandList = resultSet.map((x) {
-        return {"brand": x['brand'], "isSelected": false};
+        selectedList.add(true);
+        return {'brand': x['brand'], 'isSelected': true};
       }).toList();
 //      ibuki.emit('brand', {});
       print(brandList);
+      print(selectedList);
     });
   }
 
@@ -68,25 +71,7 @@ class QueryState extends State<Query> {
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () async {
-              dynamic d = await globals.httpPost('tunnel:get:brands', args: {});
-              List<Map<String, dynamic>> resultSet =
-              json.decode(d.body).cast<Map<String, dynamic>>();
-              setState(() {
-                brandList = resultSet.map((x) {
-                  return {"brand": x['brand'], "isSelected": false};
-                }).toList();
-                ibuki.emit('brand', {});
-                print(brandList);
-              });
-              dynamic m = await globals.httpPost('tunnel:get:brands', args: {});
-              List<Map<String, dynamic>> resultSet1 =
-              json.decode(m.body).cast<Map<String, dynamic>>();
-              setState(() {
-                brandList = resultSet1.map((x) {
-                  return {"brand": x['brand'], "isSelected": false};
-                }).toList();
-//                print(brandList);
-              });
+              await getBrands();
               showDialog(
                   context: context,
                   builder: (context) {
@@ -105,14 +90,15 @@ class QueryState extends State<Query> {
                       body: ListView.builder(
                           itemCount: brandList.length,
                           itemBuilder: (BuildContext context, int i) {
-//                            subs = ibuki.filterOn('brand').listen((d) {
-//                              print(brandList);
-//                              print(brandList.length);
                               CheckboxListTile tile = CheckboxListTile(
-                                title: Text(brandList[i]['brand']),
-                                value: brandList[i]['isSelected'],
+                                title: Text("abc"),
+                                value: selectedList[i],
+                                secondary: const Icon(Icons.hourglass_empty),
                                 onChanged: (bool value) {
-                                  setState(() {});
+                                  setState(() {
+//                                    brandList[i]['isSelected'] = value;
+                                  selectedList[i] = value;
+                                  });
                                 },
                               );
                               return tile;
