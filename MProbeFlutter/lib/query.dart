@@ -13,29 +13,28 @@ class Query extends StatefulWidget {
 }
 
 class QueryState extends State<Query> {
-  List<Map<String,dynamic>> brandList = [];
-  List<bool> selectedList = [];
-//  List<dynamic> brandList = [];
-//  dynamic subs;
-//  List<Map<String,dynamic>> resultSet = [];
+  List<Map<String, dynamic>> brandList = [];
+//  List<bool> selectedList = [];
+
   @override
   void initState() {
+    getBrands();
     super.initState();
-    globals.Util.getSharedPreferences().then((p) {
-      setState(() {
+  }
+
+
+//  @override
+//  void initState() {
+//    super.initState();
+//    globals.Util.getSharedPreferences().then((p) {
+//      setState(() {
 //        brandList = p.getStringList('brands') ?? List<String>();
 //        brandList.sort((a, b) {
 //          return a.toLowerCase().compareTo(b.toLowerCase());
 //        });
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-//    if(subs != null) subs.cancel();
-    super.dispose();
-  }
+//      });
+//    });
+//  }
 
 //  void addBrand() async {
 //    dynamic sh = await globals.Util.getSharedPreferences();
@@ -50,15 +49,12 @@ class QueryState extends State<Query> {
   void getBrands() async {
     dynamic d = await globals.httpPost('tunnel:get:brands', args: {});
     List<Map<String, dynamic>> resultSet =
-        json.decode(d.body).cast<Map<String, dynamic>>();
+    json.decode(d.body).cast<Map<String, dynamic>>();
     setState(() {
       brandList = resultSet.map((x) {
-        selectedList.add(true);
         return {'brand': x['brand'], 'isSelected': true};
       }).toList();
-//      ibuki.emit('brand', {});
       print(brandList);
-      print(selectedList);
     });
   }
 
@@ -71,7 +67,8 @@ class QueryState extends State<Query> {
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () async {
-              await getBrands();
+//              await getBrands();
+
               showDialog(
                   context: context,
                   builder: (context) {
@@ -87,23 +84,20 @@ class QueryState extends State<Query> {
                           ),
                         ],
                       ),
-                      body: ListView.builder(
+                        body: ListView.builder(
                           itemCount: brandList.length,
                           itemBuilder: (BuildContext context, int i) {
-                              CheckboxListTile tile = CheckboxListTile(
-                                title: Text("abc"),
-                                value: selectedList[i],
-                                secondary: const Icon(Icons.hourglass_empty),
+                            Widget w = CheckboxListTile(
+                                title: Text(brandList[i]['brand']),
+                                value: brandList[i]['isSelected'],
                                 onChanged: (bool value) {
                                   setState(() {
-//                                    brandList[i]['isSelected'] = value;
-                                  selectedList[i] = value;
+                                    brandList[i]['isSelected'] = value;
                                   });
-                                },
-                              );
-                              return tile;
-//                            });
-                          }),
+                                });
+                            return (w);
+                          },
+                        ),
                     );
                     return (wd);
                   });
@@ -112,7 +106,6 @@ class QueryState extends State<Query> {
         ],
       ),
     );
-
     return (wd);
   }
 }

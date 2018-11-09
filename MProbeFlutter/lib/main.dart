@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'health.dart';
+import 'mock.dart';
 import 'generic1.dart';
 import 'query.dart';
 import 'queryBrand.dart';
@@ -104,6 +105,9 @@ class MyApp extends StatelessWidget {
         },
         '/queryBrands':(BuildContext context){
           return(QueryBrand());
+        },
+        '/mock':(BuildContext context){
+          return(Mock());
         }
       },
     );
@@ -190,6 +194,7 @@ final List<Entry> data = <Entry>[
     Entry('Banks', 'banks')
   ]),
   Entry('Business', null, <Entry>[
+    Entry('Mock', 'mock'),
     Entry('Health', 'health'),
     Entry('Sales', 'sales'),    
     Entry('Detailed sales', 'detailedSales'),
