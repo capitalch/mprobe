@@ -31,21 +31,21 @@ class QueryBrandState extends State<QueryBrand> {
     String brand = value['brand'];
     SharedPreferences shared;
 //    shared = await globals.Util.getSharedPreferences();
-    var sharedList = await getSharedList();
-    if (isAdd) {
-      if (!sharedList.contains(brand)) {
-        sharedList.add(brand);
-      }
-    } else {
-      if (sharedList.contains(brand)) {
-        int index = sharedList.indexOf(brand);
-        sharedList.removeAt(index);
-      }
-    }
-    sharedList.sort((a, b) {
-      return a.toLowerCase().compareTo(b.toLowerCase());
-    });
-    shared.setStringList('brands', sharedList);
+//    var sharedList = await getSharedList();
+//    if (isAdd) {
+//      if (!sharedList.contains(brand)) {
+//        sharedList.add(brand);
+//      }
+//    } else {
+//      if (sharedList.contains(brand)) {
+//        int index = sharedList.indexOf(brand);
+//        sharedList.removeAt(index);
+//      }
+//    }
+//    sharedList.sort((a, b) {
+//      return a.toLowerCase().compareTo(b.toLowerCase());
+//    });
+//    shared.setStringList('brands', sharedList);
   }
 
   void getBrands() async {
