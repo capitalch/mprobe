@@ -57,28 +57,28 @@ class Util {
     packet[id] = value;
   }
 
-  static dynamic getShared(String key){
-    dynamic prefs = () async {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      dynamic value = prefs.getInt(key);
-      return value;
-    };
-    return(prefs.getInt(key));
-  }
+//  static dynamic getShared(String key){
+//    dynamic prefs = () async {
+//      SharedPreferences prefs = await SharedPreferences.getInstance();
+//      dynamic value = prefs.getInt(key);
+//      return value;
+//    };
+//    return(prefs.getInt(key));
+//  }
 
-  static void setShared(String key, dynamic value){
-    dynamic prefs = () async {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setInt(key,value);
-    };
-    prefs();
-  }
+//  static void setShared(String key, dynamic value){
+//    dynamic prefs = () async {
+//      SharedPreferences prefs = await SharedPreferences.getInstance();
+//      prefs.setInt(key,value);
+//    };
+//    prefs();
+//  }
 
   static Future<SharedPreferences> getSharedPreferences(){
     return(SharedPreferences.getInstance());
   }
 
-  static loadCounter() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-  }
+//  static loadCounter() async {
+//    SharedPreferences prefs = await SharedPreferences.getInstance();
+//  }
 }

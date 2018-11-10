@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import "dart:convert";
-import 'dart:async' show Future;
+import 'dart:async';
 import 'ibuki.dart' as ibuki;
 import 'globals.dart' as globals;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,63 +13,58 @@ class Query extends StatefulWidget {
 }
 
 class QueryState extends State<Query> {
-  List<Map<String, dynamic>> brandList = [];
-//  List<bool> selectedList = [];
+  List<String> brandList = [];
 
   @override
   void initState() {
-    getBrands();
+//    subs = ibuki.filterOn('brands').listen((d){
+//      print(d);
+//    });
     super.initState();
   }
 
-
-//  @override
-//  void initState() {
-//    super.initState();
-//    globals.Util.getSharedPreferences().then((p) {
-//      setState(() {
-//        brandList = p.getStringList('brands') ?? List<String>();
-//        brandList.sort((a, b) {
-//          return a.toLowerCase().compareTo(b.toLowerCase());
-//        });
-//      });
-//    });
-//  }
-
-//  void addBrand() async {
-//    dynamic sh = await globals.Util.getSharedPreferences();
-//    setState(() {
-//      brandList.sort((a, b) {
-//        return a.toLowerCase().compareTo(b.toLowerCase());
-//      });
-//      sh.setStringList('brands', brandList);
-//    });
-//  }
-
-  void getBrands() async {
-    dynamic d = await globals.httpPost('tunnel:get:brands', args: {});
-    List<Map<String, dynamic>> resultSet =
-    json.decode(d.body).cast<Map<String, dynamic>>();
+  void getBrandsFromShared() async {
+    SharedPreferences shared = await globals.Util.getSharedPreferences();
     setState(() {
-      brandList = resultSet.map((x) {
-        return {'brand': x['brand'], 'isSelected': true};
-      }).toList();
-      print(brandList);
+      brandList = shared.getStringList('brands');
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    (() async {
+      await getBrandsFromShared();
+    })();
     Widget wd = Scaffold(
       appBar: AppBar(
         title: Text('Query'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
-            onPressed: () async {
-//              await getBrands();
+            onPressed: () {
+              Navigator.pushNamed(context, '/queryBrands');
+            },
+          )
+        ],
+      ),
+      body: ListView.builder(
+          itemCount: brandList.length,
+          itemBuilder: (BuildContext context, int i) {
+            Widget wid = ListTile(
+              title: Text(brandList[i]),
+              onTap: (){},
+            );
 
-              showDialog(
+//            Text(brandList[i]);
+            return wid;
+          }),
+    );
+    return (wd);
+  }
+}
+
+/*
+ showDialog(
                   context: context,
                   builder: (context) {
                     Widget wd = Scaffold(
@@ -101,17 +96,6 @@ class QueryState extends State<Query> {
                     );
                     return (wd);
                   });
-            },
-          )
-        ],
-      ),
-    );
-    return (wd);
-  }
-}
-
-/*
-
 //    _controller = new TextEditingController();
 
 //  TextEditingController _controller;
