@@ -19,26 +19,15 @@ dynamic getReportBody(reportId, resultSet) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: getBodyWidgets(reportId, resultSet[i]));
 
-//        ListTile tile = ListTile(
-//          title: row,
-//          onTap: () {
-//            String route = '';
-//            route = '/' + report.reports[reportId]['drillDownReport'];
-//            String id = report.reports[reportId]["idName"];
-//            globals.Util.set('id', resultSet[i][id]);
-//            Navigator.pushNamed(context, route);
-//          },
-//        );
-
         InkWell ink = InkWell(
           child: row,
           onTap: () {
-            String route = '/' + report.reports[reportId]['drillDownReport'];
+//            String route = '/' + report.reports[reportId]['drillDownReport'];
             String id = report.reports[reportId]["idName"];
             globals.Util.set('id', resultSet[i][id]);
-            
-//            globals.Util.set('id1',resultSet[i][id1]);
-            Navigator.pushNamed(context, route);
+
+            String route = report.reports[reportId]['drillDownReport'] ??  report.reports[reportId]['drillDownRoute'];
+            route == null ? (){} : Navigator.pushNamed(context, ('/' +  route));
           },
         );
         return (ink);

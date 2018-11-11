@@ -234,7 +234,7 @@ let sql = {
         endif endif endif,
         GST = COALESCE((select gst_rate from hsnCodes where item = product.item), 18),
         gstCost = ROUND(basicCost*(1 + gst/100),2)
-        from product key join inv_main where item = :item and brand = :brand`
+        from product key join inv_main where item = :item and brand = :brand and basiccost <> 0`
 };
 module.exports = sql;
 /*

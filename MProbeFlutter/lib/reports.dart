@@ -304,18 +304,13 @@ const reports = {
     ]
   },
   'detailsOnItemBrand':{
-    'drillDownRoute':'',
+    'drillDownRoute':'mock',
     'idName':'pr_id',
     'body':[
       {
-        'title':'Item',
-        'name': 'item',
-        'width': 70.0
-      },
-      {
         'title': 'Model',
         'name': 'model',
-        'width': 90.0
+        'width': 120.0
       },
       {
         'title': 'Stk',
@@ -324,17 +319,23 @@ const reports = {
         'width': 30.0
       },
       {
-        'title': 'Basic',
-        'name': 'basiccost',
-        "alignment": 'right',
-        'width': 80.0
-      },
-      {
         'title': 'GstCost',
         'name': 'gstcost',
         "alignment": 'right',
-        'width':80.0
-      }
+        'width':90.0
+      },
+      {
+        'title': 'Basic',
+        'name': 'basiccost',
+        "alignment": 'right',
+        'width': 90.0
+      },
+      {
+        'title': 'Gst',
+        'name': 'gst',
+        "alignment": 'right',
+        'width': 40.0
+      },
 
     ]
   },
