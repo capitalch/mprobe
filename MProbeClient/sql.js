@@ -219,7 +219,22 @@ let sql = {
 		and show='Y'
         order by counter_code,item,brand,model`,
     'tunnel:get:brands':`
-        select distinct brand from product key join inv_main order by brand`
+        select distinct brand, itemCount = (select COALESCE( COUNT(distinct item),0) from product where brand = p.brand) from product p key join inv_main order by brand`,
+    'tunnel:get:items:on:brand':`        
+        select distinct item, modelCount = (select COUNT(distinct model) from product where item = p.item and brand = p.brand ) from product p key join inv_main i where brand = :brand order by item`,
+    'tunnel:get:details:on:item:brand':`
+        select product.pr_id, item, model, stock = op + db - cr, basicCost = 
+        if basic_price > 0 then
+            basic_price
+        else if last_price > 0 then
+            last_price 
+        else if product.op_price > 0 then 
+            product.op_price 
+        else 0 
+        endif endif endif,
+        GST = COALESCE((select gst_rate from hsnCodes where item = product.item), 18),
+        gstCost = ROUND(basicCost*(1 + gst/100),2)
+        from product key join inv_main where item = :item and brand = :brand`
 };
 module.exports = sql;
 /*

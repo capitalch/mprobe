@@ -24,11 +24,11 @@ class QueryBrandState extends State<QueryBrand> {
   Future<List<String>> getSharedList() async {
     SharedPreferences shared = await globals.Util.getSharedPreferences();
     var tempList = shared.getStringList('brands') ?? [];
-    return(tempList);
+    return (tempList);
   }
 
   void setSharedBrand(value, isAdd) async {
-    String brand = value['brand'];
+    String brand = value['brand'].toLowerCase();
     SharedPreferences shared;
     shared = await globals.Util.getSharedPreferences();
     var sharedList = await getSharedList();
@@ -39,7 +39,6 @@ class QueryBrandState extends State<QueryBrand> {
     } else {
       if (sharedList.contains(brand)) {
         int index = sharedList.indexOf(brand);
-        print(index);
         sharedList.removeAt(index);
       }
     }
@@ -56,9 +55,14 @@ class QueryBrandState extends State<QueryBrand> {
     List<String> sharedList = await getSharedList();
     setState(() {
       brandList = resultSet.map((x) {
-//        bool isContains = sharedList.contains(x);
-        return {'brand': x['brand'], 'isSelected': false};
+        return {
+          'brand': x['brand'].toLowerCase(),
+          'itemCount': x['itemcount'],
+          'isSelected':
+              sharedList.contains(x['brand'].toLowerCase()) ? true : false
+        };
       }).toList();
+      print(brandList);
     });
   }
 
@@ -72,14 +76,22 @@ class QueryBrandState extends State<QueryBrand> {
           itemCount: brandList.length,
           itemBuilder: (BuildContext context, int i) {
             Widget w = CheckboxListTile(
-                title: Text(brandList[i]['brand']),
+                secondary: Icon(
+                  Icons.settings_system_daydream,
+                  color: Colors.blue,
+                ),
+                title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(brandList[i]['brand']),
+                    Text(brandList[i]['itemCount'].toString() + ' items',textAlign: TextAlign.right,)
+                  ],
+                ),
+//                Text(brandList[i]['brand']),subtitle: Text(brandList[i]['itemCount'].toString()),
                 value: brandList[i]['isSelected'],
                 onChanged: (bool value) {
                   setState(() {
                     brandList[i]['isSelected'] = value;
-//                    (()async {
-                      setSharedBrand(brandList[i], value);
-//                    })();
+                    setSharedBrand(brandList[i], value);
                   });
                 });
             return (w);

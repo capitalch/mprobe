@@ -13,17 +13,31 @@ dynamic getReportBody(reportId, resultSet) {
           return Row(children: getFooterWidgets(reportId, resultSet));
         }
         i = i - 1;
+
         Row row = Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: getBodyWidgets(reportId, resultSet[i]));
+
+//        ListTile tile = ListTile(
+//          title: row,
+//          onTap: () {
+//            String route = '';
+//            route = '/' + report.reports[reportId]['drillDownReport'];
+//            String id = report.reports[reportId]["idName"];
+//            globals.Util.set('id', resultSet[i][id]);
+//            Navigator.pushNamed(context, route);
+//          },
+//        );
+
         InkWell ink = InkWell(
           child: row,
           onTap: () {
-            String route = '';
-            route = '/' + report.reports[reportId]['drillDownReport'];
+            String route = '/' + report.reports[reportId]['drillDownReport'];
             String id = report.reports[reportId]["idName"];
             globals.Util.set('id', resultSet[i][id]);
+            
+//            globals.Util.set('id1',resultSet[i][id1]);
             Navigator.pushNamed(context, route);
           },
         );

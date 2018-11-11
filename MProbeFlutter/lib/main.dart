@@ -106,6 +106,29 @@ class MyApp extends StatelessWidget {
         '/queryBrands':(BuildContext context){
           return(QueryBrand());
         },
+        '/itemsOnBrand':(BuildContext context){
+          final brand = globals.Util.get('id1');
+          return Generic1(
+            'itemsOnBrand',
+            'tunnel:get:items:on:brand',
+            {'brand':brand},
+            '$brand items'
+          );
+        },
+        '/detailsOnItemBrand':(BuildContext context){
+          final item = globals.Util.get('id');
+          final brand = globals.Util.get('id1');
+          return Generic1(
+            'detailsOnItemBrand',
+            'tunnel:get:details:on:item:brand',
+            {'item': item, 'brand': brand},
+            '$item $brand details'
+          );
+        },
+        'productDetails':(BuildContext context){
+          final pr_id = globals.Util.get('id');
+          return(Mock());
+        },
         '/mock':(BuildContext context){
           return(Mock());
         }

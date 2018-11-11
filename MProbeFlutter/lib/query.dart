@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import "dart:convert";
-import 'dart:async';
-import 'ibuki.dart' as ibuki;
 import 'globals.dart' as globals;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,18 +12,19 @@ class Query extends StatefulWidget {
 class QueryState extends State<Query> {
   List<String> brandList = [];
 
-  @override
-  void initState() {
-//    subs = ibuki.filterOn('brands').listen((d){
-//      print(d);
-//    });
-    super.initState();
-  }
-
   void getBrandsFromShared() async {
     SharedPreferences shared = await globals.Util.getSharedPreferences();
     setState(() {
-      brandList = shared.getStringList('brands');
+      brandList = shared.getStringList('brands') ?? [];
+    });
+  }
+
+  void removeBrand(int i) async {
+    SharedPreferences shared = await globals.Util.getSharedPreferences();
+    setState(() {
+      brandList = shared.getStringList('brands') ?? [];
+      brandList.removeAt(i);
+      shared.setStringList('brands', brandList);
     });
   }
 
@@ -40,7 +38,7 @@ class QueryState extends State<Query> {
         title: Text('Query'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.add),
+            icon: Icon(Icons.settings),
             onPressed: () {
               Navigator.pushNamed(context, '/queryBrands');
             },
@@ -50,13 +48,32 @@ class QueryState extends State<Query> {
       body: ListView.builder(
           itemCount: brandList.length,
           itemBuilder: (BuildContext context, int i) {
-            Widget wid = ListTile(
-              title: Text(brandList[i]),
-              onTap: (){},
+            final brand = brandList[i];
+
+            Dismissible dis = Dismissible(
+              key: Key(brand),
+              onDismissed: (direction) {
+                removeBrand(i);
+                Scaffold.of(context)
+                    .showSnackBar(SnackBar(content: Text('$brand dismissed')));
+              },
+              background: Container(color: Colors.red),
+              child:
+              Column(
+                children: <Widget>[
+                  ListTile(
+                    leading: Icon(Icons.developer_board, color: Colors.blue,),
+                      title: Text(brand), 
+                      onTap: () {
+                      globals.Util.set('id1', brand);
+                      Navigator.pushNamed(context, '/itemsOnBrand');
+                      }),
+                  Divider(height: 1,color: Colors.black,)
+                ],
+              )
             );
 
-//            Text(brandList[i]);
-            return wid;
+            return dis;
           }),
     );
     return (wd);

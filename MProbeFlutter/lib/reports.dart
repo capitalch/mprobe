@@ -285,5 +285,58 @@ const reports = {
       {"title": "Stk", "name": "stock", "width": 40.0, "alignment": 'right'},
       {"title": "Old", "name": "days", "width": 40.0, "alignment": 'right'},
     ]
-  }
+  },
+  'itemsOnBrand':{
+    "drillDownReport": "detailsOnItemBrand",
+    'idName': 'item',
+    'body':[
+      {
+        'title': 'Items',
+        'name': 'item',
+        'width': 200.0
+      },
+      {
+        'title':'ModelCount',
+        'name': 'modelcount',
+        'width': 90.0,
+        'alignment': 'right'
+      }
+    ]
+  },
+  'detailsOnItemBrand':{
+    'drillDownRoute':'',
+    'idName':'pr_id',
+    'body':[
+      {
+        'title':'Item',
+        'name': 'item',
+        'width': 70.0
+      },
+      {
+        'title': 'Model',
+        'name': 'model',
+        'width': 90.0
+      },
+      {
+        'title': 'Stk',
+        'name': 'stock',
+        "alignment": 'right',
+        'width': 30.0
+      },
+      {
+        'title': 'Basic',
+        'name': 'basiccost',
+        "alignment": 'right',
+        'width': 80.0
+      },
+      {
+        'title': 'GstCost',
+        'name': 'gstcost',
+        "alignment": 'right',
+        'width':80.0
+      }
+
+    ]
+  },
+
 };
