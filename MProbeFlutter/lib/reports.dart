@@ -2,7 +2,7 @@
 const reports = {
   "sales": {
     "isDateChangeButtonsVisible": true,
-    "drillDownReport": "saleDetails1",
+    "drillDownRoute": "saleDetails1",
     "idName": "id",
     "detailsReport": "detailedSales",
     "fixedBottom": [
@@ -40,7 +40,7 @@ const reports = {
     ]
   },
   "saleDetails1": {
-    "drillDownReport": "saleDetails2",
+    "drillDownRoute": "saleDetails2",
     "idName": "bill_memo_id",
     "fixedBottom": [
       {"title": "Total sale:", "name": "total_amt"},
@@ -83,7 +83,7 @@ const reports = {
     ]
   },
   "orders": {
-    "drillDownReport": "orderDetails",
+    "drillDownRoute": "orderDetails",
     "idName": "counter",
     "fixedBottom": [
       {"title": "Order value:", "name": "value"}
@@ -186,7 +186,7 @@ const reports = {
     ]
   },
   "banks": {
-    "drillDownReport": "bankDetails",
+    "drillDownRoute": "bankDetails",
     "idName": "acc_id",
     "body": [
       {"title": "Bank name", "name": "acc_name", "width": 130.0},
@@ -210,7 +210,7 @@ const reports = {
     ]
   },
   "jakar": {
-    "drillDownReport": "jakarDetails",
+    "drillDownRoute": "jakarDetails",
     "idName": "counter_code",
     "fixedBottom": [
       {"title": "Jakar value:", "name": "jakar_value"}
@@ -287,7 +287,7 @@ const reports = {
     ]
   },
   'itemsOnBrand':{
-    "drillDownReport": "detailsOnItemBrand",
+    "drillDownRoute": "detailsOnItemBrand",
     'idName': 'item',
     'body':[
       {
@@ -336,7 +336,6 @@ const reports = {
         "alignment": 'right',
         'width': 40.0
       },
-
     ]
   },
 
