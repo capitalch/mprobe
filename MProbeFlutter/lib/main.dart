@@ -4,6 +4,7 @@ import 'mock.dart';
 import 'generic1.dart';
 import 'query.dart';
 import 'queryBrand.dart';
+import 'productDetails.dart';
 import 'globals.dart' as globals;
 
 void main() => runApp(new MyApp());
@@ -125,9 +126,9 @@ class MyApp extends StatelessWidget {
             '$item $brand details'
           );
         },
-        'productDetails':(BuildContext context){
+        '/productDetails':(BuildContext context){
           final pr_id = globals.Util.get('id');
-          return(Mock());
+          return(ProductDetails());
         },
         '/mock':(BuildContext context){
           return(Mock());

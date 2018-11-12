@@ -219,9 +219,9 @@ let sql = {
 		and show='Y'
         order by counter_code,item,brand,model`,
     'tunnel:get:brands':`
-        select distinct brand, itemCount = (select COALESCE( COUNT(distinct item),0) from product where brand = p.brand) from product p key join inv_main order by brand`,
+        select distinct brand, itemCount = (select COALESCE( COUNT(distinct item),0) from product where brand = p.brand and show = 'y') from product p key join inv_main order by brand`,
     'tunnel:get:items:on:brand':`        
-        select distinct item, modelCount = (select COUNT(distinct model) from product where item = p.item and brand = p.brand ) from product p key join inv_main i where brand = :brand order by item`,
+        select distinct item, modelCount = (select COUNT(distinct model) from product where item = p.item and brand = p.brand and show = 'Y') from product p key join inv_main i where brand = :brand order by item`,
     'tunnel:get:details:on:item:brand':`
         select product.pr_id, item, model, stock = op + db - cr, basicCost = 
         if basic_price > 0 then
@@ -234,7 +234,24 @@ let sql = {
         endif endif endif,
         GST = COALESCE((select gst_rate from hsnCodes where item = product.item), 18),
         gstCost = ROUND(basicCost*(1 + gst/100),2)
-        from product key join inv_main where item = :item and brand = :brand and basiccost <> 0`
+        from product key join inv_main where item = :item and brand = :brand and basiccost <> 0 and show = 'Y'`,
+    'tunnel:get:product:details:on:prid':`
+        select
+        item, brand, model, basicCost = 
+        if basic_price > 0 then basic_price
+            else if last_price > 0 then last_price 
+            else if p.op_price > 0 then p.op_price 
+            else 0 
+            endif endif endif,
+        op,db,cr, clos=op+db-cr,
+        gst = COALESCE((select gst_rate from hsnCodes where item = p.item), 18),
+        gstCost = ROUND(basicCost*(1 + gst/100),2), last_pur_date=last_date, daysOld = if clos > 0 then DATEDIFF(day, last_date, getDate()) else 0 endif
+        
+        from product p key join inv_main i
+        where show = 'Y'
+            and basicCost > 0
+            and p.pr_id = :pr_id
+    `
 };
 module.exports = sql;
 /*

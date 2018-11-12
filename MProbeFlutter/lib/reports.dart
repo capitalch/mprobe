@@ -304,7 +304,7 @@ const reports = {
     ]
   },
   'detailsOnItemBrand':{
-    'drillDownRoute':'mock',
+    'drillDownRoute':'productDetails',
     'idName':'pr_id',
     'body':[
       {
