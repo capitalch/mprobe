@@ -11,11 +11,29 @@ class ProductDetails extends StatefulWidget {
   }
 }
 
-void getProductDetails(){
-  
-}
-
 class ProductDetailsState extends State<ProductDetails> {
+  dynamic subs;
+  @override
+  void initState() {
+    subs = ibuki.filterOn('tunnel:get:product:details:on:prid').listen((d){
+      print(d);
+    });
+//    globals.httpPost('tunnel:get:product:details:on:prid',
+//        args: {'pr_id': globals.Util.get('id')}).then(
+//        (d){
+//          List<Map<String,dynamic>> resultSet = d;
+//        }
+//    );
+    ibuki.httpPost('tunnel:get:product:details:on:prid');
+    super.initState();
+  }
+
+  @override
+  void dispose(){
+    if(subs != null) subs.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget wid = SafeArea(
@@ -23,11 +41,8 @@ class ProductDetailsState extends State<ProductDetails> {
             margin: EdgeInsets.all(5.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-
-              ],
+              children: <Widget>[],
             )));
-
 
     return (wid);
   }
