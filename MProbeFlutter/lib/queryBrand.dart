@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import "dart:convert";
-import 'ibuki.dart' as ibuki;
+//import 'ibuki.dart' as ibuki;
 import 'dart:async' show Future;
 import 'globals.dart' as globals;
 import 'package:shared_preferences/shared_preferences.dart';

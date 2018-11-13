@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import "dart:convert";
-import 'dart:async' show Future;
+//import "dart:convert";
+//import 'dart:async' show Future;
 import 'ibuki.dart' as ibuki;
-import 'globals.dart' as globals;
+//import 'globals.dart' as globals;
 
 class ProductDetails extends StatefulWidget {
   @override
@@ -41,7 +41,9 @@ class ProductDetailsState extends State<ProductDetails> {
             margin: EdgeInsets.all(5.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              children: <Widget>[],
+              children: <Widget>[
+                Text('Card test')
+              ],
             )));
 
     return (wid);

@@ -17,7 +17,7 @@ Stream<Map<String, dynamic>> filterOn(String id) {
 
 void httpPost (String id, {dynamic args}) async {
   dynamic d  = await globals.httpPost(id, args: args);
-  List<dynamic> resultSet =  json.decode(d.body).cast<Map<String, dynamic>>();
+  List<Map<String,dynamic>> resultSet =  json.decode(d.body).cast<Map<String, dynamic>>();
   _streamController.add({'id': id, 'data': resultSet});
 }
 

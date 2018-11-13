@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import "dart:convert";
-import 'dart:async' show Future;
-import 'ibuki.dart' as ibuki;
-import 'globals.dart' as globals;
+//import "dart:convert";
+//import 'dart:async';
+//import 'dart:async' show Future;
+//import 'ibuki.dart' as ibuki;
+//import 'globals.dart' as globals;
 
 class Mock extends StatefulWidget {
   @override
@@ -12,12 +13,12 @@ class Mock extends StatefulWidget {
 }
 
 class MockState extends State<Mock> {
-//  bool isChecked = false;
+//  StreamSubscription subs;
   List<Map<String, dynamic>> brandList = [
     {"brand": "videocon", 'isSelected': false}
   ];
 
-  MockState() {}
+  MockState();
 
   @override
   void initState() {
@@ -26,15 +27,29 @@ class MockState extends State<Mock> {
   }
 
   void getBrands() async {
-    dynamic d = await globals.httpPost('tunnel:get:brands', args: {});
-    List<Map<String, dynamic>> resultSet =
-        json.decode(d.body).cast<Map<String, dynamic>>();
-    setState(() {
-      brandList = resultSet.map((x) {
-        return {'brand': x['brand'], 'isSelected': true};
-      }).toList();
-      print(brandList);
-    });
+//    subs = ibuki.filterOn('tunnel:get:brands').listen((d) {
+//      setState(() {
+//      brandList = d['data'].map((x) {
+//        return {'brand': x['brand'], 'isSelected': true};
+//      }).toList();
+//      print(brandList);
+//    });
+//    });
+//    ibuki.httpPost('tunnel:get:brands', args: {});
+//    @override
+//    void dispose() {
+//      if (subs != null) subs.cancel();
+//      super.dispose();
+//    }
+//    dynamic d = await globals.httpPost('tunnel:get:brands', args: {});
+//    List<Map<String, dynamic>> resultSet =
+//        json.decode(d.body).cast<Map<String, dynamic>>();
+//    setState(() {
+//      brandList = resultSet.map((x) {
+//        return {'brand': x['brand'], 'isSelected': true};
+//      }).toList();
+//      print(brandList);
+//    });
   }
 
   void show(context) {

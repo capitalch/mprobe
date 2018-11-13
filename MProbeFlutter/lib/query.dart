@@ -31,7 +31,7 @@ class QueryState extends State<Query> {
   @override
   Widget build(BuildContext context) {
     (() async {
-      await getBrandsFromShared();
+      getBrandsFromShared();
     })();
     Widget wd = Scaffold(
       appBar: AppBar(
