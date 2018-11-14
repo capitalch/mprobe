@@ -127,7 +127,8 @@ class MyApp extends StatelessWidget {
           );
         },
         'productDetails':(BuildContext context){
-          return(ProductDetails());
+          final prId = globals.Util.get('id');
+          return(ProductDetails(prId));
         },
         'mock':(BuildContext context){
           return(Mock());
