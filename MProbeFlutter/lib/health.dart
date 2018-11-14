@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import "dart:convert";
 import 'globals.dart' as globals;
+import 'ibuki.dart' as ibuki;
 
 class Health extends StatefulWidget {
   @override
@@ -20,23 +21,27 @@ class HealthState extends State<Health> {
     "profit": "",
     "grossprofit": ""
   };
+  dynamic subs;
 
-  populate() {
-    globals.httpPost('tunnel:get:business:health').then((d) {
-      if (mounted) {
-        setState(() {
-          dynamic healthList =
-              json.decode(d.body); //.cast<Map<String, dynamic>>();
-          if (healthList.length > 0) {
-            _healthSnapShot = healthList[0];
-          }
-        });
-      }
+  @override
+  void initState() {
+    subs = ibuki.filterOn('tunnel:get:business:health').listen((d){
+      setState((){
+        dynamic healthList = d['data'];
+        if(healthList.length > 0){
+          _healthSnapShot = healthList[0];
+        }
+      });
     });
+    ibuki.httpPost('tunnel:get:business:health');
+    // populate();
+    super.initState();
   }
 
-  HealthState() {
-    populate();
+  @override
+  void dispose(){
+    subs.cancel();
+    super.dispose();
   }
 
   @override
@@ -188,3 +193,25 @@ dynamic getColumn(_healthSnapShot) {
   ]);
   return (col);
 }
+
+/*
+
+  // HealthState() {
+  //   populate();
+  // }
+  
+  populate() {
+    globals.httpPost('tunnel:get:business:health').then((d) {
+      if (mounted) {
+        setState(() {
+          dynamic healthList =
+              json.decode(d.body); //.cast<Map<String, dynamic>>();
+          if (healthList.length > 0) {
+            _healthSnapShot = healthList[0];
+          }
+        });
+      }
+    });
+  }
+
+*/

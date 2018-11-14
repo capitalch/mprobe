@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import "dart:convert";
-//import 'ibuki.dart' as ibuki;
+// import "dart:convert";
+import 'ibuki.dart' as ibuki;
 import 'dart:async' show Future;
 import 'globals.dart' as globals;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,12 +13,36 @@ class QueryBrand extends StatefulWidget {
 }
 
 class QueryBrandState extends State<QueryBrand> {
-  List<Map<String, dynamic>> brandList = [];
+  List<dynamic> brandList = [];
+  dynamic subs;
 
   @override
   void initState() {
-    getBrands();
+    List<String> sharedList;
+    subs = ibuki.filterOn('tunnel:get:brands').listen((d) {
+      setState(() {
+        brandList = d['data'].map((x) {
+          return {
+            'brand': x['brand'].toLowerCase(),
+            'itemCount': x['itemcount'],
+            'isSelected':
+                sharedList.contains(x['brand'].toLowerCase()) ? true : false
+          };
+        }).toList();
+      });
+    });
+    () async {
+      sharedList = await getSharedList();
+      ibuki.httpPost('tunnel:get:brands', args: {});
+    }();
+    // getBrands();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    subs.cancel();
+    super.dispose();
   }
 
   Future<List<String>> getSharedList() async {
@@ -48,24 +72,6 @@ class QueryBrandState extends State<QueryBrand> {
     shared.setStringList('brands', sharedList);
   }
 
-  void getBrands() async {
-    dynamic d = await globals.httpPost('tunnel:get:brands', args: {});
-    List<Map<String, dynamic>> resultSet =
-        json.decode(d.body).cast<Map<String, dynamic>>();
-    List<String> sharedList = await getSharedList();
-    setState(() {
-      brandList = resultSet.map((x) {
-        return {
-          'brand': x['brand'].toLowerCase(),
-          'itemCount': x['itemcount'],
-          'isSelected':
-              sharedList.contains(x['brand'].toLowerCase()) ? true : false
-        };
-      }).toList();
-      print(brandList);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     Widget wid = Scaffold(
@@ -80,10 +86,14 @@ class QueryBrandState extends State<QueryBrand> {
                   Icons.settings_system_daydream,
                   color: Colors.blue,
                 ),
-                title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(brandList[i]['brand']),
-                    Text(brandList[i]['itemCount'].toString() + ' items',textAlign: TextAlign.right,)
+                    Text(
+                      brandList[i]['itemCount'].toString() + ' items',
+                      textAlign: TextAlign.right,
+                    )
                   ],
                 ),
 //                Text(brandList[i]['brand']),subtitle: Text(brandList[i]['itemCount'].toString()),
@@ -100,3 +110,23 @@ class QueryBrandState extends State<QueryBrand> {
     return (wid);
   }
 }
+
+/*
+void getBrands() async {
+    dynamic d = await globals.httpPost('tunnel:get:brands', args: {});
+    List<Map<String, dynamic>> resultSet =
+        json.decode(d.body).cast<Map<String, dynamic>>();
+    List<String> sharedList = await getSharedList();
+    setState(() {
+      brandList = resultSet.map((x) {
+        return {
+          'brand': x['brand'].toLowerCase(),
+          'itemCount': x['itemcount'],
+          'isSelected':
+              sharedList.contains(x['brand'].toLowerCase()) ? true : false
+        };
+      }).toList();
+      print(brandList);
+    });
+  }
+*/

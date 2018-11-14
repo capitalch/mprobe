@@ -19,18 +19,18 @@ class MyApp extends StatelessWidget {
       ),
       home: Home(),
       routes: {
-        '/health': (BuildContext context) {
+        'health': (BuildContext context) {
           // print(globals.Util.get("id") ?? 0);
           return (Health());
         },
-        '/sales': (BuildContext context) {
+        'sales': (BuildContext context) {
           return (Generic1(
               "sales",
               "tunnel:get:todays:sale",
               {"mdate": globals.Util.get('mdate') ?? globals.Util.getDate()},
               "Sales"));
         },
-        '/saleDetails1': (BuildContext context) {
+        'saleDetails1': (BuildContext context) {
           return (Generic1(
               "saleDetails1",
               "tunnel:get:sale:details1",
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
               },
               "Sale details"));
         },
-        '/saleDetails2': (BuildContext context) {
+        'saleDetails2': (BuildContext context) {
           return (Generic1(
               "saleDetails2",
               "tunnel:get:sale:details2",
@@ -50,64 +50,64 @@ class MyApp extends StatelessWidget {
               },
               "Sale details further"));
         },
-        '/detailedSales': (BuildContext context) {
+        'detailedSales': (BuildContext context) {
           return (Generic1(
               "detailedSales",
               "tunnel:get:sale:details:product",
               {"mdate": globals.Util.get('mdate') ?? globals.Util.getDate()},
               "Detailed sales"));
         },
-        '/orders': (BuildContext context) {
+        'orders': (BuildContext context) {
           return (Generic1("orders", "tunnel:get:orders", {}, "Orders"));
         },
-        '/orderDetails': (BuildContext context) {
+        'orderDetails': (BuildContext context) {
           return (Generic1("orderDetails", "tunnel:get:order:details",
               {"counter": globals.Util.get('id')}, "Details"));
         },
-        '/chequePayments': (BuildContext context) {
+        'chequePayments': (BuildContext context) {
           return (Generic1("chequePayments", "tunnel:get:cheque:payments", {},
               "Cheq payments"));
         },
-        '/cashPayments': (BuildContext context) {
+        'cashPayments': (BuildContext context) {
           return (Generic1(
               "cashPayments", "tunnel:get:cash:payments", {}, "Cash payments"));
         },
-        '/debitNotes': (BuildContext context) {
+        'debitNotes': (BuildContext context) {
           return (Generic1(
               "debitNotes",
               "tunnel:get:debit:credit:notes",
               {"class_db": '%', "class_cr": "PURCHASE", "tempid": 0},
               "Db notes"));
         },
-        '/creditNotes': (BuildContext context) {
+        'creditNotes': (BuildContext context) {
           return (Generic1("creditNotes", "tunnel:get:debit:credit:notes",
               {"class_db": 'SALE', "class_cr": "%", "tempid": 0}, "Cr notes"));
         },
-        '/banks': (BuildContext context) {
+        'banks': (BuildContext context) {
           return (Generic1("banks", "tunnel:get:banks", {}, "Banks"));
         },
-        '/bankDetails': (BuildContext context) {
+        'bankDetails': (BuildContext context) {
           return (Generic1("bankDetails", "tunnel:get:bank:recon:details",
               {"accIdbank": globals.Util.get('id')}, "Details"));
         },
-        '/jakar': (BuildContext context) {
+        'jakar': (BuildContext context) {
           return (Generic1(
               "jakar", "tunnel:get:jakar:on:days", {"mdays": 360}, "Jakar"));
         },
-        '/jakarDetails': (BuildContext context) {
+        'jakarDetails': (BuildContext context) {
           return (Generic1(
               "jakarDetails",
               "tunnel:get:jakar:details",
               {"counter_code": globals.Util.get('id'), "mdays": 360},
               "Jakar details"));
         },
-        '/query':(BuildContext context){
+        'query':(BuildContext context){
           return(Query());
         },
-        '/queryBrands':(BuildContext context){
+        'queryBrands':(BuildContext context){
           return(QueryBrand());
         },
-        '/itemsOnBrand':(BuildContext context){
+        'itemsOnBrand':(BuildContext context){
           final brand = globals.Util.get('id1');
           return Generic1(
             'itemsOnBrand',
@@ -116,7 +116,7 @@ class MyApp extends StatelessWidget {
             '$brand items'
           );
         },
-        '/detailsOnItemBrand':(BuildContext context){
+        'detailsOnItemBrand':(BuildContext context){
           final item = globals.Util.get('id');
           final brand = globals.Util.get('id1');
           return Generic1(
@@ -126,11 +126,10 @@ class MyApp extends StatelessWidget {
             '$item $brand details'
           );
         },
-        '/productDetails':(BuildContext context){
-//          final pr_id = globals.Util.get('id');
+        'productDetails':(BuildContext context){
           return(ProductDetails());
         },
-        '/mock':(BuildContext context){
+        'mock':(BuildContext context){
           return(Mock());
         }
       },
@@ -148,7 +147,7 @@ class EntryItem extends StatelessWidget {
       return ListTile(
         title: Text(root.title),
         onTap: () {
-          Navigator.of(_context).pushNamed('/' + root.routeName);
+          Navigator.of(_context).pushNamed(root.routeName);
         },
       );
     return ExpansionTile(

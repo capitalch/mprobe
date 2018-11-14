@@ -3,8 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'globals.dart' as globals;
 import 'reports.dart' as report;
 import 'package:intl/intl.dart'; // for date, number formatting
-import 'dart:convert';
+// import 'dart:convert';
 import 'genericHelper.dart' as helper;
+import 'ibuki.dart' as ibuki;
 
 class Generic1 extends StatefulWidget {
   final String id;
@@ -26,29 +27,30 @@ class Generic1State extends State<Generic1> {
   bool isBusy = false;
   String detailsReport;
   var resultSet = [];
-  Generic1State(this.reportId, this.id, this.args, this.pageTitle) {
+  Generic1State(this.reportId, this.id, this.args, this.pageTitle);
+  dynamic subs;
+
+  @override
+  void initState() {
     isDateChangeButtonsVisible =
         report.reports[reportId]['isDateChangeButtonsVisible'] ?? false;
     detailsReport = report.reports[reportId]['detailsReport'];
-    populate();
-  }
-
-  void populate() {
-    // setState(() => isBusy = true);
-    isBusy = true;
-    globals.httpPost(id, args: args).then((d) {
+    // populate();
+    subs = ibuki.filterOn(id).listen((d) {
       setState(() {
-        resultSet = json.decode(d.body).cast<Map<String, dynamic>>();
+        resultSet = d['data'];
         isBusy = false;
       });
       print(resultSet);
-    }, onError: (ex) {
-      print('Error1');
-      print(ex);
-    }).catchError((ex) {
-      print('Error2');
-      print(ex);
     });
+    ibuki.httpPost(id, args: args);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    subs.cancel();
+    super.dispose();
   }
 
   DateTime _getParsedDate() {
@@ -77,7 +79,7 @@ class Generic1State extends State<Generic1> {
           dtPar.day.toString().padLeft(2, '0'));
     });
     globals.Util.set('mdate', args["mdate"]);
-    populate();
+    ibuki.httpPost(id,args:{"mdate": globals.Util.get('mdate')});
   }
 
   void dateAdd(d) {
@@ -91,7 +93,7 @@ class Generic1State extends State<Generic1> {
           .padLeft(2, '0');
     });
     globals.Util.set('mdate', args["mdate"]);
-    populate();
+    ibuki.httpPost(id,args:{"mdate": globals.Util.get('mdate')});
   }
 
   Widget _displayDateWidget() {
@@ -106,7 +108,7 @@ class Generic1State extends State<Generic1> {
     return (wd);
   }
 
-  @override // TODO: implement context
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -117,10 +119,6 @@ class Generic1State extends State<Generic1> {
                 Padding(
                     padding: EdgeInsets.only(left: 10.0, bottom: 5.0),
                     child: _displayDateWidget()),
-                // CupertinoActivityIndicator(radius: 10.0,animating: true,)
-                // CircularProgressIndicator(strokeWidth: 2.0,
-                //   valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),),),
-                // IconButton(icon: Icon(Icons.alarm),onPressed: (){},),
               ],
             ),
           ),
@@ -130,7 +128,7 @@ class Generic1State extends State<Generic1> {
                 ? IconButton(
                     icon: Icon(Icons.ac_unit),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/detailedSales');
+                      Navigator.pushNamed(context, 'detailedSales');
                     },
                   )
                 : Container(),
@@ -156,7 +154,7 @@ class Generic1State extends State<Generic1> {
                       setState(() {
                         resultSet = [];
                       });
-                      populate();
+                      ibuki.httpPost(id,args:{});
                     },
                     // iconSize: 45.0,
                   )
@@ -189,6 +187,7 @@ class Generic1State extends State<Generic1> {
   }
 }
 
+
 /*
 //  StreamSubscription subs;
 //  @override
@@ -208,4 +207,21 @@ class Generic1State extends State<Generic1> {
 ////  subs.cancel();
 //    super.dispose();
 //  }
+void populate() {
+    // setState(() => isBusy = true);
+    isBusy = true;
+    globals.httpPost(id, args: args).then((d) {
+      setState(() {
+        resultSet = json.decode(d.body).cast<Map<String, dynamic>>();
+        isBusy = false;
+      });
+      print(resultSet);
+    }, onError: (ex) {
+      print('Error1');
+      print(ex);
+    }).catchError((ex) {
+      print('Error2');
+      print(ex);
+    });
+  }
  */

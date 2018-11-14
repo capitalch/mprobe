@@ -40,7 +40,7 @@ class QueryState extends State<Query> {
           IconButton(
             icon: Icon(Icons.settings),
             onPressed: () {
-              Navigator.pushNamed(context, '/queryBrands');
+              Navigator.pushNamed(context, 'queryBrands');
             },
           )
         ],
@@ -66,7 +66,7 @@ class QueryState extends State<Query> {
                       title: Text(brand), 
                       onTap: () {
                       globals.Util.set('id1', brand);
-                      Navigator.pushNamed(context, '/itemsOnBrand');
+                      Navigator.pushNamed(context, 'itemsOnBrand');
                       }),
                   Divider(height: 1,color: Colors.black,)
                 ],

@@ -22,12 +22,12 @@ dynamic getReportBody(reportId, resultSet) {
         InkWell ink = InkWell(
           child: row,
           onTap: () {
-//            String route = '/' + report.reports[reportId]['drillDownReport'];
             String id = report.reports[reportId]["idName"];
             globals.Util.set('id', resultSet[i][id]);
 
-            String route = report.reports[reportId]['drillDownReport'] ??  report.reports[reportId]['drillDownRoute'];
-            route == null ? (){} : Navigator.pushNamed(context, ('/' +  route));
+            String route = report.reports[reportId]['drillDownReport'] ??
+                report.reports[reportId]['drillDownRoute'];
+            route == null ? () {} : Navigator.pushNamed(context, (route));
           },
         );
         return (ink);
