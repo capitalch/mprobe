@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-//import "dart:convert";
+import "dart:convert";
 import 'dart:async';
 //import 'dart:async' show Future;
 import 'ibuki.dart' as ibuki;
-//import 'globals.dart' as globals;
+import 'globals.dart' as globals;
 
 class Mock extends StatefulWidget {
   @override
@@ -20,9 +20,39 @@ class MockState extends State<Mock> {
 
   MockState();
 
+  dynamic doInit() async {
+    dynamic result;
+    result = globals.httpPostMock();
+    // print(json.decode(result.body));
+    // print('doinit');
+    // if (result != null) {
+    //   print(json.decode(result.body));
+    // }
+    return (result);
+  }
+
+  void doInit1() {
+    dynamic result;
+    () async {
+      result = await doInit();
+      print(json.decode(result.body));
+      print('doInit1');
+    }();
+    print('point1');
+
+    // if (result != null) {
+    //   print(json.decode(result.body));
+    // }
+  }
+
   @override
   void initState() {
-    getBrands();
+    doInit1();
+    // (() async {
+
+    // })();
+
+    // getBrands();
     super.initState();
   }
 
@@ -38,7 +68,6 @@ class MockState extends State<Mock> {
     });
     ibuki.httpPost('tunnel:get:brands', args: {});
 
-   
 //    dynamic d = await globals.httpPost('tunnel:get:brands', args: {});
 //    List<Map<String, dynamic>> resultSet =
 //        json.decode(d.body).cast<Map<String, dynamic>>();
@@ -50,12 +79,12 @@ class MockState extends State<Mock> {
 //    });
   }
 
-   @override
-    void dispose() {
-      subs.cancel();
-      //  if (subs != null) subs.cancel();
-      super.dispose();
-    }
+  @override
+  void dispose() {
+    // subs.cancel();
+    //  if (subs != null) subs.cancel();
+    super.dispose();
+  }
 
   void show(context) {
     showDialog(

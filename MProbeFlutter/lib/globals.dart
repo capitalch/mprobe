@@ -9,9 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 Future<dynamic> httpPost(String id, {dynamic args}) async {
   var settings = await rootBundle.loadString('assets/settings.json');
   var settingsObj = json.decode(settings);
-  // var client = http.Client();
-  const String url = 'http://14.143.150.10:3004/api/tunnel';
-  // const String url = 'http://10.0.2.2:3004/api/tunnel';
+  // const String url = 'http://14.143.150.10:3004/api/tunnel';
+  const String url = 'http://10.0.2.2:3004/api/tunnel';
   final body = {
     "type": "sql",
     "sqlKey": id,
@@ -23,8 +22,13 @@ Future<dynamic> httpPost(String id, {dynamic args}) async {
   
   Future<dynamic> result = http.post(url,
       headers: {"Content-Type": "application/json"}, body: json.encode(body));
-  // client.close();
   return (result);
+}
+
+dynamic httpPostMock() async {
+  const String url = 'http://10.0.2.2:3004/test/timer';
+  dynamic result = http.post((url));
+  return(result);
 }
 
 Map<String,dynamic> packet = new Map();
@@ -57,6 +61,19 @@ class Util {
     packet[id] = value;
   }
 
+  static Future<SharedPreferences> getSharedPreferences(){
+    return(SharedPreferences.getInstance());
+  }
+
+}
+
+
+
+//  static loadCounter() async {
+//    SharedPreferences prefs = await SharedPreferences.getInstance();
+//  }
+
+
 //  static dynamic getShared(String key){
 //    dynamic prefs = () async {
 //      SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -73,12 +90,3 @@ class Util {
 //    };
 //    prefs();
 //  }
-
-  static Future<SharedPreferences> getSharedPreferences(){
-    return(SharedPreferences.getInstance());
-  }
-
-//  static loadCounter() async {
-//    SharedPreferences prefs = await SharedPreferences.getInstance();
-//  }
-}

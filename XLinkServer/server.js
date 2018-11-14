@@ -18,16 +18,16 @@ server.listen(config.port, function () {
 });
 
 process.env.NODE_ENV = config.env;
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(bodyParser.json({type: 'application/vnd.api+json'}));
+app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 //for cross domain
 let allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Access-Control-Allow-Headers', 'Origin, Accept, Content-Type, Authorization, Content-Length, X-Requested-With, A' +
-            'ccess-Control-Allow-Origin,x-access-token');
+        'ccess-Control-Allow-Origin,x-access-token');
     // intercept OPTIONS method
     if ('OPTIONS' == req.method) {
         res.send(200);
@@ -36,12 +36,18 @@ let allowCrossDomain = function (req, res, next) {
     }
 };
 app.use(allowCrossDomain);
+
+app.post('/test/timer', (req, res) => {
+    setTimeout(() => res.status(200).json({ status: 'success' }), 10000);
+})
+
 app.use(router);
 app.get('/*', function (req, res) {
     res
         .status(200)
         .end('ok');
 });
+
 app.use(function (err, req, res, next) {
     if (err) {
         if (err.hasOwnProperty('body')) {
@@ -61,7 +67,7 @@ if (process.env.NODE_ENV === 'development') {
             console.log(messages.errDevError);
             if (!res.finished) {
                 res.status(err.status || 500);
-                res.json({error: err});
+                res.json({ error: err });
             }
         });
 }
@@ -71,6 +77,6 @@ app
         console.log(messages.errProdError);
         if (!res.finished) {
             res.status(err.status || 500);
-            res.json({error: err});
+            res.json({ error: err });
         }
     });
