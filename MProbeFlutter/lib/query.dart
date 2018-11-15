@@ -29,10 +29,15 @@ class QueryState extends State<Query> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     (() async {
       getBrandsFromShared();
     })();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     Widget wd = Scaffold(
       appBar: AppBar(
         title: Text('Query'),
@@ -51,27 +56,31 @@ class QueryState extends State<Query> {
             final brand = brandList[i];
 
             Dismissible dis = Dismissible(
-              key: Key(brand),
-              onDismissed: (direction) {
-                removeBrand(i);
-                Scaffold.of(context)
-                    .showSnackBar(SnackBar(content: Text('$brand dismissed')));
-              },
-              background: Container(color: Colors.red),
-              child:
-              Column(
-                children: <Widget>[
-                  ListTile(
-                    leading: Icon(Icons.developer_board, color: Colors.blue,),
-                      title: Text(brand), 
-                      onTap: () {
-                      globals.Util.set('id1', brand);
-                      Navigator.pushNamed(context, 'itemsOnBrand');
-                      }),
-                  Divider(height: 1,color: Colors.black,)
-                ],
-              )
-            );
+                key: Key(brand),
+                onDismissed: (direction) {
+                  removeBrand(i);
+                  Scaffold.of(context).showSnackBar(
+                      SnackBar(content: Text('$brand dismissed')));
+                },
+                background: Container(color: Colors.red),
+                child: Column(
+                  children: <Widget>[
+                    ListTile(
+                        leading: Icon(
+                          Icons.developer_board,
+                          color: Colors.blue,
+                        ),
+                        title: Text(brand),
+                        onTap: () {
+                          globals.Util.set('id1', brand);
+                          Navigator.pushNamed(context, 'itemsOnBrand');
+                        }),
+                    Divider(
+                      height: 1,
+                      color: Colors.black,
+                    )
+                  ],
+                ));
 
             return dis;
           }),
