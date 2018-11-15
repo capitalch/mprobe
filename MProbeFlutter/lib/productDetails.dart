@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 //import "dart:convert";
 //import 'dart:async' show Future;
 import 'ibuki.dart' as ibuki;
-//import 'globals.dart' as globals;
+import 'globals.dart' as globals;
 
 class ProductDetails extends StatefulWidget {
   final int prId;
@@ -14,7 +14,7 @@ class ProductDetails extends StatefulWidget {
 }
 
 class ProductDetailsState extends State<ProductDetails> {
-  dynamic subs;
+  // dynamic subs;
   final int prId;
   List<dynamic> productDetails = [];
   ProductDetailsState(this.prId);
@@ -29,9 +29,15 @@ class ProductDetailsState extends State<ProductDetails> {
     // });
     () async {
       dynamic d =
-          await ibuki.filterOn('tunnel:get:product:details:on:prid').first;
+          await ibuki.filterOnFuture('tunnel:get:product:details:on:prid');
       setState(() {
         productDetails = d['data'];
+        costGst = (productDetails[0] == null)
+            ? 0.0
+            : double.tryParse(productDetails[0]['gstcost']);
+        gst = (productDetails[0] == null)
+            ? 0.0
+            : double.tryParse(productDetails[0]['gst']);
         print(productDetails);
       });
     }();
@@ -40,23 +46,33 @@ class ProductDetailsState extends State<ProductDetails> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    // subs.cancel();
-    super.dispose();
+  // @override
+  // void dispose() {
+  //   // subs.cancel();
+  //   super.dispose();
+  // }
+
+  // int counter = 10;
+  double salePrice = 0.0,
+      profitPercent = 10.0,
+      profit = 0.0,
+      costGst = 0.0,
+      gst = 0.0;
+
+  void calculateProfit() {
+    profit = (salePrice - costGst) * (1 - gst / 100);
   }
 
-  int counter = 10;
-  double salePrice = 0.0;
-  void changeCounter(int i) {
+  void changeProfit(int i) {
     setState(() {
       if (i > 0) {
-        counter++;
+        profitPercent++;
       } else {
-        if (counter >= 1) {
-          counter--;
-        }
+        // if (profitPercent >= 1) {
+        profitPercent--;
+        // }
       }
+      calculateProfit();
     });
   }
 
@@ -194,7 +210,7 @@ class ProductDetailsState extends State<ProductDetails> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.only(left: 20.0, top: 20.0),
                 child: Divider(color: Colors.brown, height: 5.0),
               ),
               Row(
@@ -214,8 +230,7 @@ class ProductDetailsState extends State<ProductDetails> {
                       margin: EdgeInsets.only(left: 20.0, top: 20.0),
                       width: 100,
                       child: Text(
-                        getValue('basiccost'),
-                        // productDetails[0]['basiccost'].toString(),
+                        globals.Util.getFormatted1(getValue('basiccost')),
                         textAlign: TextAlign.right,
                         style: TextStyle(
                           fontSize: 18.0,
@@ -240,7 +255,7 @@ class ProductDetailsState extends State<ProductDetails> {
                       margin: EdgeInsets.only(left: 20.0, top: 20.0),
                       width: 100,
                       child: Text(
-                        getValue('gst'),
+                        globals.Util.getFormatted1(getValue('gst')),
                         // productDetails[0]['gst'].toString(),
                         textAlign: TextAlign.right,
                         style: TextStyle(
@@ -266,23 +281,29 @@ class ProductDetailsState extends State<ProductDetails> {
                       margin: EdgeInsets.only(left: 20.0, top: 20.0),
                       width: 100,
                       child: Text(
-                        getValue('gstcost'),
+                        globals.Util.getFormatted1(getValue('gstcost')),
                         // productDetails[0]['gstcost'].toString(),
                         textAlign: TextAlign.right,
                         style: TextStyle(
-                          fontSize: 18.0,
+                          fontSize: 25.0, color: Colors.purple
                         ),
                       ))
                 ],
               ),
+              Padding(
+                padding: EdgeInsets.only(left: 20.0, top: 20.0),
+                child: Divider(color: Colors.brown, height: 5.0),
+              ),
               Row(
-                // mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.only(left: 20.0, top: 20.0),
-                    width: 200,
+                    // width: 200,
                     child: Text(
-                      'Sale price:',
+                      'Sale price with GST:',
+                      // textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 18.0,
                       ),
@@ -290,23 +311,67 @@ class ProductDetailsState extends State<ProductDetails> {
                   ),
                   Container(
                       margin: EdgeInsets.only(left: 20.0, top: 20.0),
-                      width: 100,
+                      // width: 100,
                       child: Text(
                         () {
                           String s = getValue('gstcost');
-                          s = (s == '')||(s=='null') ? '0' : s;
+                          s = (s == '') || (s == 'null') ? '0' : s;
                           double costGst = double.tryParse(s);
-                          double saleGst = costGst * 1.10;
-                          return saleGst;
+                          salePrice = costGst * (1.0 + profitPercent / 100);
+                          return globals.Util.getFormatted1(salePrice);
                         }()
                             .toString(),
-                        // productDetails[0]['clos'].toString(),
                         textAlign: TextAlign.right,
                         style: TextStyle(
-                          fontSize: 18.0,
+                          fontSize: 35.0,color: Colors.red
                         ),
                       ))
                 ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(left: 20.0, top: 20.0),
+                    // width: 200,
+                    child: Text(
+                      'Profit:',
+                      // textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 18.0,
+                      ),
+                    ),
+                  ),
+                  Container(
+                      margin: EdgeInsets.only(left: 20.0, top: 20.0),
+                      // width: 100,
+                      child: Text(
+                        () {
+                          setState(() {
+                            calculateProfit();
+                          });
+                          return (globals.Util.getFormatted1(profit));
+                        }(),
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: Colors.blue
+                        ),
+                      )),
+                  Container(
+                      margin: EdgeInsets.only(left: 20.0, top: 20.0),
+                      // width:100.0,
+                      child: Text(
+                        profitPercent.toString() + ' %',
+                        textAlign: TextAlign.right,
+                        style: TextStyle(fontSize: 20.0, color: Colors.orange),
+                      ))
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 20.0, top: 20.0, bottom: 5.0),
+                child: Divider(color: Colors.brown, height: 5.0),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -318,13 +383,10 @@ class ProductDetailsState extends State<ProductDetails> {
                       color: Colors.blue,
                     ),
                     onPressed: () {
-                      changeCounter(-1);
+                      changeProfit(-1);
                     },
                   ),
-                  Text(
-                    counter.toString(),
-                    style: TextStyle(fontSize: 40.0),
-                  ),
+
                   // TextField(controller: TextEditingController.fromValue(TextEditingValue(text: '10.0')),),
                   IconButton(
                     iconSize: 65.0,
@@ -333,7 +395,7 @@ class ProductDetailsState extends State<ProductDetails> {
                       color: Colors.blue,
                     ),
                     onPressed: () {
-                      changeCounter(1);
+                      changeProfit(1);
                     },
                   ),
                 ],

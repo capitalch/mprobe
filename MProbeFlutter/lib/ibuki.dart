@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'globals.dart' as globals;
 import "dart:convert";
+import 'dart:async' show Future;
 
 StreamController<Map<String, dynamic>> _streamController =
     new StreamController.broadcast();
@@ -13,6 +14,10 @@ void emit(String id, dynamic options) {
 
 Stream<Map<String, dynamic>> filterOn(String id) {
   return (_streamController.stream.where((d) => d['id'] == id));
+}
+
+Future<Map<String,dynamic>> filterOnFuture(String id){
+  return _streamController.stream.where((d) => d['id'] == id).first;
 }
 
 void httpPost (String id, {dynamic args}) async {
