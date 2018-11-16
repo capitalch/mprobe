@@ -1,5 +1,5 @@
 // library reportsLib;
-const reports = {
+var reports = {
   "sales": {
     "isDateChangeButtonsVisible": true,
     "drillDownRoute": "saleDetails1",
@@ -36,6 +36,18 @@ const reports = {
         "width": 70.0,
         "isSum": true,
         "alignment": 'right'
+      },
+      {
+        "title": "Add",
+        "name": "add",
+        "width": 60.0,
+        // "isComputed": true,
+        "alignment": 'right',
+        "compute": (result) {
+          // double.tryParse(result['gp']) + double.tryParse(result['cgp'])
+          print(result);
+          return (double.tryParse(result['gp']) + double.tryParse(result['gp'])).toString();
+        }
       }
     ]
   },
@@ -203,10 +215,25 @@ const reports = {
       {"title": "Tran", "name": "tran_date", "width": 80.0},
       {"title": "Clear", "name": "clear_date", "width": 80.0},
       {"title": "Cheq", "name": "cheq_no", "width": 60.0},
-      {"title": "Debit", "name": "debit_amt", "width": 90.0, "alignment": 'right'},
-      {"title": "Credit", "name": "credit_amt", "width": 90.0, "alignment": 'right'},
+      {
+        "title": "Debit",
+        "name": "debit_amt",
+        "width": 90.0,
+        "alignment": 'right'
+      },
+      {
+        "title": "Credit",
+        "name": "credit_amt",
+        "width": 90.0,
+        "alignment": 'right'
+      },
       {"title": "Bal", "name": "balance", "width": 100.0, "alignment": 'right'},
-      {"title": "Remarks", "name": "remarks", "width": 120.0, "alignment": 'center'},
+      {
+        "title": "Remarks",
+        "name": "remarks",
+        "width": 120.0,
+        "alignment": 'center'
+      },
     ]
   },
   "jakar": {
@@ -231,12 +258,7 @@ const reports = {
         "alignment": 'right',
         "isSum": true
       },
-      {
-        "title": "%",
-        "name": "percent",
-        "width": 30.0,
-        "alignment": 'right'
-      },
+      {"title": "%", "name": "percent", "width": 30.0, "alignment": 'right'},
     ]
   },
   "jakarDetails": {
@@ -245,8 +267,14 @@ const reports = {
     ],
     "body": [
       {"title": "Product", "name": "item,brand,model", "width": 130.0},
-      {"title": "Qty", "name": "qty", "width": 40.0,  "alignment": 'right'},
-      {"title": "Value", "name": "value", "width": 90.0, "isSum":true, "alignment": 'right' },
+      {"title": "Qty", "name": "qty", "width": 40.0, "alignment": 'right'},
+      {
+        "title": "Value",
+        "name": "value",
+        "width": 90.0,
+        "isSum": true,
+        "alignment": 'right'
+      },
       {"title": "Days", "name": "days", "width": 60.0, "alignment": 'right'},
     ]
   },
@@ -286,43 +314,30 @@ const reports = {
       {"title": "Old", "name": "days", "width": 40.0, "alignment": 'right'},
     ]
   },
-  'itemsOnBrand':{
+  'itemsOnBrand': {
     "drillDownRoute": "detailsOnItemBrand",
     'idName': 'item',
-    'body':[
+    'body': [
+      {'title': 'Items', 'name': 'item', 'width': 200.0},
       {
-        'title': 'Items',
-        'name': 'item',
-        'width': 200.0
-      },
-      {
-        'title':'ModelCount',
+        'title': 'ModelCount',
         'name': 'modelcount',
         'width': 90.0,
         'alignment': 'right'
       }
     ]
   },
-  'detailsOnItemBrand':{
-    'drillDownRoute':'productDetails',
-    'idName':'pr_id',
-    'body':[
-      {
-        'title': 'Model',
-        'name': 'model',
-        'width': 120.0
-      },
-      {
-        'title': 'Stk',
-        'name': 'stock',
-        "alignment": 'right',
-        'width': 30.0
-      },
+  'detailsOnItemBrand': {
+    'drillDownRoute': 'productDetails',
+    'idName': 'pr_id',
+    'body': [
+      {'title': 'Model', 'name': 'model', 'width': 120.0},
+      {'title': 'Stk', 'name': 'stock', "alignment": 'right', 'width': 30.0},
       {
         'title': 'GstCost',
         'name': 'gstcost',
         "alignment": 'right',
-        'width':90.0
+        'width': 90.0
       },
       {
         'title': 'Basic',
@@ -330,13 +345,7 @@ const reports = {
         "alignment": 'right',
         'width': 90.0
       },
-      {
-        'title': 'Gst',
-        'name': 'gst',
-        "alignment": 'right',
-        'width': 40.0
-      },
+      {'title': 'Gst', 'name': 'gst', "alignment": 'right', 'width': 40.0},
     ]
   },
-
 };

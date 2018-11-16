@@ -48,9 +48,11 @@ dynamic _summation(List<dynamic> myList, String name) {
   return (fmt);
 }
 
-dynamic getMultiItems(String item, dynamic result) {
+dynamic getMultiItems(String item, dynamic result, dynamic compute) {
   dynamic out = '';
-  if (item.contains(',')) {
+  if (compute != null) {
+    out = compute(result);
+  } else if (item.contains(',')) {
     List<String> items = item.split(',');
     items.forEach((x) {
       out = out + result[x] + ' ';
@@ -67,13 +69,14 @@ dynamic getBodyWidgets(String id, dynamic result) {
   List<Widget> bodyWidget = List<Widget>();
   body.forEach((d) {
     String item = d['name'];
+    dynamic compute = d['compute'];
     bodyWidget.add(Container(
       constraints: BoxConstraints(minHeight: 30.0),
       child: SizedBox(
           width: d["width"],
           // height: 30.0,
           child: Text(
-            globals.Util.getFormatted1(getMultiItems(item, result)),
+            globals.Util.getFormatted1(getMultiItems(item, result, compute)),
             textAlign: _getAlignment(d),
           )),
       padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
