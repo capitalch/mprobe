@@ -72,11 +72,21 @@ class QueryBrandState extends State<QueryBrand> {
     shared.setStringList('brands', sharedList);
   }
 
+  final TextEditingController _textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     Widget wid = Scaffold(
         appBar: AppBar(
-          title: Text('Select brands to add'),
+          title: TextField(
+            controller: _textController,keyboardType: TextInputType.text,style: TextStyle(fontSize: 20.0),
+            decoration: InputDecoration(
+                prefixIcon: Icon(Icons.search),
+                hintText: 'Search brand',
+                suffixIcon: Icon(Icons.close),
+                enabled: true,
+                fillColor: Colors.white
+                ),
+          ),
         ),
         body: ListView.builder(
           itemCount: brandList.length,

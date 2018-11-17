@@ -19,6 +19,7 @@ dependencies:
   shared_preferences:
   intl:
   cupertino_icons: ^0.1.2
+  material_search:
 dev_dependencies:
   flutter_test:
     sdk: flutter

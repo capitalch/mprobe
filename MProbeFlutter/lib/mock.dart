@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:material_search/material_search.dart';
 import "dart:convert";
 import 'dart:async';
 //import 'dart:async' show Future;
@@ -13,142 +14,92 @@ class Mock extends StatefulWidget {
 }
 
 class MockState extends State<Mock> {
-  StreamSubscription subs;
-  List<dynamic> brandList = [
-    {"brand": "videocon", 'isSelected': false}
-  ];
+  final TextEditingController _filter = new TextEditingController();
+  // final dio = new Dio(); // for http requests
+  String _searchText = "";
+  List names = new List(); // names we get from API
+  List filteredNames = new List(); // names filtered by search text
+  Icon _searchIcon = new Icon(Icons.search);
+  Widget _appBarTitle = new Text('Search Example');
 
-  MockState();
-
-  dynamic doInit() async {
-    dynamic result;
-    result = globals.httpPostMock();
-    // print(json.decode(result.body));
-    // print('doinit');
-    // if (result != null) {
-    //   print(json.decode(result.body));
-    // }
-    return (result);
-  }
-
-  void doInit1() {
-    dynamic result;
-    () async {
-      result = await doInit();
-      print(json.decode(result.body));
-      print('doInit1');
-    }();
-    print('point1');
-
-    // if (result != null) {
-    //   print(json.decode(result.body));
-    // }
+  void _getNames() {
+    List tempList = [
+      'Sushant Agrawal',
+      'Dick Anderson',
+      'Moleu peacso',
+      'Arged folio',
+      'Peat soran',
+      'Lala petric',
+      'Peo harbinder'
+    ];
+    setState(() {
+      names = tempList;
+      filteredNames = names;
+    });
   }
 
   @override
   void initState() {
-    doInit1();
-    // (() async {
-
-    // })();
-
-    // getBrands();
     super.initState();
+    _getNames();
   }
 
-  void getBrands() async {
-    subs = ibuki.filterOn('tunnel:get:brands').listen((d) {
-      setState(() {
-        List<dynamic> resultSet = d['data'];
-        brandList = resultSet.map((x) {
-          return {'brand': x['brand'], 'isSelected': true};
-        }).toList();
-        // print(brandList);
-      });
+  void _searchPressed() {
+    setState(() {
+      if (this._searchIcon.icon == Icons.search) {
+        this._searchIcon = Icon(Icons.close);
+        this._appBarTitle = TextField(
+          controller: _filter,
+          decoration: InputDecoration(
+              prefixIcon: Icon(Icons.search), hintText: 'Search...'),
+        );
+      } else {
+        this._searchIcon = Icon(Icons.search);
+        this._appBarTitle = Text('Search Example');
+        filteredNames = names;
+        _filter.clear();
+      }
     });
-    ibuki.httpPost('tunnel:get:brands', args: {});
-
-//    dynamic d = await globals.httpPost('tunnel:get:brands', args: {});
-//    List<Map<String, dynamic>> resultSet =
-//        json.decode(d.body).cast<Map<String, dynamic>>();
-//    setState(() {
-//      brandList = resultSet.map((x) {
-//        return {'brand': x['brand'], 'isSelected': true};
-//      }).toList();
-//      print(brandList);
-//    });
   }
 
-  @override
-  void dispose() {
-    // subs.cancel();
-    //  if (subs != null) subs.cancel();
-    super.dispose();
-  }
-
-  void show(context) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          Widget wd = Scaffold(
-            appBar: AppBar(
-              title: Text('Add brands to query'),
-              actions: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.cancel),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ],
-            ),
-            body: ListView.builder(
-              itemCount: brandList.length,
-              itemBuilder: (BuildContext context, int i) {
-                Widget w = CheckboxListTile(
-                    title: Text(brandList[i]['brand']),
-                    value: brandList[i]['isSelected'],
-                    onChanged: (bool value) {
-                      setState(() {
-                        brandList[i]['isSelected'] = value;
-                      });
-                    });
-                return (w);
-              },
-            ),
-          );
-          return (wd);
+  MockState() {
+    _filter.addListener(() {
+      if (_filter.text.isEmpty) {
+        setState(() {
+          _searchText = "";
+          filteredNames = names;
         });
+      } else {
+        setState(() {
+          _searchText = _filter.text;
+        });
+      }
+    });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    Widget wid = Scaffold(
-        appBar: AppBar(
-          title: Text('Mock'),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.threed_rotation),
-              onPressed: () {
-                show(context);
-              },
-            )
-          ],
-        ),
-        body: ListView.builder(
-          itemCount: brandList.length,
-          itemBuilder: (BuildContext context, int i) {
-            Widget w = CheckboxListTile(
-                title: Text(brandList[i]['brand']),
-                value: brandList[i]['isSelected'],
-                onChanged: (bool value) {
-                  setState(() {
-                    brandList[i]['isSelected'] = value;
-                  });
-                });
-            return (w);
-          },
-        ));
-    return (wid);
+  Widget _buildList() {
+  if (!(_searchText.isEmpty)) {
+    List tempList = new List();
+    for (int i = 0; i < filteredNames.length; i++) {
+      if (filteredNames[i]['name'].toLowerCase().contains(_searchText.toLowerCase())) {
+        tempList.add(filteredNames[i]);
+      }
+    }
+    filteredNames = tempList;
   }
+  return ListView.builder(
+    itemCount: names == null ? 0 : filteredNames.length,
+    itemBuilder: (BuildContext context, int index) {
+      return new ListTile(
+        title: Text(filteredNames[index]['name']),
+        onTap: () => print(filteredNames[index]['name']),
+      );
+    },
+  );
+}
+
+
+
+  @override
+  Widget build(BuildContext context) {}
 }
