@@ -5,6 +5,7 @@ import 'generic1.dart';
 import 'query.dart';
 import 'queryBrand.dart';
 import 'productDetails.dart';
+import 'detailsOnBrand.dart';
 import 'globals.dart' as globals;
 
 void main() => runApp(new MyApp());
@@ -115,6 +116,17 @@ class MyApp extends StatelessWidget {
             {'brand':brand},
             '$brand items'
           );
+        },
+        'detailsOnBrand':(BuildContext context){
+          return(DetailsOnBrand());
+          // final brand = globals.Util.get('id');
+
+          // return Generic1(
+          //   'detailsOnBrand',
+          //   'tunnel:get:details:on:brand',
+          //   {'brand':brand},
+          //   '$brand details'
+          // );
         },
         'detailsOnItemBrand':(BuildContext context){
           final item = globals.Util.get('id');

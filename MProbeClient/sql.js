@@ -234,7 +234,20 @@ let sql = {
         endif endif endif,
         GST = COALESCE((select gst_rate from hsnCodes where item = product.item), 18),
         gstCost = ROUND(basicCost*(1 + gst/100),2)
-        from product key join inv_main where item = :item and brand = :brand and basiccost <> 0 and show = 'Y'`,
+        from product key join inv_main where item = :item and brand = :brand and basiccost <> 0 and show = 'Y' order by item,model`,
+    'tunnel:get:details:on:brand':`
+        select product.pr_id, item, model, stock = op + db - cr, basicCost = 
+        if basic_price > 0 then
+            basic_price
+        else if last_price > 0 then
+            last_price 
+        else if product.op_price > 0 then 
+            product.op_price 
+        else 0 
+        endif endif endif,
+        GST = COALESCE((select gst_rate from hsnCodes where item = product.item), 18),
+        gstCost = ROUND(basicCost*(1 + gst/100),2)
+        from product key join inv_main where brand = :brand and basiccost <> 0 and show = 'Y' order by item,model`,
     'tunnel:get:product:details:on:prid':`
         select
         item, brand, model, basicCost = 

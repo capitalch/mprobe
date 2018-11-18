@@ -73,8 +73,8 @@ class QueryState extends State<Query> {
                         ),
                         title: Text(brand),
                         onTap: () {
-                          globals.Util.set('id1', brand);
-                          Navigator.pushNamed(context, 'itemsOnBrand');
+                          globals.Util.set('id', brand);
+                          Navigator.pushNamed(context, 'detailsOnBrand');
                         }),
                     Divider(
                       height: 1,

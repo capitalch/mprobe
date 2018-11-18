@@ -20,13 +20,7 @@ class ProductDetailsState extends State<ProductDetails> {
   ProductDetailsState(this.prId);
   @override
   void initState() {
-    // subs = ibuki.filterOn('tunnel:get:product:details:on:prid').listen((d) {
-    //   setState(() {
-    //     productDetails = d['data'];
-
-    //     print(productDetails);
-    //   });
-    // });
+    super.initState();
     () async {
       dynamic d =
           await ibuki.filterOnFuture('tunnel:get:product:details:on:prid');
@@ -43,16 +37,8 @@ class ProductDetailsState extends State<ProductDetails> {
     }();
 
     ibuki.httpPost('tunnel:get:product:details:on:prid', args: {'pr_id': prId});
-    super.initState();
   }
 
-  // @override
-  // void dispose() {
-  //   // subs.cancel();
-  //   super.dispose();
-  // }
-
-  // int counter = 10;
   double salePrice = 0.0,
       profitPercent = 10.0,
       profit = 0.0,

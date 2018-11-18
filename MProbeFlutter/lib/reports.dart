@@ -46,7 +46,8 @@ var reports = {
         "compute": (result) {
           // double.tryParse(result['gp']) + double.tryParse(result['cgp'])
           print(result);
-          return (double.tryParse(result['gp']) + double.tryParse(result['gp'])).toString();
+          return (double.tryParse(result['gp']) + double.tryParse(result['gp']))
+              .toString();
         }
       }
     ]
@@ -325,6 +326,27 @@ var reports = {
         'width': 90.0,
         'alignment': 'right'
       }
+    ]
+  },
+  'detailsOnBrand': {
+    'drillDownRoute': 'productDetails',
+    'idName': 'pr_id',
+    'body': [
+      {'title': 'Product', 'name': 'item,model', 'width': 120.0},
+      {'title': 'Stk', 'name': 'stock', "alignment": 'right', 'width': 30.0},
+      {
+        'title': 'GstCost',
+        'name': 'gstcost',
+        "alignment": 'right',
+        'width': 90.0
+      },
+      {
+        'title': 'Basic',
+        'name': 'basiccost',
+        "alignment": 'right',
+        'width': 90.0
+      },
+      {'title': 'Gst', 'name': 'gst', "alignment": 'right', 'width': 40.0},
     ]
   },
   'detailsOnItemBrand': {
