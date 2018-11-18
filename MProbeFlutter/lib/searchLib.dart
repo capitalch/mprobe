@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'globals.dart' as globals;
 
-getSearchAppBar({filterFn}){
+getSearchAppBar({Function filterFn, bool isBusy}){
   return AppBar(
+    leading: globals.Util.getBusyIndicator(isBusy),
       title: TextField(
         autofocus: true, keyboardType: TextInputType.text,
         decoration: InputDecoration(

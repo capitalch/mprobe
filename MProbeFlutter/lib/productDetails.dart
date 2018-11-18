@@ -277,7 +277,7 @@ class ProductDetailsState extends State<ProductDetails> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.only(left: 20.0, top: 20.0),
+                padding: EdgeInsets.only(left: 20.0, top: 10.0),
                 child: Divider(color: Colors.brown, height: 5.0),
               ),
               Row(
@@ -285,7 +285,7 @@ class ProductDetailsState extends State<ProductDetails> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                    margin: EdgeInsets.only(left: 20.0, top: 20.0),
+                    margin: EdgeInsets.only(left: 20.0, top: 10.0),
                     // width: 200,
                     child: Text(
                       'Sale price with GST:',
@@ -296,7 +296,7 @@ class ProductDetailsState extends State<ProductDetails> {
                     ),
                   ),
                   Container(
-                      margin: EdgeInsets.only(left: 20.0, top: 20.0),
+                      margin: EdgeInsets.only(left: 20.0, top: 10.0),
                       // width: 100,
                       child: Text(
                         () {
@@ -319,7 +319,7 @@ class ProductDetailsState extends State<ProductDetails> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                    margin: EdgeInsets.only(left: 20.0, top: 20.0),
+                    margin: EdgeInsets.only(left: 20.0, top: 10.0),
                     // width: 200,
                     child: Text(
                       'Profit:',
@@ -330,7 +330,7 @@ class ProductDetailsState extends State<ProductDetails> {
                     ),
                   ),
                   Container(
-                      margin: EdgeInsets.only(left: 20.0, top: 20.0),
+                      margin: EdgeInsets.only(left: 20.0, top: 10.0),
                       // width: 100,
                       child: Text(
                         () {
@@ -346,7 +346,7 @@ class ProductDetailsState extends State<ProductDetails> {
                         ),
                       )),
                   Container(
-                      margin: EdgeInsets.only(left: 20.0, top: 20.0),
+                      margin: EdgeInsets.only(left: 20.0, top: 10.0),
                       // width:100.0,
                       child: Text(
                         profitPercent.toString() + ' %',
@@ -356,7 +356,7 @@ class ProductDetailsState extends State<ProductDetails> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.only(left: 20.0, top: 20.0, bottom: 5.0),
+                padding: EdgeInsets.only(left: 20.0, top: 0.0, bottom: 0.0),
                 child: Divider(color: Colors.brown, height: 5.0),
               ),
               Row(

@@ -15,12 +15,15 @@ class QueryBrand extends StatefulWidget {
 class QueryBrandState extends State<QueryBrand> {
   List<dynamic> brandList = [];
   List<dynamic> _filteredList = [];
+  bool isBusy = false;
 
   doInit() async {
     List<String> sharedList = await getSharedList();
     ibuki.httpPost('tunnel:get:brands', args: {});
+    isBusy = true;
     dynamic d = await ibuki.filterOnFuture('tunnel:get:brands');
     setState(() {
+      isBusy = false;
       brandList = d['data'].map((x) {
         return {
           'brand': x['brand'].toLowerCase(),
@@ -113,7 +116,7 @@ class QueryBrandState extends State<QueryBrand> {
   @override
   Widget build(BuildContext context) {
     Widget wid = Scaffold(
-      appBar: search.getSearchAppBar(filterFn: _doFilter),
+      appBar: search.getSearchAppBar(filterFn: _doFilter,isBusy: isBusy),
       body:getSearchBody()
     );
     return (wid);

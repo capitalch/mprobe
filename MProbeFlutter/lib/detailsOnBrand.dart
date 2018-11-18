@@ -14,13 +14,16 @@ class DetailsOnBrand extends StatefulWidget {
 class DetailsOnBrandState extends State<DetailsOnBrand> {
   List<dynamic> _filteredList = [];
   List<dynamic> productList = [];
+  bool isBusy = false;
 
   doInit() async {
     final brand = globals.Util.get('id');
     ibuki.httpPost('tunnel:get:details:on:brand', args: {'brand': brand});
+    isBusy = true;
     dynamic d = await ibuki.filterOnFuture('tunnel:get:details:on:brand');
     setState(() {
       productList = d['data'];
+      isBusy = false;
     });
     _doFilter('');
   }
@@ -55,7 +58,7 @@ class DetailsOnBrandState extends State<DetailsOnBrand> {
   @override
   Widget build(BuildContext context) {
     Widget wid = Scaffold(
-        appBar: search.getSearchAppBar(filterFn: _doFilter),
+        appBar: search.getSearchAppBar(filterFn: _doFilter,isBusy: isBusy),
         body: getSearchBody());
     return (wid);
   }

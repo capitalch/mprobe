@@ -1,4 +1,6 @@
 // library globalsLib;
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
@@ -19,7 +21,7 @@ Future<dynamic> httpPost(String id, {dynamic args}) async {
     "token": settingsObj["token"],
     "args": args
   };
-  
+
   Future<dynamic> result = http.post(url,
       headers: {"Content-Type": "application/json"}, body: json.encode(body));
   return (result);
@@ -28,10 +30,10 @@ Future<dynamic> httpPost(String id, {dynamic args}) async {
 dynamic httpPostMock() async {
   const String url = 'http://10.0.2.2:3004/test/timer';
   dynamic result = http.post((url));
-  return(result);
+  return (result);
 }
 
-Map<String,dynamic> packet = new Map();
+Map<String, dynamic> packet = new Map();
 
 class Util {
   static final _formatter1 = new NumberFormat("##,###");
@@ -53,26 +55,36 @@ class Util {
     return (mdate);
   }
 
-  static dynamic get(id){
-    return(packet[id]);
+  static dynamic get(id) {
+    return (packet[id]);
   }
 
-  static void set(id,value){
+  static void set(id, value) {
     packet[id] = value;
   }
 
-  static Future<SharedPreferences> getSharedPreferences(){
-    return(SharedPreferences.getInstance());
+  static Future<SharedPreferences> getSharedPreferences() {
+    return (SharedPreferences.getInstance());
   }
 
+  static Widget getBusyIndicator(bool isBusy) {
+    isBusy = isBusy ?? false;
+    Widget wid = isBusy
+        ? Padding(
+            padding: EdgeInsets.only(left: 30.0),
+            child: CupertinoActivityIndicator(
+              radius: 10.0,
+              animating: true,
+            ),
+          )
+        : null;
+    return (wid);
+  }
 }
-
-
 
 //  static loadCounter() async {
 //    SharedPreferences prefs = await SharedPreferences.getInstance();
 //  }
-
 
 //  static dynamic getShared(String key){
 //    dynamic prefs = () async {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import "dart:convert";
+// import "dart:convert";
 import 'globals.dart' as globals;
 import 'ibuki.dart' as ibuki;
 
@@ -11,6 +11,7 @@ class Health extends StatefulWidget {
 }
 
 class HealthState extends State<Health> {
+  bool isBusy = false;
   dynamic _healthSnapShot = {
     "opstockvalue": "",
     "closstockvalue": "",
@@ -25,17 +26,18 @@ class HealthState extends State<Health> {
 
   @override
   void initState() {
+    super.initState();
     subs = ibuki.filterOn('tunnel:get:business:health').listen((d){
       setState((){
         dynamic healthList = d['data'];
+        isBusy=false;
         if(healthList.length > 0){
           _healthSnapShot = healthList[0];
         }
       });
     });
     ibuki.httpPost('tunnel:get:business:health');
-    // populate();
-    super.initState();
+    isBusy =true;
   }
 
   @override
@@ -48,13 +50,12 @@ class HealthState extends State<Health> {
   Widget build(BuildContext context) {
     dynamic col = getColumn(_healthSnapShot);
     return Scaffold(
-        appBar: AppBar(title: Text('Health')),
+        appBar: AppBar(title: Text('Health'), leading: globals.Util.getBusyIndicator(isBusy),),
         body: Container(margin: EdgeInsets.all(40.0), child: col));
   }
 }
 
 dynamic getColumn(_healthSnapShot) {
-  // final formatter = new NumberFormat("##,###");
   dynamic col =
       Column(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
     Row(
