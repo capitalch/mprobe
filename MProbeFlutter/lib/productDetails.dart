@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-//import "dart:convert";
-//import 'dart:async' show Future;
 import 'ibuki.dart' as ibuki;
 import 'globals.dart' as globals;
 
@@ -14,7 +12,6 @@ class ProductDetails extends StatefulWidget {
 }
 
 class ProductDetailsState extends State<ProductDetails> {
-  // dynamic subs;
   final int prId;
   List<dynamic> productDetails = [];
   ProductDetailsState(this.prId);
@@ -92,7 +89,6 @@ class ProductDetailsState extends State<ProductDetails> {
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Row(
-                // mainAxisAlignment:MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.only(left: 20.0, top: 20.0),
@@ -109,7 +105,6 @@ class ProductDetailsState extends State<ProductDetails> {
                       width: 100,
                       child: Text(
                         getValue('last_pur_date'),
-                        // productDetails[0]['last_pur_date'].toString(),
                         textAlign: TextAlign.right,
                         style: TextStyle(
                           fontSize: 18.0,
@@ -118,7 +113,6 @@ class ProductDetailsState extends State<ProductDetails> {
                 ],
               ),
               Row(
-                // mainAxisAlignment:MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.only(left: 20.0, top: 20.0),
@@ -135,7 +129,6 @@ class ProductDetailsState extends State<ProductDetails> {
                       width: 100,
                       child: Text(
                         getValue('cr'),
-                        // productDetails[0]['cr'].toString(),
                         textAlign: TextAlign.right,
                         style: TextStyle(
                           fontSize: 18.0,
@@ -144,7 +137,6 @@ class ProductDetailsState extends State<ProductDetails> {
                 ],
               ),
               Row(
-                // mainAxisAlignment:MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.only(left: 20.0, top: 20.0),
@@ -161,7 +153,6 @@ class ProductDetailsState extends State<ProductDetails> {
                       width: 100,
                       child: Text(
                         getValue('daysold'),
-                        // productDetails[0]['daysold'].toString(),
                         textAlign: TextAlign.right,
                         style: TextStyle(
                           fontSize: 18.0,
@@ -170,7 +161,6 @@ class ProductDetailsState extends State<ProductDetails> {
                 ],
               ),
               Row(
-                // mainAxisAlignment:MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.only(left: 20.0, top: 20.0),
@@ -187,7 +177,6 @@ class ProductDetailsState extends State<ProductDetails> {
                       width: 100,
                       child: Text(
                         getValue('clos'),
-                        // productDetails[0]['clos'].toString(),
                         textAlign: TextAlign.right,
                         style: TextStyle(
                           fontSize: 18.0,
@@ -200,7 +189,6 @@ class ProductDetailsState extends State<ProductDetails> {
                 child: Divider(color: Colors.brown, height: 5.0),
               ),
               Row(
-                // mainAxisAlignment:MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.only(left: 20.0, top: 20.0),
@@ -225,7 +213,6 @@ class ProductDetailsState extends State<ProductDetails> {
                 ],
               ),
               Row(
-                // mainAxisAlignment:MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.only(left: 20.0, top: 20.0),
@@ -242,7 +229,6 @@ class ProductDetailsState extends State<ProductDetails> {
                       width: 100,
                       child: Text(
                         globals.Util.getFormatted1(getValue('gst')),
-                        // productDetails[0]['gst'].toString(),
                         textAlign: TextAlign.right,
                         style: TextStyle(
                           fontSize: 18.0,
@@ -251,7 +237,6 @@ class ProductDetailsState extends State<ProductDetails> {
                 ],
               ),
               Row(
-                // mainAxisAlignment:MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.only(left: 20.0, top: 20.0),
@@ -268,11 +253,8 @@ class ProductDetailsState extends State<ProductDetails> {
                       width: 100,
                       child: Text(
                         globals.Util.getFormatted1(getValue('gstcost')),
-                        // productDetails[0]['gstcost'].toString(),
                         textAlign: TextAlign.right,
-                        style: TextStyle(
-                          fontSize: 25.0, color: Colors.purple
-                        ),
+                        style: TextStyle(fontSize: 25.0, color: Colors.purple),
                       ))
                 ],
               ),
@@ -286,10 +268,8 @@ class ProductDetailsState extends State<ProductDetails> {
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.only(left: 20.0, top: 10.0),
-                    // width: 200,
                     child: Text(
                       'Sale price with GST:',
-                      // textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 18.0,
                       ),
@@ -297,7 +277,6 @@ class ProductDetailsState extends State<ProductDetails> {
                   ),
                   Container(
                       margin: EdgeInsets.only(left: 20.0, top: 10.0),
-                      // width: 100,
                       child: Text(
                         () {
                           String s = getValue('gstcost');
@@ -308,9 +287,7 @@ class ProductDetailsState extends State<ProductDetails> {
                         }()
                             .toString(),
                         textAlign: TextAlign.right,
-                        style: TextStyle(
-                          fontSize: 35.0,color: Colors.red
-                        ),
+                        style: TextStyle(fontSize: 35.0, color: Colors.red),
                       ))
                 ],
               ),
@@ -320,10 +297,8 @@ class ProductDetailsState extends State<ProductDetails> {
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.only(left: 20.0, top: 10.0),
-                    // width: 200,
                     child: Text(
                       'Profit:',
-                      // textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 18.0,
                       ),
@@ -340,10 +315,7 @@ class ProductDetailsState extends State<ProductDetails> {
                           return (globals.Util.getFormatted1(profit));
                         }(),
                         textAlign: TextAlign.right,
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          color: Colors.blue
-                        ),
+                        style: TextStyle(fontSize: 20.0, color: Colors.blue),
                       )),
                   Container(
                       margin: EdgeInsets.only(left: 20.0, top: 10.0),
@@ -372,8 +344,6 @@ class ProductDetailsState extends State<ProductDetails> {
                       changeProfit(-1);
                     },
                   ),
-
-                  // TextField(controller: TextEditingController.fromValue(TextEditingValue(text: '10.0')),),
                   IconButton(
                     iconSize: 65.0,
                     icon: Icon(
@@ -389,15 +359,6 @@ class ProductDetailsState extends State<ProductDetails> {
             ],
           )),
     );
-
-    // Widget wid = SafeArea(
-    //     child: Card(
-    //         margin: EdgeInsets.all(5.0),
-    //         child: Column(
-    //           mainAxisSize: MainAxisSize.max,
-    //           children: <Widget>[Text('Card test')],
-    //         )));
-
     return (wid);
   }
 }
