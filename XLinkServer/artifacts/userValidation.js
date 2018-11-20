@@ -1,7 +1,8 @@
 let crypto = require('crypto');
 let messages = require('./messages');
 let fs = require('fs');
-let config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
+// let config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
+let config = require('../config.json');
 let userInfo = require('./userInfo');
 
 let getUserObject = (uid) => {

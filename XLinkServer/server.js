@@ -2,7 +2,8 @@
 let fs = require('fs');
 let http = require('http');
 let bodyParser = require('body-parser');
-let config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
+// let config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
+let config = require('./config.json');
 let def = require('./artifacts/definitions');
 let messages = require('./artifacts/messages');
 let socketHelper = require('./artifacts/socketHelper');
