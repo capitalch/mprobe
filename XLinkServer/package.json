@@ -16,7 +16,7 @@
     "request": "^2.81.0",
     "rethinkdb": "^2.3.3",
     "rxjs": "^5.3.0",
-    "socket.io": "^2.0.4",
+    "socket.io": "^2.1.1",
     "socket.io-stream": "^0.9.1"
   }
 }
