@@ -12,8 +12,13 @@ Future<dynamic> httpPost(String id, {dynamic args}) async {
   var settings = await rootBundle.loadString('assets/settings.json');
   var settingsObj = json.decode(settings);
   // const String url = 'http://14.143.150.10:3004/api/tunnel';
+<<<<<<< HEAD
   const String url = 'http://chisel.cloudjiffy.net/api/tunnel';
   // const String url = 'http://10.0.2.2:3000/api/tunnel';
+=======
+  // const String url = 'http://10.0.2.2:3004/api/tunnel';
+  const String url = 'http://10.0.2.2:3000/api/tunnel';
+>>>>>>> 83d7ac1180e4a565a7d101e6343936a9fc5de0df
   final body = {
     "type": "sql",
     "sqlKey": id,
