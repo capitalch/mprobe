@@ -1,6 +1,7 @@
 let xUrl = {};
 xUrl.cloud = 'http://14.143.150.10:3004';
-xUrl.cloud = 'http://chisel.cloudjiffy.net/'
+xUrl.cloud = 'http://chisel.cloudjiffy.net'
+// xUrl.cloud = 'http://103.217.220.148'
 // xUrl.local = 'http://localhost:3004';
 xUrl.local = 'http://localhost:3000';
 // mpUrl.selected = mpUrl.cloud;
