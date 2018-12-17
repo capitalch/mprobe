@@ -1,0 +1,73 @@
+[{
+	"pr_id": "22312",
+	"item": "ADAPTER",
+	"model": "EH70P",
+	"stock": "0",
+	"basiccost": "1052.75",
+	"gst": "28.00",
+	"gstcost": "1347.52000000"
+}, {
+	"pr_id": "20554",
+	"item": "AVCABLE",
+	"model": "EGD100",
+	"stock": "0",
+	"basiccost": "491.00",
+	"gst": "18.00",
+	"gstcost": "579.38000000"
+}, {
+	"pr_id": "20369",
+	"item": "B.PACK",
+	"model": "MBD15",
+	"stock": "0",
+	"basiccost": "9029.09",
+	"gst": "18.00",
+	"gstcost": "10654.33000000"
+}, {
+	"pr_id": "20179",
+	"item": "BAT / CHAG",
+	"model": "EH69",
+	"stock": "0",
+	"basiccost": "1151.00",
+	"gst": "18.00",
+	"gstcost": "1358.18000000"
+}, {
+	"pr_id": "20137",
+	"item": "BAT / CHAG",
+	"model": "MH18",
+	"stock": "0",
+	"basiccost": "1505.00",
+	"gst": "18.00",
+	"gstcost": "1775.90000000"
+}, {
+	"pr_id": "17206",
+	"item": "BAT / CHAG",
+	"model": "MH2",
+	"stock": "2",
+	"basiccost": "1174.80",
+	"gst": "18.00",
+	"gstcost": "1386.26000000"
+}, {
+	"pr_id": "13970",
+	"item": "BAT / CHAG",
+	"model": "MH24",
+	"stock": "4",
+	"basiccost": "1845.34",
+	"gst": "18.00",
+	"gstcost": "2177.50000000"
+}, {
+	"pr_id": "17444",
+	"item": "BAT / CHAG",
+	"model": "MH25",
+	"stock": "4",
+	"basiccost": "1671.26",
+	"gst": "18.00",
+	"gstcost": "1972.09000000"
+}, {
+	"pr_id": "13507",
+	"item": "BAT / CHAG",
+	"model": "MH61",
+	"stock": "0",
+	"basiccost": "905.26",
+	"gst": "18.00",
+	"gstcost": "1068.21000000"
+}]

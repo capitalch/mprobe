@@ -229,6 +229,18 @@ router.post('/api/tunnel/static', (req, res, next) => {
             case "tunnel:get:jakar:on:days":
                 res.send(getData('data/jakar.json'));
                 break;
+            case "tunnel:get:jakar:details":
+                res.send(getData('data/jakar-details.json'));
+                break;
+            case "tunnel:get:brands":
+                res.send(getData('data/brands.json'));
+                break;
+            case "tunnel:get:details:on:brand":
+                res.send(getData('data/details-on-brand.json'));
+                break;
+            case "tunnel:get:product:details:on:prid":
+                res.send(getData('data/details-on-prid'));
+                break;
         }          
         res.end();
     } catch (error) {
