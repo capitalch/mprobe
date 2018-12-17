@@ -1,7 +1,2 @@
 // Port to Cosmos
-1. Locally move the app to Cosmos
-    a. Node modules
-    b. Routing
-    c. server.js
-    d. Authentication
-2. Move to cloud jiffy
+1. Use Expansion Panel list instead of Expansion Tile List
