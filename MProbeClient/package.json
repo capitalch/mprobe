@@ -12,7 +12,7 @@
     "edge": "^6.5.1",
     "request": "^2.88.0",
     "sha1": "^1.1.1",
-    "socket.io-client": "^2.1.1",
+    "socket.io-client": "^2.0.4",
     "socket.io-stream": "^0.9.1",
     "sqlanywhere": "^1.0.24",
     "winston": "^2.4.4"

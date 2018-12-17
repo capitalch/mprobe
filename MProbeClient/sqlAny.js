@@ -16,7 +16,7 @@ let createSql = (options) => {
   // let text = ':a is a man and :b is relative of :a and :c is another relative
   // of :b'; let obj = {   ':a': 'Sushant',   ':b': 'Prashant',   ':c': 'Sanjeev'
   // };
-  let sqlString = sql[options.sqlKey].toLowerCase();
+  let sqlString = sql[options.sqlKey] ? sql[options.sqlKey].toLowerCase() : '';
   let args = options.args;
   let argsArray = Object
     .keys(args)

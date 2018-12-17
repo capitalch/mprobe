@@ -13,18 +13,21 @@ dynamic getReportBody(reportId, resultSet) {
           return Row(children: getFooterWidgets(reportId, resultSet));
         }
         i = i - 1;
+
         Row row = Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: getBodyWidgets(reportId, resultSet[i]));
+
         InkWell ink = InkWell(
           child: row,
           onTap: () {
-            String route = '';
-            route = '/' + report.reports[reportId]['drillDownReport'];
             String id = report.reports[reportId]["idName"];
             globals.Util.set('id', resultSet[i][id]);
-            Navigator.pushNamed(context, route);
+
+            String route = report.reports[reportId]['drillDownReport'] ??
+                report.reports[reportId]['drillDownRoute'];
+            route == null ? () {} : Navigator.pushNamed(context, (route));
           },
         );
         return (ink);
@@ -45,9 +48,11 @@ dynamic _summation(List<dynamic> myList, String name) {
   return (fmt);
 }
 
-dynamic getMultiItems(String item, dynamic result) {
+dynamic getMultiItems(String item, dynamic result, dynamic compute) {
   dynamic out = '';
-  if (item.contains(',')) {
+  if (compute != null) {
+    out = compute(result);
+  } else if (item.contains(',')) {
     List<String> items = item.split(',');
     items.forEach((x) {
       out = out + result[x] + ' ';
@@ -64,13 +69,14 @@ dynamic getBodyWidgets(String id, dynamic result) {
   List<Widget> bodyWidget = List<Widget>();
   body.forEach((d) {
     String item = d['name'];
+    dynamic compute = d['compute'];
     bodyWidget.add(Container(
       constraints: BoxConstraints(minHeight: 30.0),
       child: SizedBox(
           width: d["width"],
           // height: 30.0,
           child: Text(
-            globals.Util.getFormatted1(getMultiItems(item, result)),
+            globals.Util.getFormatted1(getMultiItems(item, result, compute)),
             textAlign: _getAlignment(d),
           )),
       padding: EdgeInsets.only(top: 10.0, bottom: 10.0),

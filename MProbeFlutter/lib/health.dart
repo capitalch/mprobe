@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import "dart:convert";
+// import "dart:convert";
 import 'globals.dart' as globals;
+import 'ibuki.dart' as ibuki;
 
 class Health extends StatefulWidget {
   @override
@@ -10,6 +11,7 @@ class Health extends StatefulWidget {
 }
 
 class HealthState extends State<Health> {
+  bool isBusy = false;
   dynamic _healthSnapShot = {
     "opstockvalue": "",
     "closstockvalue": "",
@@ -20,36 +22,40 @@ class HealthState extends State<Health> {
     "profit": "",
     "grossprofit": ""
   };
+  dynamic subs;
 
-  populate() {
-    globals.httpPost('tunnel:get:business:health').then((d) {
-      if (mounted) {
-        setState(() {
-          dynamic healthList =
-              json.decode(d.body); //.cast<Map<String, dynamic>>();
-          if (healthList.length > 0) {
-            _healthSnapShot = healthList[0];
-          }
-        });
-      }
+  @override
+  void initState() {
+    super.initState();
+    subs = ibuki.filterOn('tunnel:get:business:health').listen((d){
+      setState((){
+        dynamic healthList = d['data'];
+        isBusy=false;
+        if(healthList.length > 0){
+          _healthSnapShot = healthList[0];
+        }
+      });
     });
+    ibuki.httpPost('tunnel:get:business:health');
+    isBusy =true;
   }
 
-  HealthState() {
-    populate();
+  @override
+  void dispose(){
+    subs.cancel();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     dynamic col = getColumn(_healthSnapShot);
     return Scaffold(
-        appBar: AppBar(title: Text('Health')),
+        appBar: AppBar(title: Text('Health'), leading: globals.Util.getBusyIndicator(isBusy),),
         body: Container(margin: EdgeInsets.all(40.0), child: col));
   }
 }
 
 dynamic getColumn(_healthSnapShot) {
-  // final formatter = new NumberFormat("##,###");
   dynamic col =
       Column(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
     Row(
@@ -188,3 +194,25 @@ dynamic getColumn(_healthSnapShot) {
   ]);
   return (col);
 }
+
+/*
+
+  // HealthState() {
+  //   populate();
+  // }
+  
+  populate() {
+    globals.httpPost('tunnel:get:business:health').then((d) {
+      if (mounted) {
+        setState(() {
+          dynamic healthList =
+              json.decode(d.body); //.cast<Map<String, dynamic>>();
+          if (healthList.length > 0) {
+            _healthSnapShot = healthList[0];
+          }
+        });
+      }
+    });
+  }
+
+*/
