@@ -14,7 +14,7 @@ var reports = {
       {
         "title": "Pos",
         "name": "pos_name",
-        "width": 70.0,
+        "width": 100.0,
       },
       {
         "title": "Sale",
@@ -26,30 +26,30 @@ var reports = {
       {
         "title": "GP",
         "name": "gp",
-        "width": 70.0,
+        "width": 80.0,
         "isSum": true,
         "alignment": 'right'
       },
       {
         "title": "Cgp",
         "name": "cgp",
-        "width": 70.0,
+        "width": 80.0,
         "isSum": true,
         "alignment": 'right'
       },
-      {
-        "title": "Add",
-        "name": "add",
-        "width": 60.0,
-        // "isComputed": true,
-        "alignment": 'right',
-        "compute": (result) {
-          // double.tryParse(result['gp']) + double.tryParse(result['cgp'])
-          print(result);
-          return (double.tryParse(result['gp']) + double.tryParse(result['gp']))
-              .toString();
-        }
-      }
+      // {
+      //   "title": "Add",
+      //   "name": "add",
+      //   "width": 60.0,
+      //   // "isComputed": true,
+      //   "alignment": 'right',
+      //   "compute": (result) {
+      //     // double.tryParse(result['gp']) + double.tryParse(result['cgp'])
+      //     print(result);
+      //     return (double.tryParse(result['gp']) + double.tryParse(result['gp']))
+      //         .toString();
+      //   }
+      // }
     ]
   },
   "saleDetails1": {

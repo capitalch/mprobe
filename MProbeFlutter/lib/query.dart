@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
 import 'package:shared_preferences/shared_preferences.dart';
-// import 'ibuki.dart' as ibuki;
 
 class Query extends StatefulWidget {
   @override

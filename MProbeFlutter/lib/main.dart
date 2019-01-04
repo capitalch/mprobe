@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'health.dart';
-import 'mock.dart';
+// import 'mock.dart';
 import 'generic1.dart';
 import 'query.dart';
 import 'queryBrand.dart';
@@ -142,9 +142,9 @@ class MyApp extends StatelessWidget {
           final prId = globals.Util.get('id');
           return(ProductDetails(prId));
         },
-        'mock':(BuildContext context){
-          return(Mock());
-        }
+        // 'mock':(BuildContext context){
+        //   return(Mock());
+        // }
       },
     );
   }
@@ -230,7 +230,7 @@ final List<Entry> data = <Entry>[
     Entry('Banks', 'banks')
   ]),
   Entry('Business', null, <Entry>[
-    Entry('Mock', 'mock'),
+    // Entry('Mock', 'mock'),
     Entry('Health', 'health'),
     Entry('Sales', 'sales'),    
     Entry('Detailed sales', 'detailedSales'),
