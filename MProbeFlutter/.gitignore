@@ -6,6 +6,8 @@
 *.metadata
 *.packages
 *.lock
+*.jks
+key.properties
 
 # Miscellaneous
 *.class
