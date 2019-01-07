@@ -11,9 +11,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 Future<dynamic> httpPost(String id, {dynamic args}) async {
   var settings = await rootBundle.loadString('assets/settings.json');
   var settingsObj = json.decode(settings);
-  // const String url = 'http://14.143.150.10:3004/api/tunnel';
+  // const String url = 'http://10.0.2.2:3004/api/tunnel';
   const String url = 'http://chisel.cloudjiffy.net/api/tunnel';
   // const String url = 'http://10.0.2.2:3004/api/tunnel/static';
+  // const String url = 'http://chisel.cloudjiffy.net/api/tunnel/static';
   final body = {
     "type": "sql",
     "sqlKey": id,
