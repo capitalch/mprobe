@@ -1,5 +1,6 @@
 "use strict";
 let express = require('express');
+const path = require('path');
 let fs = require('fs');
 let crypto = require('crypto');
 let jwt = require('jsonwebtoken');
@@ -191,72 +192,56 @@ router.post('/api/tunnel/static', (req, res, next) => {
         res.header("Content-Type", 'application/json');
         switch (sqlKey) {
             case "tunnel:get:business:health":
-                res.send(getData('data/health.json'));
+                res.sendFile(path.join(__dirname, '../','data','health.json'));
                 break;
             case "tunnel:get:todays:sale":
-                res.send(getData('data/sales.json'));
+                res.sendFile(path.join(__dirname, '../','data','sales.json'));
                 break;
             case "tunnel:get:sale:details:product":
-                res.send(getData('data/detailed-sales.json'));
+                res.sendFile(path.join(__dirname, '../','data','detailed-sales.json'));
                 break;
             case "tunnel:get:sale:details1":
-                res.send(getData('data/sale-details-1.json'));
+                res.sendFile(path.join(__dirname, '../','data','sale-details-1.json'));
                 break;
             case "tunnel:get:sale:details2":
-                res.send(getData('data/sale-details-2.json'));
+                res.sendFile(path.join(__dirname, '../','data','sale-details-2.json'));
                 break;
             case "tunnel:get:orders":
-                res.send(getData('data/orders.json'));
+                res.sendFile(path.join(__dirname, '../','data','orders.json'));
                 break;
             case "tunnel:get:order:details":
-                res.send(getData('data/order-details.json'));
+                res.sendFile(path.join(__dirname, '../','data','order-details.json'));
                 break;
             case "tunnel:get:cheque:payments":
-                res.send(getData('data/cheque-payments.json'));
+                res.sendFile(path.join(__dirname, '../','data','cheque-payments.json'));
                 break;
             case "tunnel:get:cash:payments":
-                res.send(getData('data/cash-payments.json'));
+                res.sendFile(path.join(__dirname, '../','data','cash-payments.json'));
                 break;
             case "tunnel:get:debit:credit:notes":
-                res.send(getData('data/debit-credit-notes.json'));
+                res.sendFile(path.join(__dirname, '../','data','debit-credit-notes.json'));
                 break;
             case "tunnel:get:banks":
-                res.send(getData('data/banks.json'));
+                res.sendFile(path.join(__dirname, '../','data','banks.json'));
                 break;
             case "tunnel:get:bank:recon:details":
-                res.send(getData('data/bank-details.json'));
+                res.sendFile(path.join(__dirname, '../','data','bank-details.json'));
                 break;
             case "tunnel:get:jakar:on:days":
-                res.send(getData('data/jakar.json'));
+                res.sendFile(path.join(__dirname, '../','data','jakar.json'));
                 break;
-<<<<<<< HEAD
-            case "tunnel:get:jakar:details":
-                res.send(getData('data/jakar-details.json'));
-                break;
-            case "tunnel:get:brands":
-                res.send(getData('data/brands.json'));
-                break;
-            case "tunnel:get:details:on:brand":
-                res.send(getData('data/details-on-brand.json'));
-                break;
-            case "tunnel:get:product:details:on:prid":
-                res.send(getData('data/details-on-prid'));
-                break;
-        }          
-=======
         }
->>>>>>> b52823d519691a899f09d39ab201d404af7a0541
-        res.end();
+        // res.end();
     } catch (error) {
         let err = new def.NError(500, messages.errInternalServerError, error.message);
         next(err);
     }
 });
 
-var getData = function (file) {
-    let obj = JSON.parse(fs.readFileSync(file, 'utf8'));
-    let output = JSON.stringify(obj, null, 4);
-    return output;
-}
+// var getData = function (file) {
+//     let obj = JSON.parse(fs.readFileSync(file, 'utf8'));
+//     let output = JSON.stringify(obj, null, 4);
+//     return output;
+// }
 
 module.exports = router;
