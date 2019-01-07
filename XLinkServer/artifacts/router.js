@@ -192,43 +192,46 @@ router.post('/api/tunnel/static', (req, res, next) => {
         res.header("Content-Type", 'application/json');
         switch (sqlKey) {
             case "tunnel:get:business:health":
-                res.sendFile(path.join(__dirname, '../','data','health.json'));
+                res.sendFile(path.join(__dirname, '../', 'data', 'health.json'));
                 break;
             case "tunnel:get:todays:sale":
-                res.sendFile(path.join(__dirname, '../','data','sales.json'));
+                res.sendFile(path.join(__dirname, '../', 'data', 'sales.json'));
                 break;
             case "tunnel:get:sale:details:product":
-                res.sendFile(path.join(__dirname, '../','data','detailed-sales.json'));
+                res.sendFile(path.join(__dirname, '../', 'data', 'detailed-sales.json'));
                 break;
             case "tunnel:get:sale:details1":
-                res.sendFile(path.join(__dirname, '../','data','sale-details-1.json'));
+                res.sendFile(path.join(__dirname, '../', 'data', 'sale-details-1.json'));
                 break;
             case "tunnel:get:sale:details2":
-                res.sendFile(path.join(__dirname, '../','data','sale-details-2.json'));
+                res.sendFile(path.join(__dirname, '../', 'data', 'sale-details-2.json'));
                 break;
             case "tunnel:get:orders":
-                res.sendFile(path.join(__dirname, '../','data','orders.json'));
+                res.sendFile(path.join(__dirname, '../', 'data', 'orders.json'));
                 break;
             case "tunnel:get:order:details":
-                res.sendFile(path.join(__dirname, '../','data','order-details.json'));
+                res.sendFile(path.join(__dirname, '../', 'data', 'order-details.json'));
                 break;
             case "tunnel:get:cheque:payments":
-                res.sendFile(path.join(__dirname, '../','data','cheque-payments.json'));
+                res.sendFile(path.join(__dirname, '../', 'data', 'cheque-payments.json'));
                 break;
             case "tunnel:get:cash:payments":
-                res.sendFile(path.join(__dirname, '../','data','cash-payments.json'));
+                res.sendFile(path.join(__dirname, '../', 'data', 'cash-payments.json'));
                 break;
             case "tunnel:get:debit:credit:notes":
-                res.sendFile(path.join(__dirname, '../','data','debit-credit-notes.json'));
+                res.sendFile(path.join(__dirname, '../', 'data', 'debit-credit-notes.json'));
                 break;
             case "tunnel:get:banks":
-                res.sendFile(path.join(__dirname, '../','data','banks.json'));
+                res.sendFile(path.join(__dirname, '../', 'data', 'banks.json'));
                 break;
             case "tunnel:get:bank:recon:details":
-                res.sendFile(path.join(__dirname, '../','data','bank-details.json'));
+                res.sendFile(path.join(__dirname, '../', 'data', 'bank-details.json'));
                 break;
             case "tunnel:get:jakar:on:days":
-                res.sendFile(path.join(__dirname, '../','data','jakar.json'));
+                res.sendFile(path.join(__dirname, '../', 'data', 'jakar.json'));
+                break;
+            case "tunnel:get:jakar:details":
+                res.sendFile(path.join(__dirname, '../', 'data', 'jakar-details.json'));
                 break;
         }
         // res.end();
