@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:java="http://www.yworks.com/xml/yfiles-common/1.0/java" xmlns:sys="http://www.yworks.com/xml/yfiles-common/markup/primitives/2.0" xmlns:x="http://www.yworks.com/xml/yfiles-common/markup/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:y="http://www.yworks.com/xml/graphml" xmlns:yed="http://www.yworks.com/xml/yed/3" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd">
+  <!--Created by yEd 3.18.2-->
+  <key attr.name="Description" attr.type="string" for="graph" id="d0"/>
+  <key for="port" id="d1" yfiles.type="portgraphics"/>
+  <key for="port" id="d2" yfiles.type="portgeometry"/>
+  <key for="port" id="d3" yfiles.type="portuserdata"/>
+  <key attr.name="url" attr.type="string" for="node" id="d4"/>
+  <key attr.name="description" attr.type="string" for="node" id="d5"/>
+  <key for="node" id="d6" yfiles.type="nodegraphics"/>
+  <key for="graphml" id="d7" yfiles.type="resources"/>
+  <key attr.name="url" attr.type="string" for="edge" id="d8"/>
+  <key attr.name="description" attr.type="string" for="edge" id="d9"/>
+  <key for="edge" id="d10" yfiles.type="edgegraphics"/>
+  <graph edgedefault="directed" id="G">
+    <data key="d0"/>
+    <node id="n0">
+      <data key="d5"/>
+      <data key="d6">
+        <y:GenericNode configuration="com.yworks.flowchart.cloud">
+          <y:Geometry height="50.0" width="529.0" x="478.0" y="132.0"/>
+          <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="35.353515625" x="246.8232421875" xml:space="preserve" y="15.6494140625">Cloud<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n1">
+      <data key="d5"/>
+      <data key="d6">
+        <y:SVGNode>
+          <y:Geometry height="42.9556999206543" width="69.0154037475586" x="539.4922981262207" y="337.52215003967285"/>
+          <y:Fill color="#CCCCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="48.021484375" x="-64.5030403137207" xml:space="preserve" y="12.127264022827148">Desktop<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.0" nodeRatioX="-0.5" nodeRatioY="0.0" offsetX="-16.481555938720703" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:SVGNodeProperties usingVisualBounds="true"/>
+          <y:SVGModel svgBoundsPolicy="0">
+            <y:SVGContent refid="1"/>
+          </y:SVGModel>
+        </y:SVGNode>
+      </data>
+    </node>
+    <node id="n2">
+      <data key="d5"/>
+      <data key="d6">
+        <y:SVGNode>
+          <y:Geometry height="30.97784996032715" width="20.399999999999977" x="935.0999999999999" y="337.52215003967285"/>
+          <y:Fill color="#CCCCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="76.052734375" x="47.87363281249998" xml:space="preserve" y="6.138339042663574">Mobile phone<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.0" nodeRatioX="0.5" nodeRatioY="0.0" offsetX="27.4736328125" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:SVGNodeProperties usingVisualBounds="true"/>
+          <y:SVGModel svgBoundsPolicy="0">
+            <y:SVGContent refid="2"/>
+          </y:SVGModel>
+        </y:SVGNode>
+      </data>
+    </node>
+    <node id="n3">
+      <data key="d5"/>
+      <data key="d6">
+        <y:GenericNode configuration="com.yworks.sbgn.Macromolecule">
+          <y:Geometry height="40.0" width="220.0" x="464.0" y="430.0"/>
+          <y:Fill color="#FFFFFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="center" visible="true" width="200.79296875" x="9.603515625" xml:space="preserve" y="10.6494140625">Node.js client app running in desktop<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property class="java.lang.Integer" name="com.yworks.sbgn.style.radius" value="10"/>
+          </y:StyleProperties>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n4">
+      <data key="d5"/>
+      <data key="d6">
+        <y:GenericNode configuration="com.yworks.sbgn.Macromolecule">
+          <y:Geometry height="40.0" width="245.0" x="826.0" y="430.0"/>
+          <y:Fill hasColor="false" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="center" visible="true" width="234.818359375" x="5.0908203125" xml:space="preserve" y="10.6494140625">Google Flutter app running in mobile phone<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property class="java.lang.Integer" name="com.yworks.sbgn.style.radius" value="10"/>
+          </y:StyleProperties>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n5">
+      <data key="d5"/>
+      <data key="d6">
+        <y:GenericNode configuration="com.yworks.sbgn.Macromolecule">
+          <y:Geometry height="40.0" width="245.0" x="684.0" y="47.0"/>
+          <y:Fill hasColor="false" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="center" visible="true" width="231.47265625" x="6.763671875" xml:space="preserve" y="10.6494140625">Node.js socket application running in cloud<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property class="java.lang.Integer" name="com.yworks.sbgn.style.radius" value="10"/>
+          </y:StyleProperties>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n6">
+      <data key="d5"/>
+      <data key="d6">
+        <y:GenericNode configuration="com.yworks.sbgn.NucleicAcidFeature">
+          <y:Geometry height="69.6" width="188.0" x="464.0" y="32.400000000000006"/>
+          <y:Fill color="#FFFF99" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="center" visible="true" width="110.716796875" x="38.6416015625" xml:space="preserve" y="25.449414062499997">Mprobe architecture<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" backgroundColor="#FFFFFF" bottomInset="2" fontFamily="Dialog" fontSize="10" fontStyle="plain" height="16.2509765625" horizontalTextPosition="center" iconTextGap="4" leftInset="4" lineColor="#000000" modelName="custom" rightInset="4" textColor="#000000" topInset="2" verticalTextPosition="center" visible="true" width="23.5615234375" x="82.21923828125" xml:space="preserve" y="-8.12548828125">N:2<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.5" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property class="java.lang.Integer" name="com.yworks.sbgn.style.mcount" value="2"/>
+            <y:Property class="java.lang.Integer" name="com.yworks.sbgn.style.radius" value="10"/>
+          </y:StyleProperties>
+        </y:GenericNode>
+      </data>
+    </node>
+    <edge id="e0" source="n1" target="n1">
+      <data key="d9"/>
+      <data key="d10">
+        <y:BezierEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+        </y:BezierEdge>
+      </data>
+    </edge>
+    <edge id="e1" source="n1" target="n0">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="standard" target="standard"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="102.0625" x="-58.16573185731863" xml:space="preserve" y="-98.11221599578846">Socket connection<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="62.335631000325556" distanceToCenter="true" position="left" ratio="0.4823244413617436" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e2" source="n2" target="n0">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="standard" target="standard"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="87.384765625" x="-56.38145143810448" xml:space="preserve" y="-106.43141347281988">Http connection<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="60.98642569911735" distanceToCenter="true" position="right" ratio="0.5172644128052685" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e3" source="n3" target="n1">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e4" source="n4" target="n2">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e5" source="n5" target="n0">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+  </graph>
+  <data key="d7">
+    <y:Resources>
+      <y:Resource id="1" xml:space="preserve">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" width="71px" height="43px" viewBox="-1 -0.044 71 43" enable-background="new -1 -0.044 71 43"
+	 xml:space="preserve"&gt;
+&lt;defs&gt;
+&lt;/defs&gt;
+&lt;linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="807.2808" y1="1849.3247" x2="783.5425" y2="1849.3247" gradientTransform="matrix(1 0 0 1 -760.5996 -1807.4023)"&gt;
+	&lt;stop  offset="0" style="stop-color:#4D4D4D"/&gt;
+	&lt;stop  offset="1" style="stop-color:#999999"/&gt;
+&lt;/linearGradient&gt;
+&lt;path display="none" fill="url(#SVGID_1_)" d="M46.527,40.407c0,0.965-6.758,1.404-12.371,1.404c-3.889,0-10.914-0.349-11.367-1.268
+	c0,0.446,0,1.502,0,1.661c0,0.726,4.803,1.233,11.357,1.233c6.554,0,12.381-0.643,12.381-1.36
+	C46.527,41.921,46.527,40.87,46.527,40.407z"/&gt;
+&lt;path display="none" fill="#808080" d="M34.658,39.2c6.556,0,11.869,0.584,11.869,1.307c0,0.721-5.313,1.42-11.869,1.42
+	c-6.701,0-11.869-0.697-11.869-1.42S28.104,39.2,34.658,39.2z"/&gt;
+&lt;linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="797.8442" y1="1843.356" x2="792.8472" y2="1843.356" gradientTransform="matrix(1 0 0 1 -760.5996 -1807.4023)"&gt;
+	&lt;stop  offset="0" style="stop-color:#999999"/&gt;
+	&lt;stop  offset="0.0417" style="stop-color:#8D8D8D"/&gt;
+	&lt;stop  offset="0.1617" style="stop-color:#717171"/&gt;
+	&lt;stop  offset="0.2821" style="stop-color:#5D5D5D"/&gt;
+	&lt;stop  offset="0.4021" style="stop-color:#515151"/&gt;
+	&lt;stop  offset="0.5212" style="stop-color:#4D4D4D"/&gt;
+	&lt;stop  offset="0.6202" style="stop-color:#565656"/&gt;
+	&lt;stop  offset="0.7817" style="stop-color:#6E6E6E"/&gt;
+	&lt;stop  offset="0.9844" style="stop-color:#969696"/&gt;
+	&lt;stop  offset="1" style="stop-color:#999999"/&gt;
+&lt;/linearGradient&gt;
+&lt;path display="none" fill="url(#SVGID_2_)" d="M37.212,40.79c0,0-1.477,0.096-2.498,0.096s-2.499-0.096-2.499-0.096v-9.768h4.997
+	V40.79z"/&gt;
+&lt;linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="52.1938" y1="42.0806" x2="17.5693" y2="42.0806"&gt;
+	&lt;stop  offset="0" style="stop-color:#999999"/&gt;
+	&lt;stop  offset="0.0417" style="stop-color:#8D8D8D"/&gt;
+	&lt;stop  offset="0.1617" style="stop-color:#717171"/&gt;
+	&lt;stop  offset="0.2821" style="stop-color:#5D5D5D"/&gt;
+	&lt;stop  offset="0.4021" style="stop-color:#515151"/&gt;
+	&lt;stop  offset="0.5212" style="stop-color:#4D4D4D"/&gt;
+	&lt;stop  offset="0.6202" style="stop-color:#565656"/&gt;
+	&lt;stop  offset="0.7817" style="stop-color:#6E6E6E"/&gt;
+	&lt;stop  offset="0.9844" style="stop-color:#969696"/&gt;
+	&lt;stop  offset="1" style="stop-color:#999999"/&gt;
+&lt;/linearGradient&gt;
+&lt;path fill="url(#SVGID_3_)" d="M51.97,42.018c0,0.516-0.45,0.938-1,0.938H18.345c-0.55,0-1-0.422-1-0.938s0.249-0.813,0.249-0.813
+	l34.146,0.028C51.74,41.234,51.97,41.502,51.97,42.018z"/&gt;
+&lt;linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="52.0024" y1="39.5415" x2="17.7529" y2="39.5415"&gt;
+	&lt;stop  offset="0" style="stop-color:#999999"/&gt;
+	&lt;stop  offset="0.0417" style="stop-color:#8D8D8D"/&gt;
+	&lt;stop  offset="0.1617" style="stop-color:#717171"/&gt;
+	&lt;stop  offset="0.2821" style="stop-color:#5D5D5D"/&gt;
+	&lt;stop  offset="0.4021" style="stop-color:#515151"/&gt;
+	&lt;stop  offset="0.5212" style="stop-color:#4D4D4D"/&gt;
+	&lt;stop  offset="0.6202" style="stop-color:#565656"/&gt;
+	&lt;stop  offset="0.7817" style="stop-color:#6E6E6E"/&gt;
+	&lt;stop  offset="0.9844" style="stop-color:#969696"/&gt;
+	&lt;stop  offset="1" style="stop-color:#999999"/&gt;
+&lt;/linearGradient&gt;
+&lt;path fill="url(#SVGID_4_)" d="M51.782,41.286h-34.25l2.179-2.714c0.349-0.426,1.083-0.774,1.633-0.774h26.625
+	c0.55,0,1.285,0.349,1.633,0.774L51.782,41.286z"/&gt;
+&lt;linearGradient id="SVGID_5_" gradientUnits="userSpaceOnUse" x1="797.8442" y1="1842.3892" x2="792.8472" y2="1842.3892" gradientTransform="matrix(1 0 0 1 -760.5996 -1807.4023)"&gt;
+	&lt;stop  offset="0" style="stop-color:#999999"/&gt;
+	&lt;stop  offset="0.0417" style="stop-color:#8D8D8D"/&gt;
+	&lt;stop  offset="0.1617" style="stop-color:#717171"/&gt;
+	&lt;stop  offset="0.2821" style="stop-color:#5D5D5D"/&gt;
+	&lt;stop  offset="0.4021" style="stop-color:#515151"/&gt;
+	&lt;stop  offset="0.5212" style="stop-color:#4D4D4D"/&gt;
+	&lt;stop  offset="0.6202" style="stop-color:#565656"/&gt;
+	&lt;stop  offset="0.7817" style="stop-color:#6E6E6E"/&gt;
+	&lt;stop  offset="0.9844" style="stop-color:#969696"/&gt;
+	&lt;stop  offset="1" style="stop-color:#999999"/&gt;
+&lt;/linearGradient&gt;
+&lt;path fill="url(#SVGID_5_)" d="M37.212,39.694c0,0-1.478,0.354-2.499,0.354c-1.021,0-2.499-0.354-2.499-0.354v-9.768h4.997V39.694z"
+	/&gt;
+&lt;radialGradient id="SVGID_6_" cx="657.0923" cy="1817.3071" r="24.0778" gradientTransform="matrix(1.513 0 0 1 -973.8635 -1807.4023)" gradientUnits="userSpaceOnUse"&gt;
+	&lt;stop  offset="0" style="stop-color:#F2F2F2"/&gt;
+	&lt;stop  offset="1" style="stop-color:#666666"/&gt;
+&lt;/radialGradient&gt;
+&lt;path fill="url(#SVGID_6_)" d="M0.14,2.14c0-1.1,1.184-2,2.631-2h63.474c1.446,0,2.631,0.9,2.631,2v30.073c0,1.101-1.185,2-2.631,2
+	H2.771c-1.447,0-2.631-0.899-2.631-2V2.14z"/&gt;
+&lt;path fill="none" stroke="#666666" stroke-width="0.2794" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+	M0.14,2.14c0-1.1,1.184-2,2.631-2h63.474c1.446,0,2.631,0.9,2.631,2v30.073c0,1.101-1.185,2-2.631,2H2.771
+	c-1.447,0-2.631-0.899-2.631-2V2.14z"/&gt;
+&lt;radialGradient id="SVGID_7_" cx="635.0688" cy="1809.1597" r="53.3331" fx="677.0258" fy="1801.9722" gradientTransform="matrix(1.5073 0 0 1 -921.6763 -1807.4023)" gradientUnits="userSpaceOnUse"&gt;
+	&lt;stop  offset="0" style="stop-color:#4D4D4D"/&gt;
+	&lt;stop  offset="1" style="stop-color:#999999"/&gt;
+&lt;/radialGradient&gt;
+&lt;path fill="url(#SVGID_7_)" d="M2.813,3.161c0-1.1,1.136-2,2.525-2h58.636c1.389,0,2.525,0.9,2.525,2v27.805c0,1.1-1.137,2-2.525,2
+	H5.339c-1.389,0-2.525-0.9-2.525-2V3.161z"/&gt;
+&lt;radialGradient id="SVGID_8_" cx="636.0776" cy="1809.2437" r="34.1874" gradientTransform="matrix(1.5102 0 0 1 -924.7913 -1807.4023)" gradientUnits="userSpaceOnUse"&gt;
+	&lt;stop  offset="0" style="stop-color:#9CD7FF"/&gt;
+	&lt;stop  offset="1" style="stop-color:#3C89C9"/&gt;
+&lt;/radialGradient&gt;
+&lt;path fill="url(#SVGID_8_)" d="M3.439,3.616c0-1.1,1.14-2,2.533-2h57.371c1.394,0,2.532,0.9,2.532,2V30.51c0,1.1-1.139,2-2.532,2
+	H5.972c-1.393,0-2.533-0.9-2.533-2V3.616z"/&gt;
+&lt;path opacity="0.24" fill="#F2F2F2" enable-background="new    " d="M3.356,23.653V3.616c0-1.1,1.143-2,2.54-2h57.522
+	c1.398,0,2.54,0.9,2.54,2v13.539c0,0-17.706,2.838-34.415,4.549C14.834,23.414,3.356,23.653,3.356,23.653z"/&gt;
+&lt;/svg&gt;
+</y:Resource>
+      <y:Resource id="2" xml:space="preserve">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" width="23px" height="38px" viewBox="0 0 23 38" enable-background="new 0 0 23 38" xml:space="preserve"&gt;
+&lt;defs&gt;
+&lt;/defs&gt;
+&lt;g&gt;
+	&lt;path fill="#C5C5C5" d="M23,35.916C23,37.063,22.063,38,20.916,38H2.084C0.938,38,0,37.063,0,35.916V2.084C0,0.938,0.938,0,2.084,0
+		h18.832C22.063,0,23,0.938,23,2.084V35.916z"/&gt;
+&lt;/g&gt;
+&lt;g&gt;
+	&lt;linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="11.5005" y1="34" x2="11.5005" y2="2.0005"&gt;
+		&lt;stop  offset="0" style="stop-color:#515151"/&gt;
+		&lt;stop  offset="1" style="stop-color:#848484"/&gt;
+	&lt;/linearGradient&gt;
+	&lt;path fill="url(#SVGID_1_)" d="M22,32.184C22,33.187,21.187,34,20.184,34H2.816C1.813,34,1,33.187,1,32.184V3.816
+		C1,2.813,1.813,2,2.816,2h17.367C21.187,2,22,2.813,22,3.816V32.184z"/&gt;
+&lt;/g&gt;
+&lt;radialGradient id="SVGID_2_" cx="11.5" cy="4.1665" r="23.5037" gradientTransform="matrix(1 0 0 0.9565 0 1.1737)" gradientUnits="userSpaceOnUse"&gt;
+	&lt;stop  offset="0" style="stop-color:#9CD7FF"/&gt;
+	&lt;stop  offset="1" style="stop-color:#3C89C9"/&gt;
+&lt;/radialGradient&gt;
+&lt;rect x="2" y="5" fill="url(#SVGID_2_)" width="19" height="22"/&gt;
+&lt;linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="11.5835" y1="31.5" x2="11.5835" y2="29.334"&gt;
+	&lt;stop  offset="0" style="stop-color:#B8B8B8"/&gt;
+	&lt;stop  offset="1" style="stop-color:#F2F2F2"/&gt;
+&lt;/linearGradient&gt;
+&lt;ellipse fill="url(#SVGID_3_)" cx="11.583" cy="30.417" rx="1.5" ry="1.083"/&gt;
+&lt;linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="15.334" y1="31.1709" x2="15.334" y2="29.6631"&gt;
+	&lt;stop  offset="0" style="stop-color:#B8B8B8"/&gt;
+	&lt;stop  offset="1" style="stop-color:#F2F2F2"/&gt;
+&lt;/linearGradient&gt;
+&lt;ellipse fill="url(#SVGID_4_)" cx="15.333" cy="30.417" rx="1.043" ry="0.754"/&gt;
+&lt;linearGradient id="SVGID_5_" gradientUnits="userSpaceOnUse" x1="19.084" y1="31.1709" x2="19.084" y2="29.6631"&gt;
+	&lt;stop  offset="0" style="stop-color:#B8B8B8"/&gt;
+	&lt;stop  offset="1" style="stop-color:#F2F2F2"/&gt;
+&lt;/linearGradient&gt;
+&lt;ellipse fill="url(#SVGID_5_)" cx="19.083" cy="30.417" rx="1.043" ry="0.754"/&gt;
+&lt;linearGradient id="SVGID_6_" gradientUnits="userSpaceOnUse" x1="4.0835" y1="31.1709" x2="4.0835" y2="29.6631"&gt;
+	&lt;stop  offset="0" style="stop-color:#B8B8B8"/&gt;
+	&lt;stop  offset="1" style="stop-color:#F2F2F2"/&gt;
+&lt;/linearGradient&gt;
+&lt;ellipse fill="url(#SVGID_6_)" cx="4.083" cy="30.417" rx="1.043" ry="0.754"/&gt;
+&lt;linearGradient id="SVGID_7_" gradientUnits="userSpaceOnUse" x1="7.8335" y1="31.1709" x2="7.8335" y2="29.6631"&gt;
+	&lt;stop  offset="0" style="stop-color:#B8B8B8"/&gt;
+	&lt;stop  offset="1" style="stop-color:#F2F2F2"/&gt;
+&lt;/linearGradient&gt;
+&lt;ellipse fill="url(#SVGID_7_)" cx="7.833" cy="30.417" rx="1.043" ry="0.754"/&gt;
+&lt;linearGradient id="SVGID_8_" gradientUnits="userSpaceOnUse" x1="11.0835" y1="4.3682" x2="11.0835" y2="2.4658"&gt;
+	&lt;stop  offset="0" style="stop-color:#B8B8B8"/&gt;
+	&lt;stop  offset="1" style="stop-color:#A2A2A2"/&gt;
+&lt;/linearGradient&gt;
+&lt;ellipse fill="url(#SVGID_8_)" cx="11.083" cy="3.417" rx="1.063" ry="0.951"/&gt;
+&lt;linearGradient id="SVGID_9_" gradientUnits="userSpaceOnUse" x1="11.0835" y1="3.916" x2="11.0835" y2="2.918"&gt;
+	&lt;stop  offset="0" style="stop-color:#9CD7FF"/&gt;
+	&lt;stop  offset="1" style="stop-color:#F2F2F2"/&gt;
+&lt;/linearGradient&gt;
+&lt;ellipse fill="url(#SVGID_9_)" cx="11.083" cy="3.417" rx="0.558" ry="0.499"/&gt;
+&lt;path opacity="0.24" fill="#F2F2F2" d="M20.938,15.065c0,0-6.654,2.879-10.771,4.019C6.05,20.223,2,21.125,2,21.125V5h19
+	L20.938,15.065z"/&gt;
+&lt;/svg&gt;
+</y:Resource>
+    </y:Resources>
+  </data>
+</graphml>

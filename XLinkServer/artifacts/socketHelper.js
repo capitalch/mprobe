@@ -74,30 +74,6 @@ function setSocketEvents(socket) {
         console.log('Error:' + d);
     })
 
-    // let serverActions = {
-    //     'get:connected:users': (tenant, fn) => {
-    //         let users = _
-    //             .values(io.sockets.sockets)
-    //             .map(x => x.clientInfo.uid)
-    //             .filter(x => x.split(':')[0] == tenant);
-    //         fn(users);
-    //     },
-    //     'get:clients:info:list': (tenant, fn) => {
-    //         let clientsInfoList = _
-    //             .values(io.sockets.sockets)
-    //             .filter(x => x.clientInfo.uid.split(':')[0] == tenant)
-    //             .map(x => x.clientInfo);
-    //         fn(clientsInfoList);
-    //     }
-    // };
-
-    // socket.on('cs-msg', (d, fn) => {
-    //     let tenant = d
-    //         .uid
-    //         .split(':')[0];
-    //     serverActions[d.innerData.action](tenant, fn);
-    // });
-
 }
 
 function publishAllUsers() {

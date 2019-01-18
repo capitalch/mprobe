@@ -1,12 +1,10 @@
 "use strict";
 let express = require('express');
 const path = require('path');
-let fs = require('fs');
 let crypto = require('crypto');
 let jwt = require('jsonwebtoken');
 let router = express.Router();
 let userInfo = require('./userInfo');
-// let config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 let config = require('../config.json');
 let userValidation = require('./userValidation');
 let def = require('./definitions');
@@ -240,11 +238,5 @@ router.post('/api/tunnel/static', (req, res, next) => {
         next(err);
     }
 });
-
-// var getData = function (file) {
-//     let obj = JSON.parse(fs.readFileSync(file, 'utf8'));
-//     let output = JSON.stringify(obj, null, 4);
-//     return output;
-// }
 
 module.exports = router;
