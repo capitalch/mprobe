@@ -119,14 +119,6 @@ class MyApp extends StatelessWidget {
         },
         'detailsOnBrand':(BuildContext context){
           return(DetailsOnBrand());
-          // final brand = globals.Util.get('id');
-
-          // return Generic1(
-          //   'detailsOnBrand',
-          //   'tunnel:get:details:on:brand',
-          //   {'brand':brand},
-          //   '$brand details'
-          // );
         },
         'detailsOnItemBrand':(BuildContext context){
           final item = globals.Util.get('id');
